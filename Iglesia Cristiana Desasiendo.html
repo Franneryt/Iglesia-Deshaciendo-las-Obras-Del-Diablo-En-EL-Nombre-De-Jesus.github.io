@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Iglesia Cristiana Pentecostal</title>
+
+  <!-- Tailwind -->
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <!-- AOS -->
+  <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+
+  <!-- Icons -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+
+  <!-- QR -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+
+  <style>
+    .animate-bg {
+      background:
+        radial-gradient(circle at 20% 80%, rgba(99,102,241,0.5), transparent 60%),
+        radial-gradient(circle at 80% 20%, rgba(236,72,153,0.5), transparent 60%),
+        radial-gradient(circle at 50% 50%, rgba(34,197,94,0.4), transparent 65%);
+      animation: bgMove 10s ease-in-out infinite alternate;
+      filter: blur(40px);
+    }
+    @keyframes bgMove {
+      from { transform: translateY(0); }
+      to { transform: translateY(-60px); }
+    }
+    .glass {
+      backdrop-filter: blur(20px);
+      background: rgba(255,255,255,0.1);
+      border: 1px solid rgba(255,255,255,0.2);
+    }
+  </style>
+</head>
+
+<body class="relative text-white overflow-x-hidden bg-gradient-to-b from-blue-950 via-purple-900 to-black">
+
+<!-- Fondo animado -->
+<div class="fixed inset-0 -z-10 animate-bg"></div>
+
+<!-- Botón menú -->
+<button id="menuBtn" class="fixed top-4 left-4 z-50 bg-black/70 p-3 rounded-xl shadow-lg hover:scale-110 transition">
+  ☰
+</button>
+
+<!-- Sidebar -->
+<aside id="sidebar"
+class="fixed top-0 left-0 h-full w-64 glass p-6 z-40 transform -translate-x-full transition-transform duration-300">
+  <h2 class="text-2xl font-bold mb-8 text-center">Menú</h2>
+  <nav class="flex flex-col gap-4 text-lg">
+    <a href="#hero" class="hover:text-yellow-400">Inicio</a>
+    <a href="#pastores" class="hover:text-yellow-400">Pastores</a>
+    <a href="#lideres" class="hover:text-yellow-400">Líderes</a>
+    <a href="#transmisiones" class="hover:text-yellow-400">Redes</a>
+  </nav>
+</aside>
+
+<!-- Logo -->
+<img src="https://scontent.fsdq3-1.fna.fbcdn.net/v/t39.30808-6/475811330_936882668622119_1647342271377194753_n.jpg?_nc_cat=100&ccb=1-7&_nc_sid=833d8c&_nc_ohc=zzS9UIy0rHgQ7kNvwFhLA-J&_nc_oc=Adl0acEpys8cpYkPOeEhCfhZqbBWsZb089cDs7dKw3okYNh-ha10L_pOTBC0mG1nbWk&_nc_zt=23&_nc_ht=scontent.fsdq3-1.fna&_nc_gid=okB9D14eaIrRPZWC0jU1bw&oh=00_AfncAblS4KfZjtLy0afPI1HIH7ZxzpEpWxm8xu32yE20pg&oe=694A8EC6"
+class="fixed top-4 right-4 w-16 rounded-full shadow-lg z-50" alt="Logo">
+
+<!-- HERO CON IMAGEN -->
+<section id="hero"
+class="relative min-h-screen flex items-center justify-center text-center bg-cover bg-center"
+style="background-image: url('iglesia.jpg');">
+
+  <div class="absolute inset-0 bg-black/60"></div>
+
+  <div class="relative z-10 px-6" data-aos="zoom-in">
+    <h1 class="text-4xl md:text-6xl font-bold mb-6">
+      Iglesia Cristiana Pentecostal
+    </h1>
+    <p class="max-w-2xl mx-auto text-lg text-gray-200 mb-8">
+      Una iglesia viva, llena del Espíritu Santo.
+    </p>
+    <a href="#transmisiones"
+    class="bg-yellow-400 text-black px-8 py-4 rounded-2xl font-semibold hover:scale-105 transition">
+      Conéctate con nosotros
+    </a>
+  </div>
+</section>
+
+<!-- PASTORES -->
+<section id="pastores" class="px-6 py-20 max-w-6xl mx-auto">
+  <h2 data-aos="fade-up" class="text-3xl md:text-4xl text-center mb-12">Nuestros Pastores</h2>
+  <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8">
+    <div class="glass p-6 rounded-2xl text-center hover:scale-105 transition">
+      <img src="pastor1.jpg" class="w-36 h-36 mx-auto rounded-full mb-4 object-cover">
+      <h3 class="text-xl font-bold">Pastor Juan Pérez</h3>
+      <p class="text-gray-300">Pastor Principal</p>
+    </div>
+    <div class="glass p-6 rounded-2xl text-center hover:scale-105 transition">
+      <img src="pastor2.jpg" class="w-36 h-36 mx-auto rounded-full mb-4 object-cover">
+      <h3 class="text-xl font-bold">Pastora María López</h3>
+      <p class="text-gray-300">Copastora</p>
+    </div>
+    <div class="glass p-6 rounded-2xl text-center hover:scale-105 transition">
+      <img src="pastor3.jpg" class="w-36 h-36 mx-auto rounded-full mb-4 object-cover">
+      <h3 class="text-xl font-bold">Pastor Carlos Gómez</h3>
+      <p class="text-gray-300">Asociado</p>
+    </div>
+  </div>
+</section>
+
+<!-- REDES SOCIALES -->
+<section id="transmisiones" class="px-6 py-24 max-w-7xl mx-auto">
+  <h2 class="text-4xl md:text-5xl font-bold text-center mb-12" data-aos="fade-up">
+    Conéctate con Nosotros
+  </h2>
+
+  <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+
+    <!-- YouTube -->
+    <div class="glass p-8 rounded-3xl text-center hover:scale-105 transition">
+      <i data-lucide="youtube" class="w-14 h-14 text-red-500 mx-auto mb-5"></i>
+      <h3 class="text-2xl font-bold mb-4">YouTube</h3>
+      <a href="https://youtube.com/@pastormanuelpaulino7?si=Ge0frd3Q6Q0JPxZ6" target="_blank"
+      class="bg-red-600 px-6 py-3 rounded-xl inline-block font-semibold">Ver canal</a>
+    </div>
+
+    <!-- Instagram -->
+    <div class="glass p-8 rounded-3xl text-center hover:scale-105 transition">
+      <i data-lucide="instagram" class="w-14 h-14 text-pink-500 mx-auto mb-5"></i>
+      <h3 class="text-2xl font-bold mb-4">Instagram</h3>
+      <a href="https://www.instagram.com/pastor_manuelpaulino?igsh=bzhrdDJ2aHNweDZz" target="_blank"
+      class="bg-pink-600 px-6 py-3 rounded-xl inline-block font-semibold">Ver perfil</a>
+    </div>
+
+    <!-- TikTok -->
+    <div class="glass p-8 rounded-3xl text-center hover:scale-105 transition">
+      <i data-lucide="video" class="w-14 h-14 text-white mx-auto mb-5"></i>
+      <h3 class="text-2xl font-bold mb-4">TikTok</h3>
+      <a href="https://www.tiktok.com/@iglesia.cristiana_icdnj?_r=1&_t=ZS-92L6VuhTkeH" target="_blank"
+      class="bg-black px-6 py-3 rounded-xl inline-block font-semibold">Seguir</a>
+    </div>
+
+    <!-- Facebook -->
+    <div class="glass p-8 rounded-3xl text-center hover:scale-105 transition">
+      <i data-lucide="facebook" class="w-14 h-14 text-blue-500 mx-auto mb-5"></i>
+      <h3 class="text-2xl font-bold mb-4">Facebook</h3>
+      <a href="https://facebook.com" target="_blank"
+      class="bg-blue-600 px-6 py-3 rounded-xl inline-block font-semibold">Visitar</a>
+    </div>
+
+  </div>
+</section>
+
+<!-- QR -->
+<section class="text-center py-20">
+  <h2 class="text-3xl mb-6">Accede desde tu celular</h2>
+  <div id="qrcode" class="flex justify-center"></div>
+</section>
+
+<footer class="text-center py-10 text-gray-400">
+  © 2025 Iglesia Cristiana Pentecostal
+</footer>
+
+<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+<script>
+AOS.init({ once:false, mirror:true, duration:1000 });
+lucide.createIcons();
+
+const menuBtn = document.getElementById('menuBtn');
+const sidebar = document.getElementById('sidebar');
+
+menuBtn.onclick = (e)=>{
+  e.stopPropagation();
+  sidebar.classList.toggle('-translate-x-full');
+};
+document.addEventListener('click', e=>{
+  if(!sidebar.contains(e.target) && !menuBtn.contains(e.target)){
+    sidebar.classList.add('-translate-x-full');
+  }
+});
+
+new QRCode(document.getElementById("qrcode"), {
+  text: window.location.href,
+  width:160,
+  height:160,
+  colorDark:"#ffffff",
+  colorLight:"transparent"
+});
+</script>
+
+</body>
+</html>
