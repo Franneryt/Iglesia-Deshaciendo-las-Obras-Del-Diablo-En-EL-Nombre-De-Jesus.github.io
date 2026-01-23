@@ -14,60 +14,18 @@
 <style>
 body { font-family: 'Poppins', sans-serif; }
 h1,h2,h3 { font-family: 'Cinzel', serif; letter-spacing: 1px; }
-
-.animate-bg {
-  background:
-    radial-gradient(circle at 20% 80%, rgba(99,102,241,0.45), transparent 60%),
-    radial-gradient(circle at 80% 20%, rgba(236,72,153,0.45), transparent 60%),
-    radial-gradient(circle at 50% 50%, rgba(255,215,0,0.45), transparent 65%);
-  animation: bgMove 12s ease-in-out infinite alternate;
-  filter: blur(60px);
-}
-@keyframes bgMove {
-  from { transform: translateY(0); }
-  to { transform: translateY(-140px); }
-}
-
-.glass {
-  backdrop-filter: blur(25px);
-  background: linear-gradient(145deg, rgba(255,255,255,0.15), rgba(255,255,255,0.05));
-  border: 1px solid rgba(255,215,0,0.45);
-}
-
-.card-hover:hover {
-  transform: translateY(-10px) scale(1.06);
-  box-shadow: 0 30px 70px rgba(255,215,0,0.35);
-}
-
-.icon-glow {
-  filter: drop-shadow(0 0 16px rgba(255,215,0,0.9));
-  animation: float 3s ease-in-out infinite;
-}
-@keyframes float {
-  0%,100% { transform: translateY(0); }
-  50% { transform: translateY(-12px); }
-}
-
-.title-glow {
-  text-shadow: 0 0 25px rgba(255,215,0,0.9);
-}
-
-.pastor-card {
-  border: 2px solid rgba(255,215,0,0.8);
-  box-shadow: 0 0 30px rgba(255,215,0,0.4);
-}
-.lider-card {
-  border: 1px solid rgba(255,255,255,0.4);
-  box-shadow: 0 0 20px rgba(255,255,255,0.25);
-}
-.section-title {
-  font-size: 3rem;
-  text-align: center;
-  margin-bottom: 3rem;
-}
+.animate-bg { background: radial-gradient(circle at 20% 80%, rgba(99,102,241,0.45), transparent 60%), radial-gradient(circle at 80% 20%, rgba(236,72,153,0.45), transparent 60%), radial-gradient(circle at 50% 50%, rgba(255,215,0,0.45), transparent 65%); animation: bgMove 12s ease-in-out infinite alternate; filter: blur(60px); }
+@keyframes bgMove { from { transform: translateY(0); } to { transform: translateY(-140px); } }
+.glass { backdrop-filter: blur(25px); background: linear-gradient(145deg, rgba(255,255,255,0.15), rgba(255,255,255,0.05)); border: 1px solid rgba(255,215,0,0.45); }
+.card-hover:hover { transform: translateY(-10px) scale(1.06); box-shadow: 0 30px 70px rgba(255,215,0,0.35); }
+.icon-glow { filter: drop-shadow(0 0 16px rgba(255,215,0,0.9)); animation: float 3s ease-in-out infinite; }
+@keyframes float { 0%,100% { transform: translateY(0); } 50% { transform: translateY(-12px); } }
+.title-glow { text-shadow: 0 0 25px rgba(255,215,0,0.9); }
+.pastor-card { border: 2px solid rgba(255,215,0,0.8); box-shadow: 0 0 30px rgba(255,215,0,0.4); }
+.lider-card { border: 1px solid rgba(255,255,255,0.4); box-shadow: 0 0 20px rgba(255,255,255,0.25); }
+.section-title { font-size: 3rem; text-align: center; margin-bottom: 3rem; }
 </style>
 </head>
-
 <body class="relative text-white overflow-x-hidden bg-gradient-to-b from-blue-950 via-purple-900 to-black">
 
 <div class="fixed inset-0 -z-10 animate-bg"></div>
@@ -108,7 +66,13 @@ h1,h2,h3 { font-family: 'Cinzel', serif; letter-spacing: 1px; }
 <section id="cultos" class="px-6 py-24 max-w-6xl mx-auto">
 <h2 class="section-title title-glow" data-aos="fade-up">Días de Culto</h2>
 <div class="grid md:grid-cols-3 gap-8">
-<!-- Tarjetas de cultos aquí (omitidas para abreviar) -->
+<div class="glass p-8 rounded-2xl text-center card-hover" data-aos="fade-up"><h3 class="text-2xl font-bold">Lunes</h3><p>Día de Oración</p><p class="text-yellow-400 mt-2">7:30 PM</p></div>
+<div class="glass p-8 rounded-2xl text-center card-hover" data-aos="fade-up" data-aos-delay="100"><h3 class="text-2xl font-bold">Martes</h3><p>Discipulado</p><p class="text-yellow-400 mt-2">7:30 PM</p></div>
+<div class="glass p-8 rounded-2xl text-center card-hover" data-aos="fade-up" data-aos-delay="200"><h3 class="text-2xl font-bold">Miércoles</h3><p>Oración</p><p class="text-yellow-400 mt-2">7:30 PM</p></div>
+<div class="glass p-8 rounded-2xl text-center card-hover" data-aos="fade-up" data-aos-delay="300"><h3 class="text-2xl font-bold">Jueves</h3><p>Discipulado para Amigos</p><p class="text-yellow-400 mt-2">7:30 PM</p></div>
+<div class="glass p-8 rounded-2xl text-center card-hover" data-aos="fade-up" data-aos-delay="400"><h3 class="text-2xl font-bold">Viernes</h3><p>Día de Oportunidades</p><p class="text-yellow-400 mt-2">7:30 PM</p></div>
+<div class="glass p-8 rounded-2xl text-center card-hover" data-aos="fade-up" data-aos-delay="500"><h3 class="text-2xl font-bold">Sábado</h3><p>Día de Oportunidades</p><p class="text-yellow-400 mt-2">7:30 PM</p></div>
+<div class="glass p-8 rounded-2xl text-center card-hover md:col-span-3" data-aos="fade-up" data-aos-delay="600"><h3 class="text-2xl font-bold">Domingo</h3><p>Culto General</p><p class="text-yellow-400 mt-2">5:00 PM</p></div>
 </div>
 </section>
 
@@ -116,7 +80,8 @@ h1,h2,h3 { font-family: 'Cinzel', serif; letter-spacing: 1px; }
 <section id="pastores" class="px-6 py-24 max-w-6xl mx-auto">
 <h2 class="section-title title-glow" data-aos="fade-up">Nuestros Pastores</h2>
 <div class="grid md:grid-cols-2 gap-10">
-<!-- Tarjetas de pastores aquí (omitidas para abreviar) -->
+<div class="glass pastor-card p-8 rounded-3xl text-center card-hover" data-aos="zoom-in"><h3 class="text-2xl font-bold">Pastor Manuel Paulino</h3><p class="text-yellow-400 mt-2">Pastor Principal</p></div>
+<div class="glass pastor-card p-8 rounded-3xl text-center card-hover" data-aos="zoom-in" data-aos-delay="150"><h3 class="text-2xl font-bold">Pastora Deiny De Paulino</h3><p class="text-yellow-400 mt-2">Pastora</p></div>
 </div>
 </section>
 
@@ -124,7 +89,10 @@ h1,h2,h3 { font-family: 'Cinzel', serif; letter-spacing: 1px; }
 <section id="lideres" class="px-6 py-24 max-w-7xl mx-auto">
 <h2 class="section-title title-glow" data-aos="fade-up">Liderazgo</h2>
 <div class="grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-8">
-<!-- Tarjetas de líderes aquí (omitidas para abreviar) -->
+<div class="glass lider-card p-6 rounded-2xl text-center card-hover" data-aos="fade-up"><h3 class="font-bold">Elvin Guzmán</h3></div>
+<div class="glass lider-card p-6 rounded-2xl text-center card-hover" data-aos="fade-up" data-aos-delay="100"><h3 class="font-bold">Doneissy</h3></div>
+<div class="glass lider-card p-6 rounded-2xl text-center card-hover" data-aos="fade-up" data-aos-delay="200"><h3 class="font-bold">Rubenny Peguero</h3></div>
+<div class="glass lider-card p-6 rounded-2xl text-center card-hover" data-aos="fade-up" data-aos-delay="300"><h3 class="font-bold">Juan Luis De Oleo González</h3></div>
 </div>
 </section>
 
@@ -132,7 +100,9 @@ h1,h2,h3 { font-family: 'Cinzel', serif; letter-spacing: 1px; }
 <section id="ministerios" class="px-6 py-24 max-w-6xl mx-auto">
 <h2 class="section-title title-glow" data-aos="fade-up">Ministerios</h2>
 <div class="grid md:grid-cols-3 gap-8">
-<!-- Tarjetas de ministerios aquí (omitidas para abreviar) -->
+<div class="glass p-8 rounded-2xl text-center card-hover" data-aos="fade-up">Alabanza</div>
+<div class="glass p-8 rounded-2xl text-center card-hover" data-aos="fade-up" data-aos-delay="100">Jóvenes</div>
+<div class="glass p-8 rounded-2xl text-center card-hover" data-aos="fade-up" data-aos-delay="200">Intercesión</div>
 </div>
 </section>
 
@@ -140,79 +110,93 @@ h1,h2,h3 { font-family: 'Cinzel', serif; letter-spacing: 1px; }
 <section id="testimonios" class="px-6 py-24 max-w-6xl mx-auto">
 <h2 class="section-title title-glow" data-aos="fade-up">Testimonios</h2>
 <div class="grid md:grid-cols-3 gap-8">
-<!-- Tarjetas de testimonios aquí (omitidas para abreviar) -->
+<div class="glass p-8 rounded-2xl card-hover" data-aos="fade-up">“Dios sanó mi vida y mi familia completamente.”</div>
+<div class="glass p-8 rounded-2xl card-hover" data-aos="fade-up" data-aos-delay="100">“Llegué destruido y salí restaurado por el poder de Dios.”</div>
+<div class="glass p-8 rounded-2xl card-hover" data-aos="fade-up" data-aos-delay="200">“Jesús cambió mi historia para siempre.”</div>
 </div>
 </section>
 
-<!-- REDES -->
+  <!-- REDES SOCIALES / X -->
 <section id="transmisiones" class="px-6 py-28 max-w-7xl mx-auto">
-<h2 class="section-title title-glow" data-aos="fade-up">Conéctate con Nosotros</h2>
-<div class="grid sm:grid-cols-2 lg:grid-cols-5 gap-10">
-<!-- YouTube, Instagram, TikTok, Facebook -->
-<a href="https://x.com/Iglesia_ICDNJ" target="_blank" class="glass p-10 rounded-3xl text-center card-hover">
-<i data-lucide="x" class="w-20 h-20 text-white mx-auto mb-6 icon-glow"></i>
-<h3 class="text-2xl font-bold">X</h3>
-</a>
-</div>
+  <h2 class="section-title title-glow" data-aos="fade-up">Conéctate con Nosotros</h2>
+  <div class="grid sm:grid-cols-2 lg:grid-cols-5 gap-10">
+    <a href="https://x.com/Iglesia_ICDNJ" target="_blank" class="glass p-10 rounded-3xl text-center card-hover">
+      <i data-lucide="x" class="w-20 h-20 text-white mx-auto mb-6 icon-glow"></i>
+      <h3 class="text-2xl font-bold">X</h3>
+    </a>
+    <a href="https://youtube.com/@pastormanuelpaulino7" target="_blank" class="glass p-10 rounded-3xl text-center card-hover">
+      <i data-lucide="youtube" class="w-20 h-20 text-red-500 mx-auto mb-6 icon-glow"></i>
+      <h3 class="text-2xl font-bold">YouTube</h3>
+    </a>
+    <a href="https://www.instagram.com/pastor_manuelpaulino" target="_blank" class="glass p-10 rounded-3xl text-center card-hover">
+      <i data-lucide="instagram" class="w-20 h-20 text-pink-500 mx-auto mb-6 icon-glow"></i>
+      <h3 class="text-2xl font-bold">Instagram</h3>
+    </a>
+    <a href="https://www.tiktok.com/@iglesia.cristiana_icdnj" target="_blank" class="glass p-10 rounded-3xl text-center card-hover">
+      <i data-lucide="video" class="w-20 h-20 text-white mx-auto mb-6 icon-glow"></i>
+      <h3 class="text-2xl font-bold">TikTok</h3>
+    </a>
+    <a href="https://facebook.com" target="_blank" class="glass p-10 rounded-3xl text-center card-hover">
+      <i data-lucide="facebook" class="w-20 h-20 text-blue-500 mx-auto mb-6 icon-glow"></i>
+      <h3 class="text-2xl font-bold">Facebook</h3>
+    </a>
+  </div>
 </section>
 
 <!-- EVENTOS ESPECIALES -->
 <section id="eventos" class="px-6 py-24 max-w-6xl mx-auto">
-<h2 class="section-title title-glow" data-aos="fade-up">Eventos Especiales</h2>
-<div class="grid md:grid-cols-3 gap-8">
-<div class="glass p-8 rounded-2xl text-center card-hover" data-aos="fade-up">
-<h3 class="text-2xl font-bold">Culto De Adoradores</h3>
-<p>Fecha: 24 de Enero</p>
-<p>Lugar: Pley De sabanitaPrincipal</p>
-</div>
-<div class="glass p-8 rounded-2xl text-center card-hover" data-aos="fade-up" data-aos-delay="100">
-<h3 class="text-2xl font-bold">Culto de Danzarinas</h3>
-<p>Fecha: 30 de Febrero</p>
-<p>Lugar: Sala de Jóvenes</p>
-</div>
-<div class="glass p-8 rounded-2xl text-center card-hover" data-aos="fade-up" data-aos-delay="200">
-<h3 class="text-2xl font-bold">Retiro Espiritual</h3>
-<p>Fecha: 20-22 de Febrero</p>
-<p>Lugar: Casa de Retiros</p>
-</div>
-</div>
+  <h2 class="section-title title-glow" data-aos="fade-up">Eventos Especiales</h2>
+  <div class="grid md:grid-cols-3 gap-8">
+    <div class="glass p-8 rounded-2xl text-center card-hover" data-aos="fade-up">
+      <h3 class="text-2xl font-bold">Culto De Adoradores</h3>
+      <p>Fecha: 24 de Enero</p>
+      <p>Lugar: Pley De Sabanita Principal</p>
+    </div>
+    <div class="glass p-8 rounded-2xl text-center card-hover" data-aos="fade-up" data-aos-delay="100">
+      <h3 class="text-2xl font-bold">Culto de Danzarinas</h3>
+      <p>Fecha: 30 de Febrero</p>
+      <p>Lugar: Sala de Jóvenes</p>
+    </div>
+    <div class="glass p-8 rounded-2xl text-center card-hover" data-aos="fade-up" data-aos-delay="200">
+      <h3 class="text-2xl font-bold">Retiro Espiritual</h3>
+      <p>Fecha: 20-22 de Febrero</p>
+      <p>Lugar: Casa de Retiros</p>
+    </div>
+  </div>
 </section>
 
 <!-- UBICACIÓN -->
 <section id="ubicacion" class="px-6 py-24 max-w-6xl mx-auto">
-<h2 class="section-title title-glow" data-aos="fade-up">Nuestra Ubicación</h2>
-<div class="rounded-2xl overflow-hidden shadow-xl" data-aos="fade-up" data-aos-delay="100">
-<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3153.019885!2d-122.419415!3d37.774929!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8085815d2f1f0f5b%3A0x123456789abcdef!2sTu%20Ubicacion!5e0!3m2!1ses!2s!4v1234567890" width="100%" height="450" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
-</div>
+  <h2 class="section-title title-glow" data-aos="fade-up">Nuestra Ubicación</h2>
+  <div class="rounded-2xl overflow-hidden shadow-xl" data-aos="fade-up" data-aos-delay="100">
+    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3153.019885!2d-122.419415!3d37.774929!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8085815d2f1f0f5b%3A0x123456789abcdef!2sTu%20Ubicacion!5e0!3m2!1ses!2s!4v1234567890" width="100%" height="450" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+  </div>
 </section>
 
 <!-- QR -->
 <section class="text-center py-20">
-<h2 class="text-3xl mb-6 title-glow">Escanéanos</h2>
-<div id="qrcode" class="flex justify-center"></div>
+  <h2 class="text-3xl mb-6 title-glow">Escanéanos</h2>
+  <div id="qrcode" class="flex justify-center"></div>
 </section>
 
 <!-- BOTÓN WHATSAPP -->
 <a href="https://wa.me/5211234567890" target="_blank" class="fixed bottom-6 right-6 z-50 bg-green-500 p-4 rounded-full shadow-lg hover:scale-110 transition">
-<i data-lucide="message-circle" class="w-8 h-8 text-white"></i>
+  <i data-lucide="message-circle" class="w-8 h-8 text-white"></i>
 </a>
 
+<!-- FOOTER -->
 <footer class="text-center py-10 text-gray-400">© 2025 Iglesia Cristiana Pentecostal</footer>
 
 <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
 <script>
-AOS.init({ duration:1200, once:false });
-lucide.createIcons();
+  AOS.init({ duration:1200, once:false });
+  lucide.createIcons();
 
-const menuBtn = document.getElementById('menuBtn');
-const sidebar = document.getElementById('sidebar');
-menuBtn.onclick = (e)=>{ e.stopPropagation(); sidebar.classList.toggle('-translate-x-full'); };
-document.addEventListener('click', e=>{ if(!sidebar.contains(e.target) && !menuBtn.contains(e.target)){ sidebar.classList.add('-translate-x-full'); }});
+  const menuBtn = document.getElementById('menuBtn');
+  const sidebar = document.getElementById('sidebar');
+  menuBtn.onclick = (e)=>{ e.stopPropagation(); sidebar.classList.toggle('-translate-x-full'); };
+  document.addEventListener('click', e=>{ if(!sidebar.contains(e.target) && !menuBtn.contains(e.target)){ sidebar.classList.add('-translate-x-full'); }});
 
-new QRCode(document.getElementById("qrcode"), { text: window.location.href, width:160, height:160, colorDark:"#ffffff", colorLight:"transparent" });
+  new QRCode(document.getElementById("qrcode"), { text: window.location.href, width:160, height:160, colorDark:"#ffffff", colorLight:"transparent" });
 </script>
-
-</body>
-</html>
-
 
