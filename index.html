@@ -4,8 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
     <title>ICDNJ | Deshaciendo las Obras del Diablo - 12vo Aniversario & Marcha 2026</title>
-    <!-- Google Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;400;500;600;700;800&family=Playfair+Display:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <!-- Google Fonts Modernas -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;400;500;600;700;800;900&family=Playfair+Display:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
     <!-- Font Awesome 6 -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <!-- AOS Animations -->
@@ -16,7 +16,7 @@
     <!-- QR Code -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
     <style>
-        /* ---------- RESET Y ESTILOS GLOBALES ---------- */
+        /* ---------- RESET Y VARIABLES ---------- */
         * {
             margin: 0;
             padding: 0;
@@ -44,10 +44,12 @@
             --dorado-oscuro: #c97e10;
             --dorado-brillante: #ffd966;
             --blanco: #ffffff;
+            --gris-claro: #f8f9fa;
         }
 
         .bg-azul-profundo { background: var(--azul-profundo); }
         .bg-azul-medio { background: var(--azul-medio); }
+        .bg-azul-claro { background: var(--azul-claro); }
         .text-dorado { color: var(--dorado); }
         .border-dorado { border-color: var(--dorado); }
 
@@ -119,7 +121,7 @@
             border-radius: 4px;
         }
 
-        /* Hero con fondo azul degradado y detalles dorados */
+        /* Hero con fondo azul degradado */
         .hero {
             background: linear-gradient(145deg, #0a2b4e 0%, #123e64 100%);
             position: relative;
@@ -247,7 +249,7 @@
         }
         .gallery-item img:hover { transform: scale(1.02); box-shadow: 0 12px 20px rgba(0,0,0,0.2); }
 
-        /* Swiper testimonios */
+        /* Testimonios Swiper */
         .testimonial-slide {
             background: white;
             border-radius: 1.5rem;
@@ -257,6 +259,7 @@
             border-left: 5px solid var(--dorado);
         }
 
+        /* Footer */
         footer {
             background: var(--azul-profundo);
             color: #cfddee;
@@ -280,13 +283,29 @@
             box-shadow: 0 4px 12px rgba(0,0,0,0.2);
             z-index: 99;
         }
+        .social-bar {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin: 1rem 0;
+        }
+        .social-bar a {
+            color: var(--dorado);
+            font-size: 2rem;
+            transition: transform 0.2s;
+        }
+        .social-bar a:hover {
+            transform: scale(1.1);
+            color: var(--dorado-brillante);
+        }
     </style>
 </head>
 <body>
 
+<!-- WhatsApp flotante -->
 <a href="https://wa.me/18095551234" class="whatsapp-float" target="_blank"><i class="fab fa-whatsapp"></i></a>
 
-<!-- BARRA DE NAVEGACIÓN -->
+<!-- NAVBAR -->
 <nav class="navbar">
     <div class="nav-container">
         <div class="logo"><i class="fas fa-cross"></i> ICDNJ</div>
@@ -304,13 +323,19 @@
     </div>
 </nav>
 
-<!-- HERO / FLYER PRINCIPAL -->
+<!-- HERO / PRESENTACIÓN -->
 <section id="inicio" class="hero">
     <div class="container mx-auto px-4" style="max-width:1280px;">
         <div class="flyer-card" data-aos="zoom-in-up">
             <i class="fas fa-crown text-6xl text-dorado mb-3"></i>
             <h1 class="text-5xl md:text-7xl font-bold">ICDNJ</h1>
             <p class="text-xl md:text-2xl serif mt-2">Deshaciendo las Obras del Diablo <br> en el Nombre de Jesús</p>
+            <div class="social-bar mt-3">
+                <a href="https://www.instagram.com/pastor_manuelpaulino/" target="_blank"><i class="fab fa-instagram"></i></a>
+                <a href="https://www.youtube.com/@pastormanuelpaulino7" target="_blank"><i class="fab fa-youtube"></i></a>
+                <a href="#" target="_blank"><i class="fab fa-facebook"></i></a>
+                <a href="#" target="_blank"><i class="fab fa-tiktok"></i></a>
+            </div>
             <p class="text-2xl md:text-3xl serif font-semibold mt-2">12vo ANIVERSARIO & MARCHA<br>CONCENTRACIÓN 2026</p>
             <div class="inline-block bg-dorado text-azul-profundo px-6 py-2 rounded-full text-2xl font-bold my-4">30 MAY.</div>
             <p class="text-xl"><strong>Pastor:</strong> MANUEL PAULINO</p>
@@ -337,7 +362,7 @@
     </div>
 </section>
 
-<!-- SECCIÓN DEL PASTOR: IMAGEN Y REDES SOCIALES -->
+<!-- SECCIÓN DEL PASTOR MANUEL PAULINO -->
 <section id="pastor" class="py-16 bg-white">
     <div class="container mx-auto px-4" style="max-width:1280px;">
         <div class="grid md:grid-cols-2 gap-10 items-center">
@@ -356,8 +381,8 @@
     </div>
 </section>
 
-<!-- ESTADÍSTICAS ANIMADAS -->
-<section class="py-12" style="background: var(--azul-claro);">
+<!-- ESTADÍSTICAS -->
+<section class="py-12 bg-azul-claro">
     <div class="container mx-auto px-4 text-center">
         <div class="grid md:grid-cols-3 gap-8">
             <div data-aos="fade-up"><div class="stat-number" id="yearsCounter">12</div><p class="text-lg font-semibold">Años de Ministerio</p></div>
@@ -391,16 +416,15 @@
                 <div class="mt-6 text-center"><a href="#ubicacion" class="btn-dorado px-5 py-2">📍 Ver ubicación de la iglesia</a></div>
             </div>
         </div>
-        <!-- Imagen adicional del evento -->
         <div class="mt-10 text-center" data-aos="zoom-in">
-            <img src="https://lookaside.instagram.com/seo/google_widget/crawler/?media_id=3834715343306213545" alt="Evento ICDNJ" class="rounded-xl shadow-lg mx-auto max-w-full h-auto border-2 border-dorado">
-            <p class="text-sm text-gray-500 mt-2">Evento especial de ICDNJ</p>
+            <img src="https://lookaside.instagram.com/seo/google_widget/crawler/?media_id=3834715343306213545" alt="Evento ICDNJ" class="rounded-xl shadow-lg mx-auto max-w-full h-auto border-2 border-dorado" style="max-width: 500px;">
+            <p class="text-sm text-gray-500 mt-2">Evento especial de ICDNJ - 12vo Aniversario</p>
         </div>
     </div>
 </section>
 
 <!-- DÍAS DE CULTO -->
-<section id="cultos" class="py-16" style="background: var(--azul-claro);">
+<section id="cultos" class="py-16 bg-azul-claro">
     <div class="container mx-auto px-4">
         <h2 class="section-title" data-aos="fade-up">⛪ Días de Culto - Horario Semanal</h2>
         <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
@@ -409,7 +433,7 @@
             <div class="card text-center"><i class="fas fa-fist-raised text-4xl text-dorado mb-2"></i><h3 class="text-2xl font-bold">Miércoles</h3><p>Guerra Espiritual</p><span class="text-dorado font-bold text-lg">7:30 PM</span></div>
             <div class="card text-center"><i class="fas fa-church text-4xl text-dorado mb-2"></i><h3 class="text-2xl font-bold">Domingo</h3><p>Culto General</p><span class="text-dorado font-bold text-lg">5:00 PM</span></div>
         </div>
-        <p class="text-center mt-8 text-gray-500"><i class="fas fa-star-of-life text-dorado"></i> Viernes jóvenes, sábados ministerios especiales. ¡Todos bienvenidos!</p>
+        <p class="text-center mt-8 text-gray-600"><i class="fas fa-star-of-life text-dorado"></i> Viernes jóvenes (7:30 PM), sábados ministerios especiales (6:00 PM). ¡Todos bienvenidos!</p>
     </div>
 </section>
 
@@ -429,7 +453,7 @@
 </section>
 
 <!-- TESTIMONIOS CARRUSEL -->
-<section id="testimonios" class="py-16" style="background: var(--azul-claro);">
+<section id="testimonios" class="py-16 bg-azul-claro">
     <div class="container mx-auto px-4">
         <h2 class="section-title" data-aos="fade-up">📖 Lo que Dios ha hecho</h2>
         <div class="swiper testimonialSwiper">
@@ -438,6 +462,7 @@
                 <div class="swiper-slide testimonial-slide"><i class="fas fa-quote-left text-3xl text-dorado"></i><p class="mt-3">“De las drogas al altar: Jesús me liberó completamente.” – Jonathan R.</p></div>
                 <div class="swiper-slide testimonial-slide"><i class="fas fa-quote-left text-3xl text-dorado"></i><p class="mt-3">“Sanidad de cáncer confirmada por médicos. ¡Gloria a Dios!” – María L.</p></div>
                 <div class="swiper-slide testimonial-slide"><i class="fas fa-quote-left text-3xl text-dorado"></i><p class="mt-3">“Mi negocio fue restaurado después de la oración de la pastora.” – Carlos M.</p></div>
+                <div class="swiper-slide testimonial-slide"><i class="fas fa-quote-left text-3xl text-dorado"></i><p class="mt-3">“Mi hijo fue liberado de adicción, hoy es líder de jóvenes.” – Ana S.</p></div>
             </div>
             <div class="swiper-pagination"></div>
         </div>
@@ -453,13 +478,15 @@
             <div class="gallery-item"><img src="https://picsum.photos/id/105/400/300" alt="Marcha cristiana"></div>
             <div class="gallery-item"><img src="https://picsum.photos/id/169/400/300" alt="Ministerio de danza"></div>
             <div class="gallery-item"><img src="https://picsum.photos/id/154/400/300" alt="Pastores orando"></div>
+            <div class="gallery-item"><img src="https://picsum.photos/id/155/400/300" alt="Congregación"></div>
+            <div class="gallery-item"><img src="https://picsum.photos/id/158/400/300" alt="Bautismos"></div>
         </div>
         <p class="text-center mt-6 text-gray-500">* Próximamente más fotografías de nuestro aniversario.</p>
     </div>
 </section>
 
-<!-- UBICACIONES: IGLESIA Y MARCHA (MAPAS) -->
-<section id="ubicacion" class="py-16" style="background: var(--azul-claro);">
+<!-- UBICACIONES (IGLESIA Y MARCHA) CON MAPA -->
+<section id="ubicacion" class="py-16 bg-azul-claro">
     <div class="container mx-auto px-4" style="max-width:1280px;">
         <h2 class="section-title" data-aos="fade-up">📍 Encuéntranos en Baní, Peravia</h2>
         <div class="grid md:grid-cols-2 gap-10">
@@ -478,16 +505,27 @@
                 <a href="https://www.google.com/maps/search/?api=1&query=Play+de+Peravia+Escondido+Calle+27+de+Febrero+UFHC+Baní" target="_blank" class="btn-outline-dorado mt-5 w-full text-center block"><i class="fas fa-map-marked-alt"></i> Ver punto de marcha en Maps</a>
             </div>
         </div>
-        <!-- Mapa embebido general -->
         <div class="mt-10 rounded-2xl overflow-hidden shadow-xl border-2 border-dorado">
             <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3784.2!2d-70.3300!3d18.2785!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8ea53dae15fc8d5b%3A0x7a1b3c9e2f8a4d7c!2sBan%C3%AD%2C%20Peravia!5e0!3m2!1ses!2sdo!4v1712345678901!5m2!1ses!2sdo" width="100%" height="380" style="border:0; border-radius: 1.2rem;" allowfullscreen="" loading="lazy"></iframe>
         </div>
-        <p class="text-center text-sm text-gray-500 mt-4"><i class="fas fa-info-circle text-dorado"></i> La marcha sale desde Escondido (frente UFHC) y culmina en la iglesia (Calle Ana de Pravia #8).</p>
+        <p class="text-center text-sm text-gray-600 mt-4"><i class="fas fa-info-circle text-dorado"></i> La marcha sale desde Escondido (frente UFHC) y culmina en la iglesia (Calle Ana de Pravia #8).</p>
+    </div>
+</section>
+
+<!-- VERSÍCULO DEL DÍA -->
+<section class="py-16 bg-white">
+    <div class="container mx-auto px-4 text-center">
+        <h2 class="section-title" data-aos="fade-up">📖 Versículo del Día</h2>
+        <div class="card inline-block max-w-2xl mx-auto" data-aos="zoom-in">
+            <i class="fas fa-bible text-4xl text-dorado mb-3"></i>
+            <p class="text-xl italic">“Porque donde están dos o tres congregados en mi nombre, allí estoy yo en medio de ellos.”</p>
+            <p class="mt-2 font-semibold">— Mateo 18:20</p>
+        </div>
     </div>
 </section>
 
 <!-- SUSCRIPCIÓN, QR Y COMPARTIR -->
-<section class="py-16 bg-white">
+<section class="py-16 bg-azul-claro">
     <div class="container mx-auto px-4 text-center">
         <h2 class="section-title" data-aos="fade-up">📲 Comparte y recibe noticias</h2>
         <div class="flex flex-col md:flex-row justify-center items-center gap-10">
@@ -504,17 +542,23 @@
     </div>
 </section>
 
-<!-- DONACIÓN (SIMULADA) -->
-<section class="py-16" style="background: var(--azul-claro); text-align: center;">
+<!-- DONACIÓN SIMULADA -->
+<section class="py-16 bg-white text-center">
     <div class="container mx-auto px-4">
         <h2 class="section-title" data-aos="fade-up">🙏 Apoya la obra de Dios</h2>
         <p>Tu contribución ayuda a seguir transformando vidas.</p>
+        <div class="max-w-md mx-auto mt-4">
+            <div class="progress-bar" style="background-color:#e0e0e0; border-radius:1rem; overflow:hidden;">
+                <div class="progress-fill" style="width:68%; background: linear-gradient(90deg, var(--dorado), var(--dorado-oscuro)); height:20px; border-radius:1rem;"></div>
+            </div>
+            <p class="text-sm text-gray-500 mt-2">Meta: $10,000 USD para la marcha y obras sociales</p>
+        </div>
         <button id="donateBtn" class="btn-dorado mt-4"><i class="fas fa-hand-holding-heart"></i> Donar ahora (demo)</button>
     </div>
 </section>
 
 <!-- CONTACTO / PETICIONES DE ORACIÓN -->
-<section id="contacto" class="py-16 bg-white">
+<section id="contacto" class="py-16 bg-azul-claro">
     <div class="container mx-auto px-4" style="max-width:800px;">
         <h2 class="section-title" data-aos="fade-up">📩 Envíanos tu petición</h2>
         <div class="card">
@@ -533,23 +577,22 @@
     </div>
 </section>
 
-<!-- PIE DE PÁGINA CON REDES SOCIALES DEL PASTOR -->
+<!-- PIE DE PÁGINA CON REDES SOCIALES -->
 <footer>
     <div class="container mx-auto">
         <p><strong>ICDNJ - Deshaciendo las Obras del Diablo en el Nombre de Jesús</strong><br>Baní, Peravia, República Dominicana</p>
-        <p class="mt-2">Iglesia: Calle Principal Ana de Pravia #8 (a mano derecha) | Marcha: Play Escondido, C/27 Febrero frente UFHC</p>
+        <p class="mt-2">📍 Iglesia: Calle Principal Ana de Pravia #8 (a mano derecha) | 🚩 Marcha: Play Escondido, C/27 Febrero frente UFHC</p>
         <div class="flex justify-center gap-6 mt-4 text-2xl">
             <a href="https://www.instagram.com/pastor_manuelpaulino/" target="_blank" class="text-dorado hover:text-white transition"><i class="fab fa-instagram"></i></a>
             <a href="https://www.youtube.com/@pastormanuelpaulino7" target="_blank" class="text-dorado hover:text-white transition"><i class="fab fa-youtube"></i></a>
         </div>
-        <p class="mt-4 text-sm">“No temas, JESÚS está aquí” – 30 Mayo 2026, 4:30PM</p>
+        <p class="mt-3 text-sm">“No temas, JESÚS está aquí” – 30 Mayo 2026, 4:30PM</p>
     </div>
 </footer>
 
 <!-- SCRIPTS -->
 <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
 <script>
-    // Inicializar AOS
     AOS.init({ duration: 800, once: false, mirror: true });
 
     // Menú móvil
