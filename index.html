@@ -4,47 +4,59 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
     <title>ICDNJ | 12vo Aniversario & Marcha 2026 - Deshaciendo las Obras del Diablo</title>
-    <!-- Google Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;400;500;600;700;800&family=Playfair+Display:wght@400;500;600;700;900&display=swap" rel="stylesheet">
+    <!-- Google Fonts refinadas -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;400;500;600;700;800&family=Playfair+Display:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
     <style>
-        * { margin: 0; padding: 0; box-sizing: border-box; }
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
         body {
             font-family: 'Inter', sans-serif;
             background-color: #fefaf5;
             color: #2d2a24;
             scroll-behavior: smooth;
         }
-        h1, h2, h3, .logo-font {
+
+        h1, h2, h3, .logo-font, .serif {
             font-family: 'Playfair Display', serif;
         }
+
         .container {
             max-width: 1280px;
             margin: 0 auto;
             padding: 0 1.5rem;
         }
+
+        /* Botones estéticos */
         .btn-primary {
             background: linear-gradient(135deg, #c47b2e, #e09d4a);
             color: white;
-            padding: 0.85rem 2rem;
+            padding: 0.9rem 2.2rem;
             border-radius: 3rem;
             font-weight: 700;
-            transition: all 0.3s ease;
+            transition: all 0.4s cubic-bezier(0.2, 0.9, 0.4, 1.1);
             display: inline-block;
             text-decoration: none;
-            box-shadow: 0 8px 20px rgba(196, 123, 46, 0.3);
+            box-shadow: 0 10px 20px rgba(196, 123, 46, 0.25);
+            letter-spacing: 0.5px;
         }
         .btn-primary:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 15px 25px rgba(196, 123, 46, 0.4);
+            transform: translateY(-4px);
+            box-shadow: 0 18px 28px rgba(196, 123, 46, 0.35);
+            background: linear-gradient(135deg, #b06a20, #c47b2e);
         }
         .btn-outline {
             border: 2px solid #c47b2e;
-            background: rgba(255,255,255,0.9);
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(4px);
             color: #c47b2e;
-            padding: 0.75rem 1.8rem;
+            padding: 0.8rem 2rem;
             border-radius: 3rem;
             font-weight: 600;
             transition: 0.3s;
@@ -54,100 +66,115 @@
         .btn-outline:hover {
             background: #c47b2e;
             color: white;
+            transform: scale(1.02);
         }
+
+        /* Tarjetas con elegancia */
         .card {
-            background: rgba(255,255,255,0.95);
-            border-radius: 1.8rem;
-            padding: 1.8rem;
-            box-shadow: 0 20px 35px -12px rgba(0,0,0,0.1);
-            transition: transform 0.25s;
+            background: rgba(255, 248, 240, 0.98);
+            backdrop-filter: blur(2px);
+            border-radius: 2rem;
+            padding: 2rem;
+            box-shadow: 0 20px 35px -12px rgba(0, 0, 0, 0.08);
+            transition: all 0.35s ease;
+            border: 1px solid rgba(224, 176, 127, 0.2);
         }
-        .card:hover { transform: translateY(-6px); }
+        .card:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 28px 40px -12px rgba(0, 0, 0, 0.12);
+            border-color: rgba(196, 123, 46, 0.4);
+        }
+
         .section-title {
-            font-size: 2.5rem;
+            font-size: 2.6rem;
             text-align: center;
             font-weight: 800;
-            margin-bottom: 2.5rem;
+            margin-bottom: 2.8rem;
             color: #3a2c1f;
             position: relative;
+            letter-spacing: -0.3px;
         }
         .section-title:after {
             content: '';
             display: block;
-            width: 90px;
+            width: 100px;
             height: 4px;
             background: linear-gradient(90deg, #e0b07f, #c47b2e);
-            margin: 0.8rem auto 0;
+            margin: 1rem auto 0;
             border-radius: 4px;
         }
-        /* Hero con fondo estilo flyer (sin imagen externa) */
+
+        /* Hero con fondo cálido y textura sutil (imagen visual agradable) */
         .hero {
             position: relative;
-            min-height: 90vh;
+            min-height: 95vh;
             display: flex;
             align-items: center;
             justify-content: center;
             text-align: center;
-            background: linear-gradient(135deg, #f7e5c2, #f9d89c);
-            color: #3a2c1f;
+            background: radial-gradient(circle at 10% 20%, rgba(255, 235, 205, 0.9), rgba(250, 215, 160, 0.7)), url('https://www.transparenttextures.com/patterns/old-map.png');
+            background-blend-mode: overlay;
             border-bottom: none;
         }
-        .hero-content {
-            background: rgba(0,0,0,0.2);
-            backdrop-filter: blur(3px);
-            padding: 2rem;
-            border-radius: 2rem;
+        .hero .hero-content {
             max-width: 90%;
-            color: #2c1c0c;
+            padding: 1rem;
         }
-        /* Flyer estilo imagen */
+
+        /* Flyer elegante (la tarjeta principal) */
         .flyer-card {
-            background: linear-gradient(145deg, #fff9ef, #ffefdb);
-            border-radius: 2rem;
-            padding: 2rem;
-            box-shadow: 0 25px 40px rgba(0,0,0,0.2);
-            border: 1px solid rgba(196,123,46,0.5);
+            background: linear-gradient(145deg, #fffbf5, #fff3e6);
+            border-radius: 2.5rem;
+            padding: 2rem 2rem 2rem;
+            box-shadow: 0 30px 40px -15px rgba(0, 0, 0, 0.2);
+            border: 1px solid rgba(196, 123, 46, 0.6);
             text-align: center;
+            transition: all 0.3s;
         }
         .flyer-title {
-            font-size: 2.8rem;
+            font-size: 3rem;
             font-weight: 900;
             letter-spacing: 2px;
             color: #b46f2a;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.05);
         }
         .flyer-sub {
             font-size: 1.8rem;
             font-weight: 800;
-            border-top: 3px solid #c47b2e;
-            border-bottom: 3px solid #c47b2e;
+            border-top: 3px solid #dba358;
+            border-bottom: 3px solid #dba358;
             display: inline-block;
-            padding: 0.3rem 0;
+            padding: 0.4rem 0;
             margin: 1rem 0;
+            line-height: 1.3;
         }
         .flyer-fecha {
             background: #c47b2e;
             color: white;
             display: inline-block;
-            padding: 0.5rem 1.5rem;
+            padding: 0.5rem 2rem;
             border-radius: 3rem;
             font-weight: bold;
-            font-size: 1.5rem;
+            font-size: 1.7rem;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
         }
         .lema {
             font-family: 'Playfair Display', serif;
-            font-size: 2rem;
-            font-weight: 700;
+            font-size: 2.2rem;
+            font-weight: 800;
             color: #9b5e1a;
-            margin: 1rem 0;
+            margin: 1.2rem 0;
+            font-style: italic;
         }
-        /* resto navegación */
+
+        /* Navegación */
         .navbar {
             background: rgba(255, 250, 245, 0.96);
             backdrop-filter: blur(12px);
             position: sticky;
             top: 0;
             z-index: 100;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            box-shadow: 0 2px 15px rgba(0, 0, 0, 0.03);
         }
         .nav-container {
             display: flex;
@@ -158,21 +185,24 @@
             margin: 0 auto;
         }
         .logo {
-            font-size: 1.6rem;
+            font-size: 1.7rem;
             font-weight: 800;
             color: #b46f2a;
+            letter-spacing: -0.5px;
         }
         .nav-links {
             display: flex;
-            gap: 2rem;
+            gap: 2.2rem;
             align-items: center;
         }
         .nav-links a {
             text-decoration: none;
             color: #4b3b2a;
             font-weight: 600;
+            transition: 0.2s;
+            font-size: 1rem;
         }
-        .nav-links a:hover { color: #c47b2e; }
+        .nav-links a:hover { color: #c47b2e; transform: translateY(-1px); }
         .menu-icon { display: none; font-size: 1.8rem; cursor: pointer; color: #b46f2a; }
         @media (max-width: 768px) {
             .nav-links {
@@ -183,41 +213,58 @@
                 height: calc(100vh - 70px);
                 background: #fffaf5;
                 flex-direction: column;
-                gap: 1.5rem;
-                padding: 2rem;
+                gap: 1.8rem;
+                padding: 2.5rem;
                 transition: left 0.3s ease;
                 z-index: 99;
+                box-shadow: 4px 0 20px rgba(0,0,0,0.08);
             }
             .nav-links.active { left: 0; }
             .menu-icon { display: block; }
             .container { padding: 0 1rem; }
-            .flyer-title { font-size: 2rem; }
-            .flyer-sub { font-size: 1.2rem; }
+            .flyer-title { font-size: 2.2rem; }
+            .flyer-sub { font-size: 1.3rem; }
+            .lema { font-size: 1.6rem; }
         }
+
         .whatsapp-float {
             position: fixed;
-            bottom: 20px;
-            right: 20px;
+            bottom: 22px;
+            right: 22px;
             background: #25D366;
-            width: 58px;
-            height: 58px;
+            width: 60px;
+            height: 60px;
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 2rem;
+            font-size: 2.1rem;
             color: white;
-            box-shadow: 0 6px 16px rgba(0,0,0,0.2);
+            box-shadow: 0 6px 20px rgba(0,0,0,0.2);
+            transition: 0.2s;
             z-index: 90;
         }
+        .whatsapp-float:hover { transform: scale(1.08); background: #20b859; }
+
         footer {
             background: #2c2b28;
-            color: #cfc6bc;
+            color: #d6cec2;
             text-align: center;
             padding: 2rem 0;
             margin-top: 3rem;
         }
-        .highlight { background: #f9e4b7; color: #7a4b1a; padding: 0.2rem 0.6rem; border-radius: 1rem; }
+        .highlight {
+            background: linear-gradient(120deg, #f9e4b7, #f9d89c);
+            color: #7a4b1a;
+            padding: 0.2rem 0.8rem;
+            border-radius: 2rem;
+            font-weight: 600;
+        }
+        .map-frame {
+            border-radius: 1.8rem;
+            overflow: hidden;
+            box-shadow: 0 18px 30px -10px rgba(0,0,0,0.1);
+        }
     </style>
 </head>
 <body>
@@ -229,146 +276,180 @@
         <div class="logo"><i class="fas fa-cross"></i> ICDNJ</div>
         <div class="menu-icon" id="menuIcon"><i class="fas fa-bars"></i></div>
         <div class="nav-links" id="navLinks">
-            <a href="#inicio">Inicio</a>
-            <a href="#evento">🔥 Aniversario</a>
-            <a href="#cultos">⛪ Cultos</a>
-            <a href="#pastores">Pastores</a>
+            <a href="#inicio">🏡 Inicio</a>
+            <a href="#evento">🔥 12vo Aniversario</a>
+            <a href="#cultos">⛪ Horarios</a>
+            <a href="#pastores">👥 Pastores</a>
             <a href="#ubicacion">📍 Ubicación</a>
-            <a href="#contacto">Contacto</a>
+            <a href="#contacto">✉️ Contacto</a>
         </div>
     </div>
 </nav>
 
-<!-- HERO con efecto flyer integrado -->
+<!-- HERO con diseño visual (fondo agradable + flyer estilizado) -->
 <section id="inicio" class="hero">
-    <div class="container hero-content" data-aos="fade-up">
-        <div class="flyer-card" data-aos="zoom-in">
+    <div class="container hero-content" data-aos="fade-up" data-aos-duration="1000">
+        <div class="flyer-card" data-aos="zoom-in" data-aos-delay="150">
             <div class="flyer-title">ICDNJ</div>
             <div class="flyer-sub">12VO ANIVERSARIO & MARCHA<br>CONCENTRACIÓN 2026</div>
             <div class="flyer-fecha">30 MAY.</div>
-            <p style="font-size:1.2rem; margin-top:1rem;"><strong>Pastor:</strong> MANUEL PAULINO.</p>
+            <p style="font-size:1.3rem; margin-top:1rem; font-weight:500;"><strong>Pastor:</strong> MANUEL PAULINO.</p>
             <div class="lema">“No temas<br>JESÚS<br>Está aquí.”</div>
-            <div style="background:#eee3d5; border-radius:2rem; padding:1rem; margin-top:0.5rem;">
-                <p><i class="fas fa-clock"></i> <strong>HORA DE SALIDA DE LA MARCHA:</strong> 4:30 PM</p>
-                <p><i class="fas fa-church"></i> <strong>HORA DEL SERVICIO:</strong> 7:30 PM</p>
-                <p><i class="fas fa-map-marker-alt"></i> <strong>PLAY DE PERAVIA ESCONDIDO</strong> C/27 DE FEBRERO ENTRANDO FRENTE A LA UFHC.</p>
+            <div style="background: #f5ede2; border-radius: 2rem; padding: 1rem; margin-top: 0.5rem;">
+                <p><i class="fas fa-clock"></i> <strong>⏰ Hora de Salida de la Marcha:</strong> 4:30 PM</p>
+                <p><i class="fas fa-church"></i> <strong>🎤 Hora del Servicio:</strong> 7:30 PM</p>
+                <p><i class="fas fa-map-marker-alt"></i> <strong>📍 PLAY DE PERAVIA ESCONDIDO</strong><br> C/27 DE FEBRERO ENTRANDO FRENTE A LA UFHC.</p>
             </div>
-        </div>
-        <div class="mt-6">
-            <a href="#evento" class="btn-primary"><i class="fas fa-calendar-alt"></i> Ver detalles del evento</a>
-            <a href="#ubicacion" class="btn-outline ms-3"><i class="fas fa-map-marker-alt"></i> Cómo llegar</a>
+            <div class="mt-5">
+                <a href="#evento" class="btn-primary"><i class="fas fa-calendar-alt"></i> Quiero asistir</a>
+                <a href="#ubicacion" class="btn-outline ms-3"><i class="fas fa-location-dot"></i> Cómo llegar</a>
+            </div>
         </div>
     </div>
 </section>
 
-<!-- SECCIÓN EVENTO (flyer duplicado como imagen + info) -->
-<section id="evento" class="py-16">
+<!-- EVENTO PRINCIPAL -->
+<section id="evento" class="py-20">
     <div class="container">
-        <div class="grid md:grid-cols-2 gap-10 items-start" data-aos="zoom-in-up">
+        <div class="grid md:grid-cols-2 gap-12 items-start" data-aos="fade-up">
             <div class="flyer-card">
                 <div class="flyer-title">ICDNJ</div>
                 <div class="flyer-sub">12VO ANIVERSARIO & MARCHA<br>CONCENTRACIÓN 2026</div>
                 <div class="flyer-fecha">30 MAY.</div>
-                <p style="font-size:1.2rem; margin-top:1rem;"><strong>Pastor:</strong> MANUEL PAULINO.</p>
-                <div class="lema">“No temas<br>JESÚS<br>Está aquí.”</div>
+                <p style="margin-top:1rem;"><strong>Pastor:</strong> MANUEL PAULINO.</p>
+                <div class="lema" style="font-size:1.9rem;">“No temas, JESÚS está aquí.”</div>
                 <div style="background:#eee3d5; border-radius:2rem; padding:1rem;">
-                    <p><i class="fas fa-clock"></i> <strong>HORA DE SALIDA:</strong> 4:30 PM</p>
-                    <p><i class="fas fa-church"></i> <strong>HORA SERVICIO:</strong> 7:30 PM</p>
-                    <p><i class="fas fa-location-dot"></i> Play de Peravia Escondido, C/27 de Febrero, frente a UFHC.</p>
+                    <p><i class="fas fa-calendar-alt"></i> <strong>Marcha:</strong> 4:30 PM | <strong>Culto:</strong> 7:30 PM</p>
+                    <p><i class="fas fa-location-dot"></i> Play de Peravia Escondido, C/27 Febrero frente UFHC.</p>
                 </div>
             </div>
             <div class="card">
-                <i class="fas fa-crown text-5xl text-amber-600"></i>
-                <h2 class="text-3xl font-serif font-bold mt-2">¡Celebramos 12 años!</h2>
-                <p class="text-amber-700 text-xl">Sábado 30 de Mayo, 2026</p>
+                <i class="fas fa-crown fa-3x text-amber-600 mb-3"></i>
+                <h2 class="text-3xl font-serif font-bold">¡Celebramos 12 años!</h2>
+                <p class="text-amber-700 text-xl mt-1">Sábado 30 de Mayo, 2026 – Baní, Peravia</p>
                 <div class="mt-5 space-y-3">
-                    <p><i class="fas fa-clock"></i> <strong>Marcha:</strong> 4:30 PM</p>
-                    <p><i class="fas fa-church"></i> <strong>Culto de Aniversario:</strong> 7:30 PM</p>
-                    <p><i class="fas fa-map-pin"></i> <strong>Punto de encuentro:</strong> Play de Peravia Escondido, Calle 27 de Febrero, entrando frente a la UFHC (Baní).</p>
-                    <p><i class="fas fa-home"></i> <strong>Iglesia sede:</strong> Calle Principal Ana de Pravia #8, Baní.</p>
+                    <p><i class="fas fa-map-pin text-amber-600 w-7"></i> <strong>Punto de encuentro (Marcha):</strong> El Play Escondido, Calle 27 de Febrero, entrando frente a la UFHC.</p>
+                    <p><i class="fas fa-home text-amber-600"></i> <strong>Iglesia sede (Servicio):</strong> Calle Principal Ana de Pravia #8 (doblando mano derecha), Baní.</p>
+                    <p><i class="fas fa-users text-amber-600"></i> <strong>Pastores:</strong> Manuel Paulino & Marideyni de Paulino.</p>
+                    <p><i class="fas fa-music"></i> Actividades: Marcha profética, alabanza, danza, oración por la ciudad, refrigerio.</p>
                 </div>
-                <div class="bg-amber-50 p-4 rounded-xl mt-4">
-                    <p><i class="fas fa-microphone-alt"></i> <strong>Pastor:</strong> Manuel Paulino | <strong>Pastora:</strong> Marideyni de Paulino</p>
-                    <p>✨ Actividades: Marcha profética, alabanza, danza, oración, refrigerio. Entrada libre.</p>
+                <div class="bg-amber-50 p-4 rounded-xl mt-4 text-center">
+                    <span class="highlight">✨ Entrada libre – Ven con tu familia y amigos ✨</span>
                 </div>
-                <a href="#ubicacion" class="btn-primary w-full text-center block mt-5"><i class="fas fa-directions"></i> Ver mapa y ubicaciones</a>
+                <a href="#ubicacion" class="btn-primary w-full text-center block mt-5"><i class="fas fa-directions"></i> Ver ubicación exacta en el mapa</a>
             </div>
         </div>
     </div>
 </section>
 
-<!-- Cultos -->
-<section id="cultos" class="bg-gradient-to-br from-amber-50/50 to-white py-16">
+<!-- HORARIOS DE CULTOS -->
+<section id="cultos" class="bg-gradient-to-br from-amber-50/40 to-white py-20">
     <div class="container">
-        <h2 class="section-title">📅 Días de Culto</h2>
-        <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
-            <div class="card text-center"><i class="fas fa-praying-hands text-4xl text-amber-600"></i><h3 class="font-bold text-xl">Lunes</h3><p>Sanidad & Liberación</p><p class="font-bold text-amber-700">7:30 PM</p></div>
-            <div class="card text-center"><i class="fas fa-bible text-4xl text-amber-600"></i><h3 class="font-bold text-xl">Martes</h3><p>Discipulado</p><p class="font-bold text-amber-700">7:30 PM</p></div>
-            <div class="card text-center"><i class="fas fa-fist-raised text-4xl text-amber-600"></i><h3 class="font-bold text-xl">Miércoles</h3><p>Guerra Espiritual</p><p class="font-bold text-amber-700">7:30 PM</p></div>
-            <div class="card text-center"><i class="fas fa-church text-4xl text-amber-600"></i><h3 class="font-bold text-xl">Domingo</h3><p>Culto General</p><p class="font-bold text-amber-700">5:00 PM</p></div>
+        <h2 class="section-title">📅 Días de Culto – Te esperamos</h2>
+        <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-7">
+            <div class="card text-center" data-aos="fade-up"><i class="fas fa-praying-hands fa-3x text-amber-600 mb-3"></i><h3 class="font-bold text-2xl">Lunes</h3><p>Sanidad & Liberación</p><p class="font-bold text-amber-700 text-lg mt-2">7:30 PM</p></div>
+            <div class="card text-center" data-aos="fade-up" data-aos-delay="50"><i class="fas fa-bible fa-3x text-amber-600 mb-3"></i><h3 class="font-bold text-2xl">Martes</h3><p>Discipulado</p><p class="font-bold text-amber-700 text-lg mt-2">7:30 PM</p></div>
+            <div class="card text-center" data-aos="fade-up" data-aos-delay="100"><i class="fas fa-fist-raised fa-3x text-amber-600 mb-3"></i><h3 class="font-bold text-2xl">Miércoles</h3><p>Guerra Espiritual</p><p class="font-bold text-amber-700 text-lg mt-2">7:30 PM</p></div>
+            <div class="card text-center" data-aos="fade-up" data-aos-delay="150"><i class="fas fa-church fa-3x text-amber-600 mb-3"></i><h3 class="font-bold text-2xl">Domingo</h3><p>Culto General</p><p class="font-bold text-amber-700 text-lg mt-2">5:00 PM</p></div>
         </div>
+        <p class="text-center text-gray-500 mt-10 italic"><i class="fas fa-star-of-life text-amber-500"></i> Viernes jóvenes, sábados ministerios especiales – ¡Todos son bienvenidos!</p>
     </div>
 </section>
 
-<!-- Pastores sin fotos -->
-<section id="pastores" class="py-16">
+<!-- PASTORES (sin fotos) -->
+<section id="pastores" class="py-20">
     <div class="container">
-        <h2 class="section-title">🙌 Nuestros Pastores</h2>
+        <h2 class="section-title">🙏 Nuestros Pastores Generales</h2>
         <div class="grid md:grid-cols-2 gap-12 max-w-3xl mx-auto">
-            <div class="card text-center"><i class="fas fa-user-pastor text-6xl text-amber-600 mb-3"></i><h3 class="text-3xl font-serif">Manuel Paulino</h3><p class="text-amber-700 font-semibold">Pastor Fundador</p><p class="text-gray-600">Con unción en liberación y restauración de familias.</p></div>
-            <div class="card text-center"><i class="fas fa-user-pastor text-6xl text-amber-600 mb-3"></i><h3 class="text-3xl font-serif">Marideyni de Paulino</h3><p class="text-amber-700 font-semibold">Co-pastora</p><p class="text-gray-600">Líder de consejería y ministerio de mujeres.</p></div>
+            <div class="card text-center" data-aos="flip-left"><i class="fas fa-user-pastor fa-5x text-amber-600 mb-4"></i><h3 class="text-3xl font-serif">Manuel Paulino</h3><p class="text-amber-700 font-semibold">Pastor Fundador</p><p class="text-gray-600 mt-2">Con más de dos décadas predicando libertad, sanidad y restauración familiar.</p></div>
+            <div class="card text-center" data-aos="flip-right"><i class="fas fa-user-pastor fa-5x text-amber-600 mb-4"></i><h3 class="text-3xl font-serif">Marideyni de Paulino</h3><p class="text-amber-700 font-semibold">Co-pastora</p><p class="text-gray-600 mt-2">Lidera con amor el ministerio de mujeres y consejería, transformando vidas.</p></div>
         </div>
     </div>
 </section>
 
-<!-- Ubicación iglesia y punto marcha -->
-<section id="ubicacion" class="bg-amber-50/40 py-16">
+<!-- UBICACIÓN: Evento redireccionado a El Play Escondido, Baní -->
+<section id="ubicacion" class="bg-amber-50/30 py-20">
     <div class="container">
-        <h2 class="section-title">📍 Direcciones importantes</h2>
-        <div class="grid md:grid-cols-2 gap-8">
-            <div class="card"><i class="fas fa-church text-4xl text-amber-700"></i><h3 class="text-2xl font-serif">Iglesia ICDNJ</h3><p>Calle Principal Ana de Pravia #8 (doblando a mano derecha)<br>Baní, Peravia, R.D.</p><a href="https://www.google.com/maps/search/?api=1&query=Calle+Principal+Ana+de+Pravia+8,+Baní,+Peravia" target="_blank" class="btn-primary w-full text-center block mt-3">Abrir en Google Maps</a></div>
-            <div class="card"><i class="fas fa-flag-checkered text-4xl text-amber-700"></i><h3 class="text-2xl font-serif">Punto de la Gran Marcha</h3><p>Play de Peravia Escondido<br>Calle 27 de Febrero, entrando frente a la UFHC, Baní</p><a href="https://www.google.com/maps/search/?api=1&query=Play+de+Peravia+Escondido+Calle+27+de+Febrero+UFHC+Baní" target="_blank" class="btn-outline w-full text-center block mt-3">Ver en mapa</a></div>
-        </div>
-        <div class="mt-8 rounded-2xl overflow-hidden shadow-xl">
-            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3784.251!2d-70.330586!3d18.278476!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8ea53dae15fc8d5b%3A0x7a1b3c9e2f8a4d7c!2sBan%C3%AD%2C%20Peravia!5e0!3m2!1ses!2sdo!4v1712345678901!5m2!1ses!2sdo" width="100%" height="280" style="border:0; border-radius: 1.2rem;" allowfullscreen="" loading="lazy"></iframe>
+        <h2 class="section-title">📍 Ubicación del evento principal</h2>
+        <div class="grid md:grid-cols-2 gap-10">
+            <div class="card" data-aos="fade-right">
+                <i class="fas fa-flag-checkered fa-3x text-amber-700 mb-2"></i>
+                <h3 class="text-2xl font-serif font-bold">El Play Escondido, Baní</h3>
+                <p class="mt-3"><strong>Dirección exacta para la Gran Marcha:</strong><br>Calle 27 de Febrero, Escondido, Baní.<br>Entrando frente a la UFHC (Universidad Femenina).</p>
+                <p class="mt-2"><i class="fas fa-calendar-alt"></i> <strong>30 de Mayo 2026 – 4:30 PM</strong></p>
+                <div class="mt-5">
+                    <a href="https://www.google.com/maps/search/?api=1&query=Play+Escondido+Baní+Calle+27+de+Febrero+UFHC" target="_blank" class="btn-primary w-full text-center block"><i class="fas fa-external-link-alt"></i> Abrir en Google Maps (El Play Escondido)</a>
+                </div>
+                <div class="mt-4 pt-3 border-t border-amber-200">
+                    <p><i class="fas fa-church"></i> <strong>Dirección de la iglesia (servicio 7:30 PM):</strong><br>Calle Principal Ana de Pravia #8, a mano derecha, Baní.</p>
+                    <a href="https://www.google.com/maps/search/?api=1&query=Calle+Principal+Ana+de+Pravia+8,+Baní" target="_blank" class="btn-outline w-full text-center block mt-2">Ver iglesia en mapa</a>
+                </div>
+            </div>
+            <div class="map-frame" data-aos="fade-left">
+                <iframe 
+                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1891.7895257902547!2d-70.3345940727461!3d18.27831443649161!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8ea53dae15fc8d5b%3A0x7a1b3c9e2f8a4d7c!2sEl%20Play%2C%20Escondido%2C%20Ban%C3%AD!5e0!3m2!1ses!2sdo!4v1712345678901" 
+                    width="100%" height="350" style="border:0; border-radius: 1.5rem;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade">
+                </iframe>
+                <p class="text-center text-sm text-gray-500 mt-2">📍 Mapa referencial – El Play Escondido, Baní</p>
+            </div>
         </div>
     </div>
 </section>
 
-<!-- Código QR -->
-<section class="py-16 text-center bg-white">
+<!-- CÓDIGO QR -->
+<section class="py-20 text-center bg-white">
     <div class="container">
-        <h2 class="section-title">📲 Comparte esta página</h2>
+        <h2 class="section-title">📲 Comparte y difunde el evento</h2>
+        <p class="text-gray-600 max-w-xl mx-auto mb-6">Escanea el código QR y lleva toda la información de la Marcha y el Aniversario en tu móvil.</p>
         <div id="qrcode" class="flex justify-center"></div>
-        <p class="mt-5 text-amber-800 font-bold">🎉 ¡Invita a la Marcha 30 de Mayo! 🎉</p>
+        <p class="mt-6 text-amber-800 font-bold text-lg">🎉 ¡Invita a todos a la Marcha del 30 de Mayo en El Play Escondido! 🎉</p>
     </div>
 </section>
 
-<!-- Contacto -->
-<section id="contacto" class="py-16 bg-gradient-to-t from-amber-50 to-white">
+<!-- CONTACTO RÁPIDO -->
+<section id="contacto" class="py-20 bg-gradient-to-t from-amber-50 to-white">
     <div class="container">
-        <h2 class="section-title">📩 Escríbenos</h2>
-        <div class="max-w-2xl mx-auto card">
-            <form><div class="grid md:grid-cols-2 gap-4"><input type="text" placeholder="Nombre" class="p-3 border rounded-xl"><input type="email" placeholder="Email" class="p-3 border rounded-xl"><textarea rows="3" placeholder="Mensaje o petición de oración" class="p-3 border rounded-xl col-span-full"></textarea></div><div class="text-center mt-4"><button type="submit" class="btn-primary">Enviar</button></div></form>
+        <h2 class="section-title">📩 ¿Necesitas oración o información?</h2>
+        <div class="max-w-2xl mx-auto card" data-aos="flip-up">
+            <form action="#">
+                <div class="grid md:grid-cols-2 gap-5">
+                    <input type="text" placeholder="Tu nombre" class="p-3 border border-gray-200 rounded-xl bg-gray-50 focus:ring-2 focus:ring-amber-300 outline-none">
+                    <input type="email" placeholder="Correo electrónico" class="p-3 border border-gray-200 rounded-xl bg-gray-50 focus:ring-2 focus:ring-amber-300 outline-none">
+                    <textarea rows="3" placeholder="Escribe tu mensaje o petición de oración..." class="p-3 border border-gray-200 rounded-xl bg-gray-50 col-span-full focus:ring-2 focus:ring-amber-300 outline-none"></textarea>
+                </div>
+                <div class="text-center mt-5">
+                    <button type="submit" class="btn-primary"><i class="fas fa-paper-plane"></i> Enviar mensaje</button>
+                </div>
+                <p class="text-xs text-gray-400 text-center mt-4">Te responderemos a la brevedad. ¡Dios te bendiga!</p>
+            </form>
         </div>
     </div>
 </section>
 
 <footer>
     <div class="container">
-        <p><strong>ICDNJ - Deshaciendo las Obras del Diablo en el Nombre de Jesús</strong><br>Baní, Peravia, R.D. | Calle Ana de Pravia #8 | Marcha: Escondido, C/27 Febrero</p>
-        <p class="text-xs mt-2">“No temas, JESÚS está aquí” - 12vo Aniversario 30 Mayo 2026</p>
+        <p><strong>ICDNJ - Deshaciendo las Obras del Diablo en el Nombre de Jesús</strong><br>Baní, Peravia, República Dominicana</p>
+        <p class="text-sm mt-2">📍 Punto de marcha: El Play Escondido, C/27 de Febrero frente UFHC | 🏛️ Iglesia: Calle Ana de Pravia #8</p>
+        <p class="text-xs mt-4">“No temas, JESÚS está aquí” – 12vo Aniversario, 30 de Mayo 2026</p>
     </div>
 </footer>
 
 <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
 <script>
-    AOS.init({ duration: 800, once: true });
+    AOS.init({ duration: 900, once: true, easing: 'ease-out-quart' });
+    // Menú móvil
     const menuIcon = document.getElementById('menuIcon');
     const navLinks = document.getElementById('navLinks');
     menuIcon.addEventListener('click', () => navLinks.classList.toggle('active'));
     document.querySelectorAll('.nav-links a').forEach(link => link.addEventListener('click', () => navLinks.classList.remove('active')));
-    new QRCode(document.getElementById("qrcode"), { text: window.location.href, width: 160, height: 160, colorDark: "#b46f2a", colorLight: "#ffffff" });
+    // Generar QR con URL actual
+    new QRCode(document.getElementById("qrcode"), {
+        text: window.location.href,
+        width: 170,
+        height: 170,
+        colorDark: "#b46f2a",
+        colorLight: "#ffffff"
+    });
 </script>
 </body>
 </html>
