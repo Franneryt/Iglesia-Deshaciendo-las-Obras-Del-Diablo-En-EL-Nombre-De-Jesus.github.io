@@ -2,11 +2,11 @@
 <html lang="es">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 <title>ICDNJ | Iglesia Cristiana Deshaciendo las Obras del Diablo</title>
 
 <script src="https://cdn.tailwindcss.com"></script>
-<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;800&family=Poppins:wght@300;400;600;800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700;800;900&family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
 <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
 <script src="https://unpkg.com/lucide@latest"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
@@ -14,681 +14,481 @@
 
 <style>
 body { font-family: 'Poppins', sans-serif; }
-h1,h2,h3 { font-family: 'Cinzel', serif; letter-spacing: 1px; }
-.animate-bg { background: radial-gradient(circle at 20% 80%, rgba(99,102,241,0.45), transparent 60%), radial-gradient(circle at 80% 20%, rgba(236,72,153,0.45), transparent 60%), radial-gradient(circle at 50% 50%, rgba(255,215,0,0.45), transparent 65%); animation: bgMove 12s ease-in-out infinite alternate; filter: blur(60px); }
-@keyframes bgMove { from { transform: translateY(0); } to { transform: translateY(-140px); } }
-.glass { backdrop-filter: blur(25px); background: linear-gradient(145deg, rgba(255,255,255,0.15), rgba(255,255,255,0.05)); border: 1px solid rgba(255,215,0,0.45); }
-.card-hover:hover { transform: translateY(-10px) scale(1.06); box-shadow: 0 30px 70px rgba(255,215,0,0.35); }
-.icon-glow { filter: drop-shadow(0 0 16px rgba(255,215,0,0.9)); animation: float 3s ease-in-out infinite; }
-@keyframes float { 0%,100% { transform: translateY(0); } 50% { transform: translateY(-12px); } }
-.title-glow { text-shadow: 0 0 25px rgba(255,215,0,0.9); }
-.pastor-card { border: 2px solid rgba(255,215,0,0.8); box-shadow: 0 0 30px rgba(255,215,0,0.4); }
-.section-title { font-size: 3rem; text-align: center; margin-bottom: 3rem; }
-.offering-form input, .offering-form select, .offering-form textarea { 
-    background: rgba(255,255,255,0.1); 
-    border: 1px solid rgba(255,215,0,0.3); 
-    color: white; 
-    padding: 12px; 
-    border-radius: 10px; 
+h1, h2, h3, .serif { font-family: 'Cinzel', serif; letter-spacing: 1px; }
+
+/* Fondo animado */
+.animate-bg { 
+    background: radial-gradient(circle at 20% 80%, rgba(99,102,241,0.4), transparent 60%), 
+                radial-gradient(circle at 80% 20%, rgba(236,72,153,0.4), transparent 60%), 
+                radial-gradient(circle at 50% 50%, rgba(255,215,0,0.35), transparent 65%); 
+    animation: bgMove 15s ease-in-out infinite alternate; 
+    filter: blur(60px); 
+}
+@keyframes bgMove { 
+    from { transform: translateY(0) scale(1); } 
+    to { transform: translateY(-120px) scale(1.05); } 
+}
+
+/* Efecto vidrio */
+.glass { 
+    backdrop-filter: blur(20px); 
+    background: linear-gradient(145deg, rgba(255,255,255,0.12), rgba(255,255,255,0.04)); 
+    border: 1px solid rgba(255,215,0,0.4); 
+}
+.glass-card {
+    backdrop-filter: blur(20px);
+    background: rgba(10, 43, 78, 0.6);
+    border: 1px solid rgba(245, 176, 66, 0.4);
+    transition: all 0.4s ease;
+}
+.glass-card:hover {
+    transform: translateY(-8px);
+    border-color: rgba(245, 176, 66, 0.8);
+    box-shadow: 0 20px 40px rgba(0,0,0,0.3), 0 0 20px rgba(245,176,66,0.2);
+}
+
+/* Efectos hover */
+.card-hover { transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); }
+.card-hover:hover { transform: translateY(-10px) scale(1.03); box-shadow: 0 30px 50px rgba(255,215,0,0.2); }
+
+/* Iconos flotantes */
+.icon-glow { filter: drop-shadow(0 0 16px rgba(255,215,0,0.8)); animation: float 3s ease-in-out infinite; }
+@keyframes float { 0%,100% { transform: translateY(0); } 50% { transform: translateY(-10px); } }
+
+/* Títulos */
+.title-glow { text-shadow: 0 0 25px rgba(255,215,0,0.7); letter-spacing: 2px; }
+.section-title { font-size: 2.5rem; text-align: center; margin-bottom: 2.5rem; position: relative; }
+.section-title:after {
+    content: '';
+    display: block;
+    width: 80px;
+    height: 3px;
+    background: linear-gradient(90deg, #f5b042, #ffd966);
+    margin: 0.8rem auto 0;
+    border-radius: 3px;
+}
+
+/* Formularios */
+.form-input {
+    background: rgba(255,255,255,0.08);
+    border: 1px solid rgba(245,176,66,0.3);
+    color: white;
+    padding: 12px 16px;
+    border-radius: 12px;
     width: 100%;
+    transition: all 0.3s;
 }
-.offering-form input:focus, .offering-form select:focus, .offering-form textarea:focus {
+.form-input:focus {
     outline: none;
-    border-color: rgba(255,215,0,0.8);
-    box-shadow: 0 0 10px rgba(255,215,0,0.3);
+    border-color: #f5b042;
+    box-shadow: 0 0 15px rgba(245,176,66,0.3);
+    background: rgba(255,255,255,0.12);
 }
-.calendar-event {
-    background: rgba(99,102,241,0.3);
-    border-left: 4px solid rgba(255,215,0,0.8);
+.form-input::placeholder { color: rgba(255,255,255,0.5); }
+
+/* Botón dorado */
+.btn-gold {
+    background: linear-gradient(135deg, #f5b042, #c97e10);
+    color: #0a2b4e;
+    font-weight: 700;
+    padding: 12px 28px;
+    border-radius: 40px;
+    transition: all 0.3s;
+    display: inline-block;
+    text-decoration: none;
 }
-.calendar-day {
-    transition: all 0.3s ease;
+.btn-gold:hover {
+    transform: scale(1.05);
+    box-shadow: 0 10px 25px rgba(245,176,66,0.5);
 }
-.calendar-day:hover {
-    background: rgba(255,215,0,0.3);
-    transform: scale(1.1);
+
+/* Botón outline */
+.btn-outline {
+    border: 2px solid #f5b042;
+    background: transparent;
+    color: #f5b042;
+    padding: 10px 24px;
+    border-radius: 40px;
+    font-weight: 600;
+    transition: 0.3s;
+    text-decoration: none;
+    display: inline-block;
+}
+.btn-outline:hover { background: #f5b042; color: #0a2b4e; transform: scale(1.02); }
+
+/* Scrollbar */
+::-webkit-scrollbar { width: 8px; }
+::-webkit-scrollbar-track { background: #0a2b4e; }
+::-webkit-scrollbar-thumb { background: #f5b042; border-radius: 4px; }
+
+/* Calendario */
+.calendar-event { background: rgba(99,102,241,0.3); border-left: 4px solid #f5b042; border-radius: 12px; }
+.stat-number { font-size: 2.5rem; font-weight: 800; color: #f5b042; }
+
+/* Responsive */
+@media (max-width: 768px) {
+    .section-title { font-size: 1.8rem; }
+    .stat-number { font-size: 1.8rem; }
 }
 </style>
 </head>
-<body class="relative text-white overflow-x-hidden bg-gradient-to-b from-blue-950 via-purple-900 to-black">
+<body class="relative text-white overflow-x-hidden bg-gradient-to-br from-blue-950 via-purple-900 to-black">
 
 <div class="fixed inset-0 -z-10 animate-bg"></div>
 
-<!-- BOTÓN VOLVER ARRIBA -->
-<button id="backToTop" class="fixed bottom-24 right-6 z-50 bg-yellow-400 text-black p-3 rounded-full shadow-lg hover:scale-110 transition hidden">
-    <i data-lucide="arrow-up" class="w-6 h-6"></i>
+<!-- ==================== BOTONES FLOTANTES ==================== -->
+<button id="backToTop" class="fixed bottom-24 right-6 z-50 bg-yellow-400 text-black p-3 rounded-full shadow-xl hover:scale-110 transition-all duration-300 hidden group">
+    <i data-lucide="arrow-up" class="w-5 h-5"></i>
+    <span class="absolute right-full mr-3 top-1/2 -translate-y-1/2 bg-black/80 text-white px-3 py-1 rounded-lg text-sm whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none">Subir</span>
 </button>
 
-<!-- BOTÓN MENÚ -->
-<button id="menuBtn" class="fixed top-4 left-4 z-50 bg-black/70 p-3 rounded-xl shadow-lg hover:scale-110 transition">☰</button>
+<a href="https://wa.me/18095550123" target="_blank" class="fixed bottom-6 right-6 z-50 bg-green-500 p-4 rounded-full shadow-xl hover:scale-110 transition-all duration-300 group">
+    <i data-lucide="message-circle" class="w-6 h-6 text-white"></i>
+    <span class="absolute right-full mr-3 top-1/2 -translate-y-1/2 bg-black/80 text-white px-3 py-1 rounded-lg text-sm whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none">WhatsApp: +1 809 555 1234</span>
+</a>
 
-<!-- SIDEBAR -->
-<aside id="sidebar" class="fixed top-0 left-0 h-full w-64 glass p-6 z-40 transform -translate-x-full transition-transform duration-300 overflow-y-auto">
-    <h2 class="text-2xl font-bold mb-8 text-center title-glow">ICDNJ</h2>
-    <nav class="flex flex-col gap-4 text-lg mb-8">
-        <a href="#hero" class="hover:text-yellow-400 flex items-center gap-2"><i data-lucide="home" class="w-5 h-5"></i> Inicio</a>
-        <a href="#cultos" class="hover:text-yellow-400 flex items-center gap-2"><i data-lucide="calendar" class="w-5 h-5"></i> Días de Culto</a>
-        <a href="#pastores" class="hover:text-yellow-400 flex items-center gap-2"><i data-lucide="users" class="w-5 h-5"></i> Pastores</a>
-        <a href="#ministerios" class="hover:text-yellow-400 flex items-center gap-2"><i data-lucide="heart" class="w-5 h-5"></i> Ministerios</a>
-        <a href="#testimonios" class="hover:text-yellow-400 flex items-center gap-2"><i data-lucide="message-circle" class="w-5 h-5"></i> Testimonios</a>
-        <a href="#transmisiones" class="hover:text-yellow-400 flex items-center gap-2"><i data-lucide="share-2" class="w-5 h-5"></i> Redes</a>
-        <a href="#eventos" class="hover:text-yellow-400 flex items-center gap-2"><i data-lucide="calendar-days" class="w-5 h-5"></i> Eventos</a>
-        <a href="#oracion" class="hover:text-yellow-400 flex items-center gap-2"><i data-lucide="hands-praying" class="w-5 h-5"></i> Petición de Oración</a>
-        <a href="#ofrendas" class="hover:text-yellow-400 flex items-center gap-2"><i data-lucide="gift" class="w-5 h-5"></i> Ofrendas</a>
-        <a href="#calendario" class="hover:text-yellow-400 flex items-center gap-2"><i data-lucide="calendar-check" class="w-5 h-5"></i> Calendario</a>
-        <a href="#ubicacion" class="hover:text-yellow-400 flex items-center gap-2"><i data-lucide="map-pin" class="w-5 h-5"></i> Ubicación</a>
+<!-- ==================== MENÚ LATERAL ==================== -->
+<button id="menuBtn" class="fixed top-4 left-4 z-50 bg-black/60 backdrop-blur-md p-3 rounded-xl shadow-lg hover:scale-110 transition">
+    <i data-lucide="menu" class="w-6 h-6 text-yellow-400"></i>
+</button>
+
+<aside id="sidebar" class="fixed top-0 left-0 h-full w-72 glass p-6 z-40 transform -translate-x-full transition-transform duration-300 overflow-y-auto">
+    <div class="text-center mb-6">
+        <div class="w-20 h-20 rounded-full mx-auto mb-3 overflow-hidden border-2 border-yellow-400 bg-yellow-400/20 flex items-center justify-center">
+            <i class="fas fa-cross text-4xl text-yellow-400"></i>
+        </div>
+        <h2 class="text-2xl font-bold title-glow">ICDNJ</h2>
+        <p class="text-xs text-gray-300">Deshaciendo las Obras del Diablo</p>
+    </div>
+    
+    <nav class="flex flex-col gap-2 mb-6">
+        <a href="#inicio" class="hover:text-yellow-400 flex items-center gap-3 px-3 py-2 rounded-xl hover:bg-white/10 transition"><i data-lucide="home" class="w-5 h-5"></i> Inicio</a>
+        <a href="#cultos" class="hover:text-yellow-400 flex items-center gap-3 px-3 py-2 rounded-xl hover:bg-white/10 transition"><i data-lucide="calendar" class="w-5 h-5"></i> Días de Culto</a>
+        <a href="#pastores" class="hover:text-yellow-400 flex items-center gap-3 px-3 py-2 rounded-xl hover:bg-white/10 transition"><i data-lucide="users" class="w-5 h-5"></i> Pastores</a>
+        <a href="#ministerios" class="hover:text-yellow-400 flex items-center gap-3 px-3 py-2 rounded-xl hover:bg-white/10 transition"><i data-lucide="heart" class="w-5 h-5"></i> Ministerios</a>
+        <a href="#testimonios" class="hover:text-yellow-400 flex items-center gap-3 px-3 py-2 rounded-xl hover:bg-white/10 transition"><i data-lucide="message-circle" class="w-5 h-5"></i> Testimonios</a>
+        <a href="#eventos" class="hover:text-yellow-400 flex items-center gap-3 px-3 py-2 rounded-xl hover:bg-white/10 transition"><i data-lucide="calendar-days" class="w-5 h-5"></i> Eventos</a>
+        <a href="#redes" class="hover:text-yellow-400 flex items-center gap-3 px-3 py-2 rounded-xl hover:bg-white/10 transition"><i data-lucide="share-2" class="w-5 h-5"></i> Redes Sociales</a>
+        <a href="#oracion" class="hover:text-yellow-400 flex items-center gap-3 px-3 py-2 rounded-xl hover:bg-white/10 transition"><i data-lucide="hands-praying" class="w-5 h-5"></i> Petición de Oración</a>
+        <a href="#ofrendas" class="hover:text-yellow-400 flex items-center gap-3 px-3 py-2 rounded-xl hover:bg-white/10 transition"><i data-lucide="gift" class="w-5 h-5"></i> Ofrendas</a>
+        <a href="#ubicacion" class="hover:text-yellow-400 flex items-center gap-3 px-3 py-2 rounded-xl hover:bg-white/10 transition"><i data-lucide="map-pin" class="w-5 h-5"></i> Ubicación</a>
+        <a href="#contacto" class="hover:text-yellow-400 flex items-center gap-3 px-3 py-2 rounded-xl hover:bg-white/10 transition"><i data-lucide="mail" class="w-5 h-5"></i> Contacto</a>
     </nav>
 
-    <!-- Contador de Oración en Sidebar -->
-    <div class="glass p-4 rounded-xl mb-6">
+    <div class="glass p-4 rounded-xl mb-4 text-center">
         <h3 class="font-bold mb-2 text-yellow-400">Oraciones Contestadas</h3>
-        <div class="text-3xl font-bold text-center" style="background: linear-gradient(135deg, rgba(255,215,0,0.2), rgba(99,102,241,0.2)); border: 2px solid rgba(255,215,0,0.6); border-radius: 12px; padding: 8px;" id="sidebarPrayerCount">1,247</div>
-        <p class="text-sm text-gray-300 text-center mt-2">Milagros de Dios</p>
+        <div class="text-3xl font-bold text-yellow-400" id="sidebarPrayerCount">1,247</div>
+        <p class="text-xs text-gray-400 mt-1">Milagros de Dios</p>
     </div>
 
-    <!-- Versículo del Día en Sidebar -->
-    <div class="glass p-4 rounded-xl">
+    <div class="glass p-4 rounded-xl text-center">
         <h3 class="font-bold mb-2 text-yellow-400">Versículo del Día</h3>
-        <p class="text-sm italic mb-1" id="dailyVerse">"Porque donde están dos o tres congregados en mi nombre, allí estoy yo en medio de ellos."</p>
-        <p class="text-xs text-gray-400 text-right">Mateo 18:20</p>
+        <p class="text-sm italic mb-2" id="dailyVerse">"Porque donde están dos o tres congregados en mi nombre, allí estoy yo en medio de ellos."</p>
+        <p class="text-xs text-gray-400">Mateo 18:20</p>
     </div>
 </aside>
 
-<!-- LOGO / IMAGEN DEL PASTOR -->
-<img src="https://lookaside.instagram.com/seo/google_widget/crawler/?media_id=3851445230855346873" class="fixed top-4 right-4 w-16 rounded-full shadow-xl z-50 cursor-pointer hover:scale-110 transition border-2 border-yellow-400" id="logoBtn">
-
-<!-- MODAL VERSÍCULOS -->
-<div id="verseModal" class="fixed inset-0 bg-black/70 z-50 flex items-center justify-center p-4 hidden">
-    <div class="glass max-w-md w-full p-8 rounded-2xl relative">
-        <button id="closeVerseModal" class="absolute top-4 right-4 text-gray-400 hover:text-white">
-            <i data-lucide="x" class="w-6 h-6"></i>
-        </button>
-        <h3 class="text-2xl font-bold mb-4 text-yellow-400">Versículo Diario</h3>
-        <p class="text-lg mb-4" id="modalVerseText"></p>
-        <p class="text-gray-400 text-right" id="modalVerseRef"></p>
-        <button id="newVerseBtn" class="mt-6 bg-yellow-400 text-black px-4 py-2 rounded-lg hover:bg-yellow-500 transition w-full">Nuevo Versículo</button>
-    </div>
-</div>
-
-<!-- HERO -->
-<section id="hero" class="relative min-h-screen flex items-center justify-center text-center bg-cover bg-center" style="background-image:url('https://images.unsplash.com/photo-1566457145000-4e3cdee5d1d7?ixlib=rb-4.0.3&auto=format&fit=crop&w=1470&q=80')">
-    <div class="absolute inset-0 bg-black/65"></div>
-    <div class="relative z-10 px-6" data-aos="zoom-in">
-        <h1 class="text-5xl md:text-7xl font-bold mb-6 title-glow">ICDNJ</h1>
-        <p class="text-2xl md:text-3xl font-semibold mb-4">Deshaciendo las Obras del Diablo <br> en el Nombre de Jesús</p>
-        <p class="max-w-2xl mx-auto text-xl text-gray-200 mb-8">Una iglesia viva, llena del Espíritu Santo, donde cada persona encuentra restauración, propósito y una familia espiritual</p>
-        
-        <div class="flex justify-center gap-4 mb-8">
-            <img src="https://lookaside.instagram.com/seo/google_widget/crawler/?media_id=3851445230855346873" alt="Pastor Manuel Paulino" class="w-24 h-24 rounded-full object-cover border-4 border-yellow-400 shadow-2xl">
-        </div>
-        
-        <div class="text-center mb-8">
-            <p class="text-xl"><strong>Pastor:</strong> MANUEL PAULINO</p>
-            <p class="text-2xl font-bold text-yellow-400 mt-2">12vo ANIVERSARIO & MARCHA 2026</p>
-            <div class="inline-block bg-yellow-400 text-black px-6 py-2 rounded-full text-xl font-bold my-4">30 MAYO</div>
-        </div>
-        
-        <div class="flex flex-wrap justify-center gap-4">
-            <a href="#cultos" class="bg-yellow-400 text-black px-8 py-4 rounded-2xl font-semibold hover:scale-110 transition transform duration-300 shadow-lg hover:shadow-2xl hover:shadow-yellow-500/50">Conéctate con nosotros</a>
-            <a href="#oracion" class="bg-purple-600 text-white px-8 py-4 rounded-2xl font-semibold hover:scale-110 transition transform duration-300 shadow-lg hover:shadow-2xl hover:shadow-purple-500/50">Envía tu Petición</a>
+<!-- ==================== HERO PRINCIPAL ==================== -->
+<section id="inicio" class="relative min-h-screen flex items-center justify-center text-center px-6">
+    <div class="relative z-10 max-w-5xl mx-auto" data-aos="zoom-in-up">
+        <div class="glass-card p-8 md:p-12 rounded-3xl">
+            <i class="fas fa-crown text-5xl text-yellow-400 mb-4 icon-glow"></i>
+            <h1 class="text-5xl md:text-7xl font-bold title-glow mb-3">ICDNJ</h1>
+            <p class="text-xl md:text-2xl mb-6">Deshaciendo las Obras del Diablo <br> en el Nombre de Jesús</p>
+            
+            <div class="flex justify-center gap-4 mb-8">
+                <a href="https://www.instagram.com/pastor_manuelpaulino/" target="_blank" class="bg-pink-600 w-12 h-12 rounded-full flex items-center justify-center hover:scale-110 transition"><i class="fab fa-instagram text-xl"></i></a>
+                <a href="https://www.youtube.com/@pastormanuelpaulino7" target="_blank" class="bg-red-600 w-12 h-12 rounded-full flex items-center justify-center hover:scale-110 transition"><i class="fab fa-youtube text-xl"></i></a>
+                <a href="#" class="bg-blue-600 w-12 h-12 rounded-full flex items-center justify-center hover:scale-110 transition"><i class="fab fa-facebook-f text-xl"></i></a>
+                <a href="#" class="bg-black w-12 h-12 rounded-full flex items-center justify-center hover:scale-110 transition"><i class="fab fa-tiktok text-xl"></i></a>
+            </div>
+            
+            <div class="inline-block bg-yellow-400 text-black px-6 py-2 rounded-full text-xl font-bold mb-4">30 MAYO 2026</div>
+            <p class="text-2xl font-bold text-yellow-400 mb-4">¡12vo ANIVERSARIO & MARCHA!</p>
+            
+            <div class="bg-blue-900/50 p-4 rounded-2xl mb-6 text-left max-w-md mx-auto">
+                <p><i class="fas fa-clock text-yellow-400 mr-2"></i> <strong>Salida Marcha:</strong> 4:30 PM</p>
+                <p><i class="fas fa-church text-yellow-400 mr-2"></i> <strong>Culto:</strong> 7:30 PM</p>
+                <p><i class="fas fa-map-marker-alt text-yellow-400 mr-2"></i> <strong>Play de Peravia Escondido</strong></p>
+            </div>
+            
+            <div class="flex flex-wrap justify-center gap-4">
+                <a href="#cultos" class="btn-gold"><i class="fas fa-church mr-2"></i> Ver Cultos</a>
+                <a href="#oracion" class="btn-outline"><i class="fas fa-praying-hands mr-2"></i> Enviar Petición</a>
+            </div>
         </div>
     </div>
 </section>
 
-<!-- DÍAS DE CULTO -->
-<section id="cultos" class="px-6 py-24 max-w-6xl mx-auto">
-    <h2 class="section-title title-glow" data-aos="fade-up">Días de Culto</h2>
-    <div class="grid md:grid-cols-3 gap-8">
-        <div class="glass p-8 rounded-2xl text-center card-hover" data-aos="fade-up">
-            <h3 class="text-2xl font-bold mb-4">Martes</h3>
-            <p class="text-lg mb-2">Discipulado y Crecimiento</p>
-            <p class="text-gray-300 mb-4">Estudio bíblico profundo para fortalecer tu fe y conocimiento de la Palabra</p>
-            <p class="text-yellow-400 text-xl font-semibold mt-2">7:30 PM</p>
-        </div>
-        <div class="glass p-8 rounded-2xl text-center card-hover" data-aos="fade-up" data-aos-delay="100">
-            <h3 class="text-2xl font-bold mb-4">Jueves</h3>
-            <p class="text-lg mb-2">Discipulado para Amigos</p>
-            <p class="text-gray-300 mb-4">Encuentro especial para nuevos creyentes y personas interesadas en conocer a Jesús</p>
-            <p class="text-yellow-400 text-xl font-semibold mt-2">7:30 PM</p>
-        </div>
-        <div class="glass p-8 rounded-2xl text-center card-hover" data-aos="fade-up" data-aos-delay="200">
-            <h3 class="text-2xl font-bold mb-4">Viernes</h3>
-            <p class="text-lg mb-2">Día de Oportunidades</p>
-            <p class="text-gray-300 mb-4">Culto evangelístico con testimonios poderosos y predicación transformadora</p>
-            <p class="text-yellow-400 text-xl font-semibold mt-2">7:30 PM</p>
-        </div>
-        <div class="glass p-8 rounded-2xl text-center card-hover" data-aos="fade-up" data-aos-delay="300">
-            <h3 class="text-2xl font-bold mb-4">Sábado</h3>
-            <p class="text-lg mb-2">Juventud en Acción</p>
-            <p class="text-gray-300 mb-4">Encuentro dinámico para jóvenes con adoración contemporánea y palabra relevante</p>
-            <p class="text-yellow-400 text-xl font-semibold mt-2">7:30 PM</p>
-        </div>
-        <div class="glass p-8 rounded-2xl text-center card-hover md:col-span-3" data-aos="fade-up" data-aos-delay="400">
-            <h3 class="text-2xl font-bold mb-4">Domingo</h3>
-            <p class="text-lg mb-2">Culto General de Adoración</p>
-            <p class="text-gray-300 mb-4">Nuestra reunión principal con <span class="text-yellow-400">adoración poderosa, danza profética, predicación apostólica, oración y ministerio de sanidad</span>. Un encuentro transformador con Dios.</p>
-            <p class="text-yellow-400 text-2xl font-bold mt-2">5:00 PM</p>
-        </div>
+<!-- ==================== BIENVENIDA ==================== -->
+<section class="py-16 px-6 max-w-5xl mx-auto text-center">
+    <div class="glass-card p-8 rounded-2xl" data-aos="fade-up">
+        <i class="fas fa-heart text-4xl text-yellow-400 mb-4 icon-glow"></i>
+        <h2 class="text-3xl md:text-4xl font-bold mb-4">Bienvenidos a ICDNJ</h2>
+        <p class="text-gray-200 text-lg max-w-3xl mx-auto">Somos una iglesia viva, llena del Espíritu Santo, donde cada persona encuentra restauración, propósito y una familia espiritual. ¡Te esperamos con los brazos abiertos!</p>
+        <p class="text-yellow-400 mt-4 font-semibold">"No temas, JESÚS está aquí"</p>
     </div>
 </section>
 
-<!-- PASTORES -->
-<section id="pastores" class="px-6 py-24 max-w-6xl mx-auto">
-    <h2 class="section-title title-glow" data-aos="fade-up">Nuestros Pastores</h2>
-    <div class="grid md:grid-cols-2 gap-10">
-        <div class="glass pastor-card p-8 rounded-3xl text-center card-hover" data-aos="zoom-in">
-            <div class="mb-6">
-                <div class="w-40 h-40 rounded-full mx-auto mb-4 overflow-hidden border-4 border-yellow-400">
-                    <img src="https://lookaside.instagram.com/seo/google_widget/crawler/?media_id=3851445230855346873" class="w-full h-full object-cover">
-                </div>
+<!-- ==================== ESTADÍSTICAS ==================== -->
+<section class="py-12 px-6 max-w-6xl mx-auto">
+    <div class="grid grid-cols-2 md:grid-cols-4 gap-6">
+        <div class="glass-card p-6 text-center card-hover" data-aos="fade-up"><div class="stat-number" id="yearsCounter">12</div><p class="text-sm font-semibold mt-2">Años de Ministerio</p></div>
+        <div class="glass-card p-6 text-center card-hover" data-aos="fade-up" data-aos-delay="100"><div class="stat-number" id="membersCounter">5000</div><p class="text-sm font-semibold mt-2">Vidas Impactadas</p></div>
+        <div class="glass-card p-6 text-center card-hover" data-aos="fade-up" data-aos-delay="200"><div class="stat-number" id="countriesCounter">15</div><p class="text-sm font-semibold mt-2">Países Alcanzados</p></div>
+        <div class="glass-card p-6 text-center card-hover" data-aos="fade-up" data-aos-delay="300"><div class="stat-number" id="servicesCounter">8</div><p class="text-sm font-semibold mt-2">Cultos Semanales</p></div>
+    </div>
+</section>
+
+<!-- ==================== DÍAS DE CULTO ==================== -->
+<section id="cultos" class="py-20 px-6 max-w-6xl mx-auto">
+    <h2 class="section-title title-glow" data-aos="fade-up">⛪ Días de Culto</h2>
+    <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div class="glass-card p-6 text-center card-hover" data-aos="fade-up"><i class="fas fa-bible text-4xl text-yellow-400 mb-3"></i><h3 class="text-xl font-bold">Martes</h3><p class="text-gray-300">Discipulado y Crecimiento</p><p class="text-yellow-400 font-bold mt-2">7:30 PM</p></div>
+        <div class="glass-card p-6 text-center card-hover" data-aos="fade-up" data-aos-delay="100"><i class="fas fa-users text-4xl text-yellow-400 mb-3"></i><h3 class="text-xl font-bold">Jueves</h3><p class="text-gray-300">Discipulado para Amigos</p><p class="text-yellow-400 font-bold mt-2">7:30 PM</p></div>
+        <div class="glass-card p-6 text-center card-hover" data-aos="fade-up" data-aos-delay="200"><i class="fas fa-fire text-4xl text-yellow-400 mb-3"></i><h3 class="text-xl font-bold">Viernes</h3><p class="text-gray-300">Día de Oportunidades</p><p class="text-yellow-400 font-bold mt-2">7:30 PM</p></div>
+        <div class="glass-card p-6 text-center card-hover" data-aos="fade-up" data-aos-delay="300"><i class="fas fa-music text-4xl text-yellow-400 mb-3"></i><h3 class="text-xl font-bold">Sábado</h3><p class="text-gray-300">Juventud en Acción</p><p class="text-yellow-400 font-bold mt-2">7:30 PM</p></div>
+        <div class="glass-card p-6 text-center card-hover md:col-span-2 lg:col-span-3" data-aos="fade-up" data-aos-delay="400"><i class="fas fa-crown text-4xl text-yellow-400 mb-3"></i><h3 class="text-xl font-bold">Domingo - Culto General</h3><p class="text-gray-300">Adoración poderosa, danza profética, predicación apostólica y sanidad</p><p class="text-yellow-400 font-bold text-2xl mt-2">5:00 PM</p></div>
+    </div>
+</section>
+
+<!-- ==================== PASTORES ==================== -->
+<section id="pastores" class="py-20 px-6 max-w-6xl mx-auto bg-black/20 rounded-3xl">
+    <h2 class="section-title title-glow" data-aos="fade-up">👨‍🏫 Nuestros Pastores</h2>
+    <div class="grid md:grid-cols-2 gap-8">
+        <div class="glass-card p-8 text-center card-hover" data-aos="zoom-in">
+            <div class="w-32 h-32 rounded-full mx-auto mb-4 bg-yellow-400/20 border-2 border-yellow-400 flex items-center justify-center">
+                <i class="fas fa-user-pastor text-5xl text-yellow-400"></i>
             </div>
             <h3 class="text-2xl font-bold">Pastor Manuel Paulino</h3>
-            <p class="text-yellow-400 mt-2 text-lg">Pastor Principal y Fundador</p>
-            <p class="mt-4 text-gray-300">Con más de 25 años de ministerio, el Pastor Manuel ha dedicado su vida a la obra de Dios, guiando a miles de personas a encontrar propósito en Cristo. Su pasión es ver familias restauradas y vidas transformadas por el poder del Espíritu Santo.</p>
-            <div class="flex justify-center gap-4 mt-4">
+            <p class="text-yellow-400 mb-3">Pastor Principal y Fundador</p>
+            <p class="text-gray-300">Con más de 25 años de ministerio, predicando libertad, sanidad y el poder del Espíritu Santo.</p>
+            <div class="flex justify-center gap-3 mt-4">
                 <a href="https://www.instagram.com/pastor_manuelpaulino/" target="_blank" class="text-pink-500 hover:scale-110 transition"><i class="fab fa-instagram text-2xl"></i></a>
                 <a href="https://www.youtube.com/@pastormanuelpaulino7" target="_blank" class="text-red-500 hover:scale-110 transition"><i class="fab fa-youtube text-2xl"></i></a>
             </div>
         </div>
-        <div class="glass pastor-card p-8 rounded-3xl text-center card-hover" data-aos="zoom-in" data-aos-delay="150">
-            <div class="mb-6">
-                <div class="w-40 h-40 rounded-full mx-auto mb-4 overflow-hidden border-4 border-yellow-400">
-                    <img src="https://images.unsplash.com/photo-1582750433449-648ed127bb54?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" class="w-full h-full object-cover">
-                </div>
+        <div class="glass-card p-8 text-center card-hover" data-aos="zoom-in" data-aos-delay="150">
+            <div class="w-32 h-32 rounded-full mx-auto mb-4 bg-yellow-400/20 border-2 border-yellow-400 flex items-center justify-center">
+                <i class="fas fa-user text-5xl text-yellow-400"></i>
             </div>
             <h3 class="text-2xl font-bold">Pastora Deiny De Paulino</h3>
-            <p class="text-yellow-400 mt-2 text-lg">Pastora y Líder de Mujeres</p>
-            <p class="mt-4 text-gray-300">La Pastora Deiny dirige el ministerio de mujeres con un corazón maternal. Su enfoque es el discipulado, la oración intercesora y el desarrollo del carácter cristiano en cada mujer que Dios pone en su camino.</p>
+            <p class="text-yellow-400 mb-3">Pastora y Líder de Mujeres</p>
+            <p class="text-gray-300">Dirige el ministerio de mujeres con un corazón maternal, enfocada en el discipulado y la oración intercesora.</p>
         </div>
     </div>
 </section>
 
-<!-- MINISTERIOS -->
-<section id="ministerios" class="px-6 py-24 max-w-6xl mx-auto">
-    <h2 class="section-title title-glow" data-aos="fade-up">Ministerios</h2>
-    <div class="grid md:grid-cols-3 gap-8">
-        <div class="glass p-8 rounded-2xl text-center card-hover" data-aos="fade-up">
-            <i data-lucide="music" class="w-16 h-16 text-yellow-400 mx-auto mb-6 icon-glow"></i>
-            <h3 class="text-2xl font-bold mb-4">Ministerio de Alabanza</h3>
-            <p class="text-gray-300">Nuestro equipo de alabanza guía la adoración con instrumentos y voces dedicadas a exaltar el nombre de Jesús.</p>
-        </div>
-        <div class="glass p-8 rounded-2xl text-center card-hover" data-aos="fade-up" data-aos-delay="100">
-            <i data-lucide="users" class="w-16 h-16 text-yellow-400 mx-auto mb-6 icon-glow"></i>
-            <h3 class="text-2xl font-bold mb-4">Ministerio de Jóvenes</h3>
-            <p class="text-gray-300">Generación de Avivamiento: Un espacio donde los jóvenes encuentran propósito, amistad y crecimiento espiritual.</p>
-        </div>
-        <div class="glass p-8 rounded-2xl text-center card-hover" data-aos="fade-up" data-aos-delay="200">
-            <i data-lucide="heart" class="w-16 h-16 text-yellow-400 mx-auto mb-6 icon-glow"></i>
-            <h3 class="text-2xl font-bold mb-4">Ministerio de Intercesión</h3>
-            <p class="text-gray-300">Guerreros de Oración: Equipo dedicado a la guerra espiritual, intercediendo por la iglesia y la comunidad.</p>
-        </div>
-        <div class="glass p-8 rounded-2xl text-center card-hover" data-aos="fade-up" data-aos-delay="300">
-            <i data-lucide="baby" class="w-16 h-16 text-yellow-400 mx-auto mb-6 icon-glow"></i>
-            <h3 class="text-2xl font-bold mb-4">Ministerio de Niños</h3>
-            <p class="text-gray-300">Pequeños Héroes: Enseñamos a los niños los valores del Reino de Dios de manera creativa y divertida.</p>
-        </div>
-        <div class="glass p-8 rounded-2xl text-center card-hover" data-aos="fade-up" data-aos-delay="400">
-            <i data-lucide="hand-heart" class="w-16 h-16 text-yellow-400 mx-auto mb-6 icon-glow"></i>
-            <h3 class="text-2xl font-bold mb-4">Ministerio de Ayuda Social</h3>
-            <p class="text-gray-300">Manos Extendidas: Proveemos alimentos, ropa y apoyo emocional a familias necesitadas de nuestra comunidad.</p>
-        </div>
-        <div class="glass p-8 rounded-2xl text-center card-hover" data-aos="fade-up" data-aos-delay="500">
-            <i data-lucide="drama" class="w-16 h-16 text-yellow-400 mx-auto mb-6 icon-glow"></i>
-            <h3 class="text-2xl font-bold mb-4">Ministerio de Danza</h3>
-            <p class="text-gray-300">Adoración en Movimiento: Expresamos nuestra adoración a Dios a través de la danza profética y coreografías que glorifican Su nombre.</p>
-        </div>
+<!-- ==================== MINISTERIOS ==================== -->
+<section id="ministerios" class="py-20 px-6 max-w-6xl mx-auto">
+    <h2 class="section-title title-glow" data-aos="fade-up">🙌 Ministerios Activos</h2>
+    <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div class="glass-card p-6 text-center card-hover"><i data-lucide="music" class="w-12 h-12 text-yellow-400 mx-auto mb-3 icon-glow"></i><h3 class="text-xl font-bold">Alabanza</h3><p class="text-gray-300 text-sm">Adoración con instrumentos y voces</p></div>
+        <div class="glass-card p-6 text-center card-hover"><i data-lucide="users" class="w-12 h-12 text-yellow-400 mx-auto mb-3 icon-glow"></i><h3 class="text-xl font-bold">Jóvenes</h3><p class="text-gray-300 text-sm">Generación de avivamiento</p></div>
+        <div class="glass-card p-6 text-center card-hover"><i data-lucide="heart" class="w-12 h-12 text-yellow-400 mx-auto mb-3 icon-glow"></i><h3 class="text-xl font-bold">Intercesión</h3><p class="text-gray-300 text-sm">Guerreros de oración 24/7</p></div>
+        <div class="glass-card p-6 text-center card-hover"><i data-lucide="baby" class="w-12 h-12 text-yellow-400 mx-auto mb-3 icon-glow"></i><h3 class="text-xl font-bold">Niños</h3><p class="text-gray-300 text-sm">Pequeños héroes del Reino</p></div>
+        <div class="glass-card p-6 text-center card-hover"><i data-lucide="hand-heart" class="w-12 h-12 text-yellow-400 mx-auto mb-3 icon-glow"></i><h3 class="text-xl font-bold">Ayuda Social</h3><p class="text-gray-300 text-sm">Manos extendidas a la comunidad</p></div>
+        <div class="glass-card p-6 text-center card-hover"><i data-lucide="drama" class="w-12 h-12 text-yellow-400 mx-auto mb-3 icon-glow"></i><h3 class="text-xl font-bold">Danza Profética</h3><p class="text-gray-300 text-sm">Movimiento en adoración</p></div>
     </div>
 </section>
 
-<!-- TESTIMONIOS -->
-<section id="testimonios" class="px-6 py-24 max-w-6xl mx-auto">
-    <h2 class="section-title title-glow" data-aos="fade-up">Testimonios de Vida</h2>
-    <div class="grid md:grid-cols-3 gap-8">
-        <div class="glass p-8 rounded-2xl card-hover" data-aos="fade-up">
-            <div class="flex items-center mb-6">
-                <div class="w-16 h-16 rounded-full overflow-hidden mr-4 border-2 border-yellow-400">
-                    <img src="https://images.unsplash.com/photo-1508214751196-bcfd4ca60f91?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" class="w-full h-full object-cover">
-                </div>
-                <div>
-                    <h3 class="font-bold text-lg">Carlos M.</h3>
-                    <p class="text-yellow-400 text-sm">Miembro desde 2018</p>
-                </div>
-            </div>
-            <p class="text-lg italic">"Dios sanó mi vida y mi familia completamente. Llegué con un corazón roto por la adicción, y hoy soy libre, sirviendo en el ministerio de ayuda social. ¡Aleluya!"</p>
-        </div>
-        <div class="glass p-8 rounded-2xl card-hover" data-aos="fade-up" data-aos-delay="100">
-            <div class="flex items-center mb-6">
-                <div class="w-16 h-16 rounded-full overflow-hidden mr-4 border-2 border-yellow-400">
-                    <img src="https://images.unsplash.com/photo-1554727242-741c14fa561c?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" class="w-full h-full object-cover">
-                </div>
-                <div>
-                    <h3 class="font-bold text-lg">Ana R.</h3>
-                    <p class="text-yellow-400 text-sm">Miembro desde 2020</p>
-                </div>
-            </div>
-            <p class="text-lg italic">"Llegué destruida emocionalmente después de mi divorcio y salí restaurada por el poder de Dios. Encontré una familia que me amó y me ayudó a sanar cada herida."</p>
-        </div>
-        <div class="glass p-8 rounded-2xl card-hover" data-aos="fade-up" data-aos-delay="200">
-            <div class="flex items-center mb-6">
-                <div class="w-16 h-16 rounded-full overflow-hidden mr-4 border-2 border-yellow-400">
-                    <img src="https://images.unsplash.com/photo-1507591064344-4c6ce005-128?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" class="w-full h-full object-cover">
-                </div>
-                <div>
-                    <h3 class="font-bold text-lg">Miguel T.</h3>
-                    <p class="text-yellow-400 text-sm">Miembro desde 2019</p>
-                </div>
-            </div>
-            <p class="text-lg italic">"Jesús cambió mi historia para siempre. De estar al borde del suicidio, hoy soy líder de jóvenes y ayudo a otros a encontrar esperanza en Cristo."</p>
-        </div>
+<!-- ==================== TESTIMONIOS ==================== -->
+<section id="testimonios" class="py-20 px-6 max-w-6xl mx-auto bg-black/20 rounded-3xl">
+    <h2 class="section-title title-glow" data-aos="fade-up">📖 Testimonios de Vida</h2>
+    <div class="grid md:grid-cols-3 gap-6">
+        <div class="glass-card p-6 card-hover"><i class="fas fa-quote-left text-3xl text-yellow-400 mb-3"></i><p class="italic">"Dios sanó mi vida y mi familia. Llegué con adicción, hoy soy libre sirviendo al Señor."</p><p class="mt-3 font-bold text-yellow-400">- Carlos M.</p></div>
+        <div class="glass-card p-6 card-hover"><i class="fas fa-quote-left text-3xl text-yellow-400 mb-3"></i><p class="italic">"Llegué destruida emocionalmente y salí restaurada por el poder de Dios."</p><p class="mt-3 font-bold text-yellow-400">- Ana R.</p></div>
+        <div class="glass-card p-6 card-hover"><i class="fas fa-quote-left text-3xl text-yellow-400 mb-3"></i><p class="italic">"De estar al borde del suicidio, hoy soy líder de jóvenes y ayudo a otros."</p><p class="mt-3 font-bold text-yellow-400">- Miguel T.</p></div>
     </div>
 </section>
 
-<!-- PETICIÓN DE ORACIÓN -->
-<section id="oracion" class="px-6 py-24 max-w-4xl mx-auto">
-    <h2 class="section-title title-glow" data-aos="fade-up">Envía tu Petición de Oración</h2>
-    <div class="glass p-8 rounded-2xl" data-aos="fade-up">
-        <p class="text-center text-gray-300 mb-6">"Pedid, y se os dará; buscad, y hallaréis; llamad, y se os abrirá." - Mateo 7:7</p>
-        
-        <form id="prayerForm" class="space-y-6">
-            <div class="grid md:grid-cols-2 gap-6">
-                <div>
-                    <label class="block mb-2 text-gray-300">Tu Nombre *</label>
-                    <input type="text" id="prayerName" required class="offering-form" placeholder="Ej: María García">
-                </div>
-                <div>
-                    <label class="block mb-2 text-gray-300">Tu Email</label>
-                    <input type="email" id="prayerEmail" class="offering-form" placeholder="tucorreo@ejemplo.com">
-                </div>
+<!-- ==================== REDES SOCIALES ==================== -->
+<section id="redes" class="py-20 px-6 max-w-6xl mx-auto">
+    <h2 class="section-title title-glow" data-aos="fade-up">📱 Síguenos en Redes</h2>
+    <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-6">
+        <a href="https://www.instagram.com/pastor_manuelpaulino/" target="_blank" class="glass-card p-6 text-center card-hover"><i class="fab fa-instagram text-5xl text-pink-500 mx-auto mb-3 icon-glow"></i><h3 class="font-bold">Instagram</h3><p class="text-xs text-gray-400">@pastor_manuelpaulino</p></a>
+        <a href="https://www.youtube.com/@pastormanuelpaulino7" target="_blank" class="glass-card p-6 text-center card-hover"><i class="fab fa-youtube text-5xl text-red-500 mx-auto mb-3 icon-glow"></i><h3 class="font-bold">YouTube</h3><p class="text-xs text-gray-400">Predicaciones</p></a>
+        <a href="#" class="glass-card p-6 text-center card-hover"><i class="fab fa-facebook text-5xl text-blue-500 mx-auto mb-3 icon-glow"></i><h3 class="font-bold">Facebook</h3><p class="text-xs text-gray-400">En vivo</p></a>
+        <a href="#" class="glass-card p-6 text-center card-hover"><i class="fab fa-tiktok text-5xl text-white mx-auto mb-3 icon-glow"></i><h3 class="font-bold">TikTok</h3><p class="text-xs text-gray-400">Contenido</p></a>
+        <a href="#" class="glass-card p-6 text-center card-hover"><i class="fab fa-x-twitter text-5xl text-white mx-auto mb-3 icon-glow"></i><h3 class="font-bold">X (Twitter)</h3><p class="text-xs text-gray-400">Reflexiones</p></a>
+    </div>
+</section>
+
+<!-- ==================== EVENTOS ==================== -->
+<section id="eventos" class="py-20 px-6 max-w-6xl mx-auto bg-black/20 rounded-3xl">
+    <h2 class="section-title title-glow" data-aos="fade-up">🔥 Próximos Eventos</h2>
+    <div class="grid md:grid-cols-3 gap-6">
+        <div class="glass-card p-6 text-center card-hover"><i class="fas fa-church text-4xl text-yellow-400 mb-3"></i><h3 class="text-xl font-bold">Culto De Adoradores</h3><p class="text-yellow-400">24 Enero 2026</p><p class="text-sm text-gray-300">Noche de adoración ininterrumpida</p><p class="text-xs mt-2">7:00 PM</p></div>
+        <div class="glass-card p-6 text-center card-hover"><i class="fas fa-flag-checkered text-4xl text-yellow-400 mb-3"></i><h3 class="text-xl font-bold">Marcha Victoria</h3><p class="text-yellow-400">30 Mayo 2026</p><p class="text-sm text-gray-300">12vo Aniversario</p><p class="text-xs mt-2">4:30 PM - Play Escondido</p></div>
+        <div class="glass-card p-6 text-center card-hover"><i class="fas fa-mountain text-4xl text-yellow-400 mb-3"></i><h3 class="text-xl font-bold">Retiro Espiritual</h3><p class="text-yellow-400">20-22 Junio 2026</p><p class="text-sm text-gray-300">"En Su Presencia"</p><p class="text-xs mt-2">3 días de ayuno</p></div>
+    </div>
+</section>
+
+<!-- ==================== PETICIÓN DE ORACIÓN ==================== -->
+<section id="oracion" class="py-20 px-6 max-w-4xl mx-auto">
+    <h2 class="section-title title-glow" data-aos="fade-up">📩 Petición de Oración</h2>
+    <div class="glass-card p-8 rounded-2xl" data-aos="fade-up">
+        <p class="text-center text-gray-300 mb-6 italic">"Pedid, y se os dará; buscad, y hallaréis" - Mateo 7:7</p>
+        <form id="prayerForm" class="space-y-4">
+            <div class="grid md:grid-cols-2 gap-4">
+                <input type="text" id="prayerName" placeholder="Tu nombre *" class="form-input" required>
+                <input type="email" id="prayerEmail" placeholder="Tu email" class="form-input">
             </div>
-            
-            <div>
-                <label class="block mb-2 text-gray-300">Tipo de Petición *</label>
-                <select id="prayerType" required class="offering-form">
-                    <option value="" disabled selected>Selecciona un tipo</option>
-                    <option value="sanidad">Sanidad Física</option>
-                    <option value="restauracion">Restauración Familiar</option>
-                    <option value="libertad">Libertad Espiritual</option>
-                    <option value="provision">Provisión Económica</option>
-                    <option value="salvacion">Salvación de Familiares</option>
-                    <option value="otro">Otro</option>
-                </select>
-            </div>
-            
-            <div>
-                <label class="block mb-2 text-gray-300">Tu Petición de Oración *</label>
-                <textarea id="prayerRequest" rows="5" required class="offering-form" placeholder="Describe tu petición aquí..."></textarea>
-            </div>
-            
-            <div class="flex items-center">
-                <input type="checkbox" id="prayerAnonymous" class="mr-2">
-                <label for="prayerAnonymous" class="text-gray-300">Enviar como anónimo</label>
-            </div>
-            
-            <button type="submit" class="w-full bg-yellow-400 text-black py-3 rounded-xl font-semibold hover:bg-yellow-500 transition">
-                <i data-lucide="send" class="w-5 h-5 inline mr-2"></i> Enviar Petición
-            </button>
+            <select id="prayerType" class="form-input" required>
+                <option value="" disabled selected>Tipo de petición</option>
+                <option value="sanidad">Sanidad Física</option>
+                <option value="restauracion">Restauración Familiar</option>
+                <option value="libertad">Libertad Espiritual</option>
+                <option value="provision">Provisión Económica</option>
+            </select>
+            <textarea id="prayerRequest" rows="4" placeholder="Describe tu petición..." class="form-input" required></textarea>
+            <label class="flex items-center gap-2"><input type="checkbox" id="prayerAnonymous"> <span class="text-gray-300">Enviar como anónimo</span></label>
+            <button type="submit" class="btn-gold w-full"><i class="fas fa-praying-hands mr-2"></i> Enviar Petición</button>
         </form>
-        
-        <div id="prayerSuccess" class="mt-6 p-4 bg-green-900/50 border border-green-500 rounded-xl hidden">
-            <p class="text-green-300 text-center">✅ Tu petición ha sido enviada. Nuestro equipo de intercesión estará orando por ti.</p>
-        </div>
+        <div id="prayerSuccess" class="mt-4 p-3 bg-green-900/50 border border-green-500 rounded-xl hidden text-green-300 text-center">✅ Tu petición ha sido enviada. Estamos orando por ti.</div>
     </div>
 </section>
 
-<!-- OFRENDAS Y DIEZMOS -->
-<section id="ofrendas" class="px-6 py-24 max-w-4xl mx-auto">
-    <h2 class="section-title title-glow" data-aos="fade-up">Ofrendas y Diezmos</h2>
-    <div class="glass p-8 rounded-2xl" data-aos="fade-up">
-        <p class="text-center text-gray-300 mb-6">"Cada uno dé como propuso en su corazón: no con tristeza, ni por necesidad, porque Dios ama al dador alegre." - 2 Corintios 9:7</p>
-        
-        <div class="grid md:grid-cols-2 gap-8 mb-8">
-            <div class="text-center p-6 rounded-xl bg-blue-900/30">
-                <i data-lucide="credit-card" class="w-12 h-12 text-yellow-400 mx-auto mb-4"></i>
-                <h3 class="text-xl font-bold mb-2">Transferencia Bancaria</h3>
-                <p class="text-gray-300 mb-2">Banco: Banco Popular</p>
-                <p class="text-gray-300 mb-2">Cuenta: 123-456789-0</p>
-                <p class="text-gray-300">A nombre de: ICDNJ</p>
-            </div>
-            
-            <div class="text-center p-6 rounded-xl bg-purple-900/30">
-                <i data-lucide="smartphone" class="w-12 h-12 text-yellow-400 mx-auto mb-4"></i>
-                <h3 class="text-xl font-bold mb-2">Pago Móvil</h3>
-                <p class="text-gray-300 mb-2">AgapePay: 809-555-0123</p>
-                <p class="text-gray-300">Yappy: icdnj.oficial</p>
-            </div>
+<!-- ==================== OFRENDAS ==================== -->
+<section id="ofrendas" class="py-20 px-6 max-w-4xl mx-auto bg-black/20 rounded-3xl">
+    <h2 class="section-title title-glow" data-aos="fade-up">💰 Ofrendas y Diezmos</h2>
+    <div class="glass-card p-8 rounded-2xl" data-aos="fade-up">
+        <p class="text-center text-gray-300 mb-6 italic">"Dios ama al dador alegre" - 2 Corintios 9:7</p>
+        <div class="grid md:grid-cols-2 gap-4 mb-6">
+            <div class="text-center p-4 rounded-xl bg-blue-900/30"><i class="fas fa-university text-3xl text-yellow-400 mb-2"></i><p class="font-bold">Banco Popular</p><p class="text-sm">Cuenta: 123-456789-0</p></div>
+            <div class="text-center p-4 rounded-xl bg-purple-900/30"><i class="fas fa-mobile-alt text-3xl text-yellow-400 mb-2"></i><p class="font-bold">Yappy / AgapePay</p><p class="text-sm">icdnj@banco.com</p></div>
         </div>
-        
-        <form id="offeringForm" class="space-y-6">
-            <div class="grid md:grid-cols-2 gap-6">
-                <div>
-                    <label class="block mb-2 text-gray-300">Nombre Completo *</label>
-                    <input type="text" id="offeringName" required class="offering-form" placeholder="Tu nombre completo">
-                </div>
-                <div>
-                    <label class="block mb-2 text-gray-300">Tipo de Ofrenda *</label>
-                    <select id="offeringType" required class="offering-form">
-                        <option value="" disabled selected>Selecciona tipo</option>
-                        <option value="diezmo">Diezmo</option>
-                        <option value="ofrenda">Ofrenda General</option>
-                        <option value="mision">Misiones</option>
-                        <option value="especial">Ofrenda Especial</option>
-                    </select>
-                </div>
+        <form id="offeringForm" class="space-y-4">
+            <div class="grid md:grid-cols-2 gap-4">
+                <input type="text" id="offeringName" placeholder="Nombre completo *" class="form-input" required>
+                <select id="offeringType" class="form-input" required><option value="" disabled selected>Tipo</option><option value="diezmo">Diezmo</option><option value="ofrenda">Ofrenda</option><option value="mision">Misiones</option></select>
             </div>
-            
-            <div>
-                <label class="block mb-2 text-gray-300">Monto (USD) *</label>
-                <input type="number" id="offeringAmount" min="1" required class="offering-form" placeholder="Ej: 100">
-            </div>
-            
-            <div>
-                <label class="block mb-2 text-gray-300">Mensaje (Opcional)</label>
-                <textarea id="offeringMessage" rows="3" class="offering-form" placeholder="Dedicatoria o propósito de la ofrenda"></textarea>
-            </div>
-            
-            <button type="submit" class="w-full bg-yellow-400 text-black py-3 rounded-xl font-semibold hover:bg-yellow-500 transition">
-                <i data-lucide="dollar-sign" class="w-5 h-5 inline mr-2"></i> Registrar Ofrenda
-            </button>
+            <input type="number" id="offeringAmount" placeholder="Monto (USD) *" class="form-input" required>
+            <textarea id="offeringMessage" rows="2" placeholder="Mensaje" class="form-input"></textarea>
+            <button type="submit" class="btn-gold w-full"><i class="fas fa-hand-holding-heart mr-2"></i> Registrar Ofrenda</button>
         </form>
-        
-        <div id="offeringSuccess" class="mt-6 p-4 bg-green-900/50 border border-green-500 rounded-xl hidden">
-            <p class="text-green-300 text-center">✅ Gracias por tu ofrenda. ¡Dios bendice tu generosidad!</p>
+        <div id="offeringSuccess" class="mt-4 p-3 bg-green-900/50 border border-green-500 rounded-xl hidden text-green-300 text-center">✅ Gracias por tu generosidad.</div>
+    </div>
+</section>
+
+<!-- ==================== UBICACIÓN ==================== -->
+<section id="ubicacion" class="py-20 px-6 max-w-6xl mx-auto">
+    <h2 class="section-title title-glow" data-aos="fade-up">📍 Nuestra Ubicación</h2>
+    <div class="grid md:grid-cols-2 gap-8">
+        <div class="glass-card p-8" data-aos="fade-right">
+            <h3 class="text-2xl font-bold mb-4">Visítanos</h3>
+            <p class="mb-3"><i class="fas fa-map-marker-alt text-yellow-400 mr-2"></i> Calle Ana de Peravia #15, Baní, Peravia, RD</p>
+            <p class="mb-3"><i class="fas fa-phone text-yellow-400 mr-2"></i> (809) 555-1234</p>
+            <p class="mb-3"><i class="fas fa-envelope text-yellow-400 mr-2"></i> info@icdnj.com</p>
+            <p><i class="fas fa-clock text-yellow-400 mr-2"></i> Oficina: Lun-Vie 9am-5pm</p>
+            <div class="mt-6 p-4 rounded-xl bg-yellow-400/10"><p class="font-bold text-yellow-400">🚩 Punto Marcha:</p><p class="text-sm">Play de Peravia Escondido, C/27 Febrero frente UFHC</p></div>
+        </div>
+        <div class="rounded-2xl overflow-hidden shadow-xl" data-aos="fade-left">
+            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3784.715061273183!2d-69.9377229240574!3d18.45102366957923!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8eaf89f1107ea5ab%3A0xd6c587b82715c164!2sPeravia%2C%20Rep%C3%BAblica%20Dominicana!5e0!3m2!1ses!2s!4v1706136836155!5m2!1ses!2s" width="100%" height="350" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
         </div>
     </div>
 </section>
 
-<!-- REDES SOCIALES -->
-<section id="transmisiones" class="px-6 py-28 max-w-7xl mx-auto">
-    <h2 class="section-title title-glow" data-aos="fade-up">Conéctate con Nosotros</h2>
-    <div class="grid sm:grid-cols-2 lg:grid-cols-5 gap-10">
-        <a href="https://www.instagram.com/pastor_manuelpaulino/" target="_blank" class="glass p-10 rounded-3xl text-center card-hover">
-            <i data-lucide="instagram" class="w-20 h-20 text-pink-500 mx-auto mb-6 icon-glow"></i>
-            <h3 class="text-2xl font-bold mb-4">Instagram</h3>
-            <p class="text-gray-300">Fotos de nuestros eventos y versículos inspiradores</p>
-        </a>
-        <a href="https://www.youtube.com/@pastormanuelpaulino7" target="_blank" class="glass p-10 rounded-3xl text-center card-hover">
-            <i data-lucide="youtube" class="w-20 h-20 text-red-500 mx-auto mb-6 icon-glow"></i>
-            <h3 class="text-2xl font-bold mb-4">YouTube</h3>
-            <p class="text-gray-300">Mira nuestras predicaciones completas y testimonios</p>
-        </a>
-        <a href="#" target="_blank" class="glass p-10 rounded-3xl text-center card-hover">
-            <i data-lucide="facebook" class="w-20 h-20 text-blue-500 mx-auto mb-6 icon-glow"></i>
-            <h3 class="text-2xl font-bold mb-4">Facebook</h3>
-            <p class="text-gray-300">Comunidad activa con transmisiones en vivo semanales</p>
-        </a>
-        <a href="#" target="_blank" class="glass p-10 rounded-3xl text-center card-hover">
-            <i data-lucide="video" class="w-20 h-20 text-white mx-auto mb-6 icon-glow"></i>
-            <h3 class="text-2xl font-bold mb-4">TikTok</h3>
-            <p class="text-gray-300">Contenido breve y dinámico para todas las edades</p>
-        </a>
-        <a href="#" target="_blank" class="glass p-10 rounded-3xl text-center card-hover">
-            <i data-lucide="twitter" class="w-20 h-20 text-white mx-auto mb-6 icon-glow"></i>
-            <h3 class="text-2xl font-bold mb-4">X (Twitter)</h3>
-            <p class="text-gray-300">Sigue nuestras reflexiones diarias y noticias de la iglesia</p>
-        </a>
-    </div>
-</section>
-
-<!-- EVENTOS ESPECIALES -->
-<section id="eventos" class="px-6 py-24 max-w-6xl mx-auto">
-    <h2 class="section-title title-glow" data-aos="fade-up">Eventos Especiales</h2>
-    <div class="grid md:grid-cols-3 gap-8">
-        <div class="glass p-8 rounded-2xl text-center card-hover" data-aos="fade-up">
-            <h3 class="text-2xl font-bold mb-4">Culto De Adoradores</h3>
-            <p class="text-lg text-yellow-400 mb-2">24 de Enero 2026</p>
-            <p class="text-gray-300 mb-4">Una noche dedicada exclusivamente a la adoración ininterrumpida donde el Espíritu Santo se mueve poderosamente</p>
-            <p class="font-semibold">Lugar: Pley De Sabanita Principal</p>
-            <p class="text-sm text-gray-400 mt-2">Hora: 7:00 PM</p>
-        </div>
-        <div class="glass p-8 rounded-2xl text-center card-hover" data-aos="fade-up" data-aos-delay="100">
-            <h3 class="text-2xl font-bold mb-4">Marcha de la Victoria</h3>
-            <p class="text-lg text-yellow-400 mb-2">30 de Mayo 2026</p>
-            <p class="text-gray-300 mb-4">12vo Aniversario - Marcha y concentración. Salida desde Play Escondido hasta la iglesia</p>
-            <p class="font-semibold">Salida: 4:30 PM | Culto: 7:30 PM</p>
-            <p class="text-sm text-gray-400 mt-2">Lugar: Play de Peravia Escondido</p>
-        </div>
-        <div class="glass p-8 rounded-2xl text-center card-hover" data-aos="fade-up" data-aos-delay="200">
-            <h3 class="text-2xl font-bold mb-4">Retiro Espiritual</h3>
-            <p class="text-lg text-yellow-400 mb-2">20-22 de Junio 2026</p>
-            <p class="text-gray-300 mb-4">"En Su Presencia" - Tres días de ayuno, oración, enseñanza y renovación espiritual en un ambiente de reposo</p>
-            <p class="font-semibold">Lugar: Casa de Retiros Monte de Dios</p>
-            <p class="text-sm text-gray-400 mt-2">Incluye: Alojamiento, alimentación y materiales</p>
+<!-- ==================== CONTACTO ==================== -->
+<section id="contacto" class="py-20 px-6 max-w-4xl mx-auto bg-black/20 rounded-3xl">
+    <h2 class="section-title title-glow" data-aos="fade-up">📞 Contáctanos</h2>
+    <div class="glass-card p-8 rounded-2xl" data-aos="fade-up">
+        <div class="grid md:grid-cols-2 gap-6 text-center">
+            <div><i class="fas fa-phone-alt text-4xl text-yellow-400 mb-3"></i><p class="font-bold">Teléfono</p><p>(809) 555-1234</p></div>
+            <div><i class="fab fa-whatsapp text-4xl text-green-500 mb-3"></i><p class="font-bold">WhatsApp</p><p>+1 809 555 1234</p></div>
+            <div><i class="fas fa-envelope text-4xl text-yellow-400 mb-3"></i><p class="font-bold">Email</p><p>info@icdnj.com</p></div>
+            <div><i class="fab fa-instagram text-4xl text-pink-500 mb-3"></i><p class="font-bold">Instagram</p><p>@pastor_manuelpaulino</p></div>
         </div>
     </div>
 </section>
 
-<!-- CALENDARIO DE EVENTOS -->
-<section id="calendario" class="px-6 py-24 max-w-6xl mx-auto">
-    <h2 class="section-title title-glow" data-aos="fade-up">Calendario de Eventos</h2>
-    <div class="glass p-8 rounded-2xl" data-aos="fade-up">
-        <div class="grid md:grid-cols-2 gap-8">
-            <div>
-                <h3 class="text-2xl font-bold mb-6 text-yellow-400">Próximos Eventos</h3>
-                <div class="space-y-4">
-                    <div class="p-4 rounded-xl calendar-event">
-                        <div class="flex justify-between items-center">
-                            <span class="font-bold">24 Enero 2026</span>
-                            <span class="text-yellow-400">Culto De Adoradores</span>
-                        </div>
-                        <p class="text-gray-300 mt-2">Noche de adoración ininterrumpida</p>
-                    </div>
-                    <div class="p-4 rounded-xl calendar-event">
-                        <div class="flex justify-between items-center">
-                            <span class="font-bold">30 Mayo 2026</span>
-                            <span class="text-yellow-400">12vo Aniversario</span>
-                        </div>
-                        <p class="text-gray-300 mt-2">Marcha y concentración especial</p>
-                    </div>
-                    <div class="p-4 rounded-xl calendar-event">
-                        <div class="flex justify-between items-center">
-                            <span class="font-bold">20-22 Junio 2026</span>
-                            <span class="text-yellow-400">Retiro Espiritual</span>
-                        </div>
-                        <p class="text-gray-300 mt-2">Tres días de ayuno y oración</p>
-                    </div>
-                </div>
-            </div>
-            
-            <div>
-                <h3 class="text-2xl font-bold mb-6 text-yellow-400">Calendario Semanal</h3>
-                <div class="space-y-3">
-                    <div class="flex justify-between p-3 rounded-xl bg-white/5"><span class="font-bold">Martes</span><span class="text-yellow-400">7:30 PM - Discipulado</span></div>
-                    <div class="flex justify-between p-3 rounded-xl bg-white/5"><span class="font-bold">Jueves</span><span class="text-yellow-400">7:30 PM - Discipulado Amigos</span></div>
-                    <div class="flex justify-between p-3 rounded-xl bg-white/5"><span class="font-bold">Viernes</span><span class="text-yellow-400">7:30 PM - Oportunidades</span></div>
-                    <div class="flex justify-between p-3 rounded-xl bg-white/5"><span class="font-bold">Sábado</span><span class="text-yellow-400">7:30 PM - Jóvenes</span></div>
-                    <div class="flex justify-between p-3 rounded-xl bg-white/5"><span class="font-bold">Domingo</span><span class="text-yellow-400 font-bold">5:00 PM - Culto General</span></div>
-                </div>
-            </div>
-        </div>
-    </div>
+<!-- ==================== QR CODE ==================== -->
+<section class="text-center py-16">
+    <h2 class="text-3xl font-bold mb-4 title-glow">📲 Comparte Nuestra Página</h2>
+    <p class="text-gray-300 mb-6 max-w-md mx-auto">Escanéa este código QR para acceder rápidamente</p>
+    <div id="qrcode" class="flex justify-center mb-4"></div>
+    <p class="text-yellow-400 font-semibold">¡Te esperamos!</p>
 </section>
 
-<!-- UBICACIÓN -->
-<section id="ubicacion" class="px-6 py-24 max-w-6xl mx-auto">
-    <h2 class="section-title title-glow" data-aos="fade-up">Nuestra Ubicación</h2>
-    <div class="grid md:grid-cols-2 gap-10 items-center">
-        <div data-aos="fade-right">
-            <div class="glass p-8 rounded-2xl mb-6">
-                <h3 class="text-2xl font-bold mb-4">Visítanos</h3>
-                <p class="text-lg mb-2">📍 <span class="font-semibold">Dirección:</span> Calle Ana de Peravia #15, a mano izquierda en el callejón, Baní, Peravia, República Dominicana</p>
-                <p class="text-lg mb-2">📞 <span class="font-semibold">Teléfono:</span> (809) 555-0123</p>
-                <p class="text-lg mb-2">📧 <span class="font-semibold">Email:</span> info@icdnj.com</p>
-                <p class="text-lg mb-2">⏰ <span class="font-semibold">Horario de Oficina:</span> Lunes-Viernes 9:00 AM - 5:00 PM</p>
-            </div>
-            <div class="glass p-8 rounded-2xl">
-                <h3 class="text-2xl font-bold mb-4">Punto de la Marcha</h3>
-                <p class="text-gray-300">Play de Peravia Escondido, Calle 27 de Febrero, frente a UFHC, Escondido, Baní.</p>
-                <p class="text-yellow-400 mt-2">Salida: 30 Mayo 2026 - 4:30 PM</p>
-            </div>
-        </div>
-        <div class="rounded-2xl overflow-hidden shadow-xl" data-aos="fade-left" data-aos-delay="100">
-            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3784.715061273183!2d-69.9377229240574!3d18.45102366957923!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8eaf89f1107ea5ab%3A0xd6c587b82715c164!2sPeravia%2C%20Rep%C3%BAblica%20Dominicana!5e0!3m2!1ses!2s!4v1706136836155!5m2!1ses!2s" width="100%" height="500" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
-        </div>
-    </div>
-</section>
-
-<!-- QR -->
-<section class="text-center py-20">
-    <h2 class="text-3xl mb-6 title-glow">Comparte Nuestra Página</h2>
-    <p class="text-gray-300 mb-8 max-w-2xl mx-auto">Escanéa este código QR para acceder rápidamente a nuestra página web desde tu dispositivo móvil o compártelo con amigos y familiares</p>
-    <div id="qrcode" class="flex justify-center mb-8"></div>
-    <p class="text-yellow-400 font-semibold">¡Te esperamos en nuestra próxima reunión!</p>
-</section>
-
-<!-- BOTÓN WHATSAPP -->
-<a href="https://wa.me/18095550123" target="_blank" class="fixed bottom-6 right-6 z-50 bg-green-500 p-4 rounded-full shadow-lg hover:scale-110 transition">
-    <i data-lucide="message-circle" class="w-8 h-8 text-white"></i>
-</a>
-
-<!-- FOOTER -->
-<footer class="text-center py-10 text-gray-400 glass mt-20">
-    <div class="max-w-6xl mx-auto px-6">
-        <p class="text-lg mb-4">© 2025 ICDNJ - Iglesia Cristiana Deshaciendo las Obras del Diablo - Todos los derechos reservados</p>
-        <p class="text-sm mb-2">"Porque donde están dos o tres congregados en mi nombre, allí estoy yo en medio de ellos." - Mateo 18:20</p>
-        <p class="text-sm">Diseñado con ❤️ para la Gloria de Dios</p>
-    </div>
+<!-- ==================== FOOTER ==================== -->
+<footer class="text-center py-8 text-gray-400 glass mx-6 mb-6 rounded-2xl">
+    <p class="mb-2">© 2025 ICDNJ - Deshaciendo las Obras del Diablo en el Nombre de Jesús</p>
+    <p class="text-sm">"Porque donde están dos o tres congregados en mi nombre, allí estoy yo" - Mateo 18:20</p>
+    <p class="text-xs mt-2">Diseñado con ❤️ para la Gloria de Dios</p>
 </footer>
 
 <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
 <script>
-AOS.init({ duration:1200, once:false });
+AOS.init({ duration: 800, once: false, mirror: true });
 lucide.createIcons();
 
-// Función para el menú
+// Menú lateral
 const menuBtn = document.getElementById('menuBtn');
 const sidebar = document.getElementById('sidebar');
-menuBtn.onclick = (e)=>{ e.stopPropagation(); sidebar.classList.toggle('-translate-x-full'); };
-document.addEventListener('click', e=>{ if(!sidebar.contains(e.target) && !menuBtn.contains(e.target)){ sidebar.classList.add('-translate-x-full'); }});
+menuBtn.onclick = (e) => { e.stopPropagation(); sidebar.classList.toggle('-translate-x-full'); };
+document.addEventListener('click', (e) => { if(!sidebar.contains(e.target) && !menuBtn.contains(e.target)) sidebar.classList.add('-translate-x-full'); });
+
+// Botón volver arriba
+const backToTopBtn = document.getElementById('backToTop');
+window.addEventListener('scroll', () => { backToTopBtn.classList.toggle('hidden', window.scrollY <= 300); });
+backToTopBtn.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
 
 // QR Code
-new QRCode(document.getElementById("qrcode"), { 
-    text: window.location.href, 
-    width:180, 
-    height:180, 
-    colorDark:"#ffffff", 
-    colorLight:"transparent" 
+new QRCode(document.getElementById("qrcode"), { text: window.location.href, width: 160, height: 160, colorDark: "#f5b042", colorLight: "transparent" });
+
+// Contador de oraciones
+let prayerCount = 1247;
+document.getElementById('prayerForm')?.addEventListener('submit', (e) => {
+    e.preventDefault();
+    prayerCount++;
+    document.getElementById('sidebarPrayerCount').innerText = prayerCount.toLocaleString();
+    document.getElementById('prayerSuccess').classList.remove('hidden');
+    e.target.reset();
+    setTimeout(() => document.getElementById('prayerSuccess').classList.add('hidden'), 4000);
 });
 
-// Botón "Volver Arriba"
-const backToTopBtn = document.getElementById('backToTop');
-window.addEventListener('scroll', () => {
-    if (window.scrollY > 300) {
-        backToTopBtn.classList.remove('hidden');
-    } else {
-        backToTopBtn.classList.add('hidden');
-    }
-});
-backToTopBtn.addEventListener('click', () => {
-    window.scrollTo({ top: 0, behavior: 'smooth' });
+// Ofrendas
+document.getElementById('offeringForm')?.addEventListener('submit', (e) => {
+    e.preventDefault();
+    document.getElementById('offeringSuccess').classList.remove('hidden');
+    e.target.reset();
+    setTimeout(() => document.getElementById('offeringSuccess').classList.add('hidden'), 4000);
 });
 
-// Versículos Bíblicos Aleatorios
+// Animación de estadísticas
+function animateCounter(el, target) {
+    let current = 0;
+    const step = target / 50;
+    const timer = setInterval(() => {
+        current += step;
+        if (current >= target) { current = target; clearInterval(timer); }
+        el.innerText = Math.floor(current);
+    }, 30);
+}
+animateCounter(document.getElementById('yearsCounter'), 12);
+animateCounter(document.getElementById('membersCounter'), 5000);
+animateCounter(document.getElementById('countriesCounter'), 15);
+animateCounter(document.getElementById('servicesCounter'), 8);
+
+// Scroll suave
+document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+    anchor.addEventListener('click', function(e) {
+        e.preventDefault();
+        const target = document.querySelector(this.getAttribute('href'));
+        if(target) { target.scrollIntoView({ behavior: 'smooth', block: 'start' }); sidebar.classList.add('-translate-x-full'); }
+    });
+});
+
+// Versículos
 const verses = [
     { text: "Porque donde están dos o tres congregados en mi nombre, allí estoy yo en medio de ellos.", ref: "Mateo 18:20" },
     { text: "Todo lo puedo en Cristo que me fortalece.", ref: "Filipenses 4:13" },
     { text: "El Señor es mi pastor, nada me faltará.", ref: "Salmos 23:1" },
-    { text: "Echando toda vuestra ansiedad sobre él, porque él tiene cuidado de vosotros.", ref: "1 Pedro 5:7" },
-    { text: "Yo soy el camino, y la verdad, y la vida; nadie viene al Padre, sino por mí.", ref: "Juan 14:6" },
-    { text: "No temas, porque yo estoy contigo; no desmayes, porque yo soy tu Dios.", ref: "Isaías 41:10" }
+    { text: "No temas, porque yo estoy contigo.", ref: "Isaías 41:10" }
 ];
-
-function getRandomVerse() {
-    const randomIndex = Math.floor(Math.random() * verses.length);
-    return verses[randomIndex];
-}
-
-// Mostrar versículo en sidebar
 const dailyVerse = document.getElementById('dailyVerse');
-const initialVerse = getRandomVerse();
-dailyVerse.textContent = `"${initialVerse.text}"`;
-
-// Modal de versículos
-const verseModal = document.getElementById('verseModal');
-const modalVerseText = document.getElementById('modalVerseText');
-const modalVerseRef = document.getElementById('modalVerseRef');
-const closeVerseModal = document.getElementById('closeVerseModal');
-const newVerseBtn = document.getElementById('newVerseBtn');
-const logoBtn = document.getElementById('logoBtn');
-
-logoBtn.addEventListener('click', () => {
-    const verse = getRandomVerse();
-    modalVerseText.textContent = `"${verse.text}"`;
-    modalVerseRef.textContent = verse.ref;
-    verseModal.classList.remove('hidden');
-});
-
-closeVerseModal.addEventListener('click', () => {
-    verseModal.classList.add('hidden');
-});
-
-newVerseBtn.addEventListener('click', () => {
-    const verse = getRandomVerse();
-    modalVerseText.textContent = `"${verse.text}"`;
-    modalVerseRef.textContent = verse.ref;
-});
-
-verseModal.addEventListener('click', (e) => {
-    if (e.target === verseModal) {
-        verseModal.classList.add('hidden');
-    }
-});
-
-// Formulario de Petición de Oración
-const prayerForm = document.getElementById('prayerForm');
-const prayerSuccess = document.getElementById('prayerSuccess');
-
-prayerForm.addEventListener('submit', (e) => {
-    e.preventDefault();
-    const name = document.getElementById('prayerName').value;
-    const anonymous = document.getElementById('prayerAnonymous').checked;
-    
-    prayerSuccess.classList.remove('hidden');
-    prayerForm.reset();
-    
-    setTimeout(() => {
-        prayerSuccess.classList.add('hidden');
-    }, 5000);
-    
-    const prayerCount = document.getElementById('sidebarPrayerCount');
-    let count = parseInt(prayerCount.textContent.replace(',', ''));
-    count += 1;
-    prayerCount.textContent = count.toLocaleString();
-});
-
-// Formulario de Ofrendas
-const offeringForm = document.getElementById('offeringForm');
-const offeringSuccess = document.getElementById('offeringSuccess');
-
-offeringForm.addEventListener('submit', (e) => {
-    e.preventDefault();
-    offeringSuccess.classList.remove('hidden');
-    offeringForm.reset();
-    
-    setTimeout(() => {
-        offeringSuccess.classList.add('hidden');
-    }, 5000);
-});
-
-// Scroll suave para enlaces del menú
-document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-    anchor.addEventListener('click', function(e) {
-        e.preventDefault();
-        const targetId = this.getAttribute('href');
-        if(targetId === '#') return;
-        
-        const targetElement = document.querySelector(targetId);
-        if(targetElement) {
-            window.scrollTo({
-                top: targetElement.offsetTop - 80,
-                behavior: 'smooth'
-            });
-            
-            if(window.innerWidth < 768) {
-                sidebar.classList.add('-translate-x-full');
-            }
-        }
-    });
-});
+const randomVerse = verses[Math.floor(Math.random() * verses.length)];
+dailyVerse.textContent = `"${randomVerse.text}"`;
 </script>
 </body>
 </html>
