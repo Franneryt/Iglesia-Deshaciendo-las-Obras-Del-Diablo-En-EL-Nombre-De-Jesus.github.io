@@ -4,38 +4,21 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
     <title>ICDNJ | Deshaciendo las Obras del Diablo - 12vo Aniversario & Marcha 2026</title>
-    <!-- Google Fonts Premium -->
+    <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;400;500;600;700;800;900&family=Playfair+Display:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
     <!-- Font Awesome 6 -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <!-- AOS Animations -->
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
-    <!-- Swiper JS para carrusel -->
+    <!-- Swiper JS -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
     <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
     <!-- QR Code -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
     <style>
-        /* ---------- RESET Y VARIABLES ---------- */
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        body {
-            font-family: 'Inter', sans-serif;
-            background: #eef2ff;
-            color: #0a2b4e;
-            scroll-behavior: smooth;
-            overflow-x: hidden;
-        }
-
-        h1, h2, h3, .serif {
-            font-family: 'Playfair Display', serif;
-        }
-
-        /* PALETA AZUL Y DORADO */
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Inter', sans-serif; background: #eef2ff; color: #0a2b4e; scroll-behavior: smooth; overflow-x: hidden; }
+        h1, h2, h3, .serif { font-family: 'Playfair Display', serif; }
         :root {
             --azul-profundo: #0a2b4e;
             --azul-medio: #1e4a76;
@@ -44,16 +27,11 @@
             --dorado-oscuro: #c97e10;
             --dorado-brillante: #ffd966;
             --blanco: #ffffff;
-            --gris-claro: #f8f9fa;
         }
-
         .bg-azul-profundo { background: var(--azul-profundo); }
         .bg-azul-medio { background: var(--azul-medio); }
         .bg-azul-claro { background: var(--azul-claro); }
         .text-dorado { color: var(--dorado); }
-        .border-dorado { border-color: var(--dorado); }
-
-        /* Botones */
         .btn-dorado {
             background: linear-gradient(135deg, var(--dorado), var(--dorado-oscuro));
             color: var(--azul-profundo);
@@ -67,11 +45,7 @@
             cursor: pointer;
             box-shadow: 0 4px 12px rgba(0,0,0,0.1);
         }
-        .btn-dorado:hover {
-            transform: translateY(-4px);
-            box-shadow: 0 12px 25px rgba(245,176,66,0.5);
-            background: linear-gradient(135deg, var(--dorado-oscuro), var(--dorado));
-        }
+        .btn-dorado:hover { transform: translateY(-4px); box-shadow: 0 12px 25px rgba(245,176,66,0.5); background: linear-gradient(135deg, var(--dorado-oscuro), var(--dorado)); }
         .btn-outline-dorado {
             border: 2px solid var(--dorado);
             background: transparent;
@@ -83,13 +57,7 @@
             text-decoration: none;
             display: inline-block;
         }
-        .btn-outline-dorado:hover {
-            background: var(--dorado);
-            color: var(--azul-profundo);
-            transform: scale(1.02);
-        }
-
-        /* Tarjetas */
+        .btn-outline-dorado:hover { background: var(--dorado); color: var(--azul-profundo); transform: scale(1.02); }
         .card {
             background: var(--blanco);
             border-radius: 1.8rem;
@@ -98,11 +66,7 @@
             transition: all 0.3s;
             border-bottom: 3px solid var(--dorado);
         }
-        .card:hover {
-            transform: translateY(-8px);
-            box-shadow: 0 25px 40px rgba(0,0,0,0.12);
-        }
-
+        .card:hover { transform: translateY(-8px); box-shadow: 0 25px 40px rgba(0,0,0,0.12); }
         .section-title {
             font-size: 2.8rem;
             font-weight: 800;
@@ -120,8 +84,6 @@
             margin: 0.8rem auto 0;
             border-radius: 4px;
         }
-
-        /* Hero con fondo azul degradado */
         .hero {
             background: linear-gradient(145deg, #0a2b4e 0%, #123e64 100%);
             position: relative;
@@ -149,9 +111,6 @@
             color: white;
         }
         .flyer-card h1, .flyer-card p { color: white; }
-        .flyer-card .text-dorado { color: var(--dorado); }
-
-        /* Navegación */
         .navbar {
             background: rgba(10, 43, 78, 0.98);
             backdrop-filter: blur(10px);
@@ -168,21 +127,10 @@
             align-items: center;
             padding: 1rem 1.5rem;
         }
-        .logo {
-            font-size: 1.8rem;
-            font-weight: 800;
-            color: var(--dorado);
-        }
-        .nav-links a {
-            color: white;
-            text-decoration: none;
-            margin-left: 2rem;
-            font-weight: 500;
-            transition: 0.2s;
-        }
+        .logo { font-size: 1.8rem; font-weight: 800; color: var(--dorado); }
+        .nav-links a { color: white; text-decoration: none; margin-left: 2rem; font-weight: 500; transition: 0.2s; }
         .nav-links a:hover { color: var(--dorado); }
         .menu-icon { display: none; color: var(--dorado); font-size: 1.8rem; cursor: pointer; }
-
         @media (max-width: 768px) {
             .nav-links {
                 position: fixed;
@@ -202,128 +150,42 @@
             .menu-icon { display: block; }
             .section-title { font-size: 2rem; }
         }
-
-        /* Contador */
-        .countdown {
-            background: rgba(0,0,0,0.5);
-            border-radius: 2rem;
-            padding: 1rem;
-        }
-        .countdown-timer {
-            display: flex;
-            justify-content: center;
-            gap: 1rem;
-            flex-wrap: wrap;
-        }
-        .countdown-timer div {
-            background: var(--dorado);
-            color: var(--azul-profundo);
-            padding: 0.5rem 1rem;
-            border-radius: 1rem;
-            font-weight: bold;
-            min-width: 75px;
-            font-size: 1.2rem;
-        }
-
-        /* Estadísticas */
-        .stat-number {
-            font-size: 3rem;
-            font-weight: 800;
-            color: var(--dorado);
-            line-height: 1;
-        }
-
-        /* Galería */
-        .gallery-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 1.5rem;
-        }
-        .gallery-item img {
-            width: 100%;
-            height: 220px;
-            object-fit: cover;
-            border-radius: 1.2rem;
-            transition: transform 0.3s, box-shadow 0.3s;
-            border: 2px solid var(--dorado);
-        }
-        .gallery-item img:hover { transform: scale(1.02); box-shadow: 0 12px 20px rgba(0,0,0,0.2); }
-
-        /* Testimonios Swiper */
-        .testimonial-slide {
-            background: white;
-            border-radius: 1.5rem;
-            padding: 1.8rem;
-            text-align: center;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
-            border-left: 5px solid var(--dorado);
-        }
-
-        /* Footer */
-        footer {
-            background: var(--azul-profundo);
-            color: #cfddee;
-            text-align: center;
-            padding: 2rem;
-            border-top: 2px solid var(--dorado);
-        }
-        .whatsapp-float {
-            position: fixed;
-            bottom: 20px;
-            right: 20px;
-            background: #25D366;
-            width: 55px;
-            height: 55px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 2rem;
-            color: white;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.2);
-            z-index: 99;
-        }
-        .social-bar {
-            display: flex;
-            justify-content: center;
-            gap: 2rem;
-            margin: 1rem 0;
-        }
-        .social-bar a {
-            color: var(--dorado);
-            font-size: 2rem;
-            transition: transform 0.2s;
-        }
-        .social-bar a:hover {
-            transform: scale(1.1);
-            color: var(--dorado-brillante);
-        }
+        .countdown { background: rgba(0,0,0,0.5); border-radius: 2rem; padding: 1rem; }
+        .countdown-timer { display: flex; justify-content: center; gap: 1rem; flex-wrap: wrap; }
+        .countdown-timer div { background: var(--dorado); color: var(--azul-profundo); padding: 0.5rem 1rem; border-radius: 1rem; font-weight: bold; min-width: 75px; font-size: 1.2rem; }
+        .stat-number { font-size: 3rem; font-weight: 800; color: var(--dorado); line-height: 1; }
+        .gallery-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1.5rem; }
+        .gallery-item img { width: 100%; height: 220px; object-fit: cover; border-radius: 1.2rem; transition: transform 0.3s; border: 2px solid var(--dorado); }
+        .gallery-item img:hover { transform: scale(1.02); }
+        .testimonial-slide { background: white; border-radius: 1.5rem; padding: 1.8rem; text-align: center; box-shadow: 0 5px 15px rgba(0,0,0,0.05); border-left: 5px solid var(--dorado); }
+        footer { background: var(--azul-profundo); color: #cfddee; text-align: center; padding: 2rem; border-top: 2px solid var(--dorado); }
+        .whatsapp-float { position: fixed; bottom: 20px; right: 20px; background: #25D366; width: 55px; height: 55px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 2rem; color: white; box-shadow: 0 4px 12px rgba(0,0,0,0.2); z-index: 99; }
+        .social-bar { display: flex; justify-content: center; gap: 2rem; margin: 1rem 0; }
+        .social-bar a { color: var(--dorado); font-size: 2rem; transition: transform 0.2s; }
+        .social-bar a:hover { transform: scale(1.1); color: var(--dorado-brillante); }
     </style>
 </head>
 <body>
 
-<!-- WhatsApp flotante -->
 <a href="https://wa.me/18095551234" class="whatsapp-float" target="_blank"><i class="fab fa-whatsapp"></i></a>
 
-<!-- NAVBAR -->
 <nav class="navbar">
     <div class="nav-container">
         <div class="logo"><i class="fas fa-cross"></i> ICDNJ</div>
         <div class="menu-icon" id="menuIcon"><i class="fas fa-bars"></i></div>
         <div class="nav-links" id="navLinks">
             <a href="#inicio">Inicio</a>
-            <a href="#evento">🔥 Evento</a>
+            <a href="#evento">Evento</a>
             <a href="#cultos">Cultos</a>
             <a href="#ministerios">Ministerios</a>
             <a href="#testimonios">Testimonios</a>
             <a href="#galeria">Galería</a>
-            <a href="#ubicacion">📍 Ubicación</a>
+            <a href="#ubicacion">Ubicación</a>
             <a href="#contacto">Contacto</a>
         </div>
     </div>
 </nav>
 
-<!-- HERO / PRESENTACIÓN -->
 <section id="inicio" class="hero">
     <div class="container mx-auto px-4" style="max-width:1280px;">
         <div class="flyer-card" data-aos="zoom-in-up">
@@ -338,6 +200,9 @@
             </div>
             <p class="text-2xl md:text-3xl serif font-semibold mt-2">12vo ANIVERSARIO & MARCHA<br>CONCENTRACIÓN 2026</p>
             <div class="inline-block bg-dorado text-azul-profundo px-6 py-2 rounded-full text-2xl font-bold my-4">30 MAY.</div>
+            <div class="flex justify-center my-4">
+                <img src="https://lookaside.instagram.com/seo/google_widget/crawler/?media_id=3851445230855346873" alt="Pastor Manuel Paulino" class="rounded-full w-32 h-32 md:w-40 md:h-40 object-cover border-4 border-dorado shadow-xl">
+            </div>
             <p class="text-xl"><strong>Pastor:</strong> MANUEL PAULINO</p>
             <div class="my-4 text-3xl serif font-bold text-dorado">“No temas<br>JESÚS<br>Está aquí.”</div>
             <div class="bg-azul-medio p-4 rounded-2xl text-white">
@@ -362,7 +227,6 @@
     </div>
 </section>
 
-<!-- SECCIÓN DEL PASTOR MANUEL PAULINO CON NUEVA IMAGEN REAL -->
 <section id="pastor" class="py-16 bg-white">
     <div class="container mx-auto px-4" style="max-width:1280px;">
         <div class="grid md:grid-cols-2 gap-10 items-center">
@@ -375,14 +239,12 @@
                 </div>
             </div>
             <div class="flex justify-center" data-aos="fade-left">
-                <!-- NUEVA IMAGEN REAL DEL PASTOR DESDE EL ENLACE PROPORCIONADO -->
                 <img src="https://lookaside.instagram.com/seo/google_widget/crawler/?media_id=3851445230855346873" alt="Pastor Manuel Paulino" class="rounded-full w-64 h-64 object-cover border-4 border-dorado shadow-xl">
             </div>
         </div>
     </div>
 </section>
 
-<!-- ESTADÍSTICAS -->
 <section class="py-12 bg-azul-claro">
     <div class="container mx-auto px-4 text-center">
         <div class="grid md:grid-cols-3 gap-8">
@@ -393,7 +255,6 @@
     </div>
 </section>
 
-<!-- EVENTO DETALLES -->
 <section id="evento" class="py-16 bg-white">
     <div class="container mx-auto px-4" style="max-width:1280px;">
         <h2 class="section-title" data-aos="fade-up">🔥 12 años deshaciendo las obras del diablo 🔥</h2>
@@ -417,15 +278,9 @@
                 <div class="mt-6 text-center"><a href="#ubicacion" class="btn-dorado px-5 py-2">📍 Ver ubicación de la iglesia</a></div>
             </div>
         </div>
-        <div class="mt-10 text-center" data-aos="zoom-in">
-            <!-- IMAGEN DEL EVENTO DESDE INSTAGRAM (MANTENIDA POR SU RELEVANCIA) -->
-            <img src="https://lookaside.instagram.com/seo/google_widget/crawler/?media_id=3834715343306213545" alt="Evento ICDNJ" class="rounded-xl shadow-lg mx-auto max-w-full h-auto border-2 border-dorado" style="max-width: 500px;">
-            <p class="text-sm text-gray-500 mt-2">Evento especial de ICDNJ - 12vo Aniversario</p>
-        </div>
     </div>
 </section>
 
-<!-- DÍAS DE CULTO -->
 <section id="cultos" class="py-16 bg-azul-claro">
     <div class="container mx-auto px-4">
         <h2 class="section-title" data-aos="fade-up">⛪ Días de Culto - Horario Semanal</h2>
@@ -439,7 +294,6 @@
     </div>
 </section>
 
-<!-- MINISTERIOS ACTIVOS -->
 <section id="ministerios" class="py-16 bg-white">
     <div class="container mx-auto px-4">
         <h2 class="section-title" data-aos="fade-up">🙌 Ministerios Activos</h2>
@@ -454,7 +308,6 @@
     </div>
 </section>
 
-<!-- TESTIMONIOS CARRUSEL -->
 <section id="testimonios" class="py-16 bg-azul-claro">
     <div class="container mx-auto px-4">
         <h2 class="section-title" data-aos="fade-up">📖 Lo que Dios ha hecho</h2>
@@ -471,23 +324,20 @@
     </div>
 </section>
 
-<!-- GALERÍA DE FOTOS -->
 <section id="galeria" class="py-16 bg-white">
     <div class="container mx-auto px-4">
         <h2 class="section-title" data-aos="fade-up">📸 Momentos de Poder</h2>
         <div class="gallery-grid">
-            <div class="gallery-item"><img src="https://picsum.photos/id/104/400/300" alt="Culto de adoración"></div>
-            <div class="gallery-item"><img src="https://picsum.photos/id/105/400/300" alt="Marcha cristiana"></div>
-            <div class="gallery-item"><img src="https://picsum.photos/id/169/400/300" alt="Ministerio de danza"></div>
-            <div class="gallery-item"><img src="https://picsum.photos/id/154/400/300" alt="Pastores orando"></div>
-            <div class="gallery-item"><img src="https://picsum.photos/id/155/400/300" alt="Congregación"></div>
-            <div class="gallery-item"><img src="https://picsum.photos/id/158/400/300" alt="Bautismos"></div>
+            <div class="gallery-item"><img src="https://via.placeholder.com/400x300/1e4a76/ffffff?text=Culto+de+Adoracion" alt="Culto de adoración"></div>
+            <div class="gallery-item"><img src="https://via.placeholder.com/400x300/f5b042/0a2b4e?text=Marcha+Cristiana" alt="Marcha cristiana"></div>
+            <div class="gallery-item"><img src="https://via.placeholder.com/400x300/1e4a76/ffffff?text=Ministerio+Danza" alt="Ministerio de danza"></div>
+            <div class="gallery-item"><img src="https://via.placeholder.com/400x300/f5b042/0a2b4e?text=Poder+de+Dios" alt="Pastores orando"></div>
+            <div class="gallery-item"><img src="https://via.placeholder.com/400x300/1e4a76/ffffff?text=Congregacion+Unida" alt="Congregación"></div>
+            <div class="gallery-item"><img src="https://via.placeholder.com/400x300/f5b042/0a2b4e?text=Bautismos" alt="Bautismos"></div>
         </div>
-        <p class="text-center mt-6 text-gray-500">* Próximamente más fotografías de nuestro aniversario.</p>
     </div>
 </section>
 
-<!-- UBICACIONES (IGLESIA Y MARCHA) CON MAPA -->
 <section id="ubicacion" class="py-16 bg-azul-claro">
     <div class="container mx-auto px-4" style="max-width:1280px;">
         <h2 class="section-title" data-aos="fade-up">📍 Encuéntranos en Baní, Peravia</h2>
@@ -495,72 +345,23 @@
             <div class="card" data-aos="fade-right">
                 <i class="fas fa-church text-5xl text-dorado mb-3"></i>
                 <h3 class="text-3xl font-bold">Iglesia "Deshaciendo las Obras del Diablo"</h3>
-                <p class="mt-3 text-lg"><strong>Calle Principal Ana de Pravia #8</strong><br>(Doblando a mano derecha, después de la panadería La Fe)<br>Baní, Peravia, República Dominicana.</p>
-                <div class="mt-4 bg-gray-100 p-3 rounded-xl"><i class="fab fa-whatsapp text-dorado"></i> WhatsApp: +1 809 555 1234 | Tel: (809) 555-6789</div>
+                <p class="mt-3 text-lg"><strong>Calle Principal Ana de Pravia #8</strong><br>Baní, Peravia, República Dominicana.</p>
                 <a href="https://www.google.com/maps/search/?api=1&query=Calle+Principal+Ana+de+Pravia+8,+Baní,+Peravia" target="_blank" class="btn-dorado mt-5 w-full text-center block"><i class="fas fa-directions"></i> Abrir iglesia en Google Maps</a>
             </div>
             <div class="card" data-aos="fade-left">
                 <i class="fas fa-flag-checkered text-5xl text-dorado mb-3"></i>
                 <h3 class="text-3xl font-bold">Punto de la Gran Marcha</h3>
-                <p class="mt-3 text-lg"><strong>Play de Peravia Escondido</strong><br>Calle 27 de Febrero, entrando frente a la UFHC, Escondido, Baní.</p>
-                <div class="mt-4 bg-amber-50 p-3 rounded-xl"><i class="fas fa-calendar-alt"></i> 30 Mayo 2026 – 4:30 PM</div>
+                <p class="mt-3 text-lg"><strong>Play de Peravia Escondido</strong><br>Calle 27 de Febrero, frente a UFHC, Escondido, Baní.</p>
                 <a href="https://www.google.com/maps/search/?api=1&query=Play+de+Peravia+Escondido+Calle+27+de+Febrero+UFHC+Baní" target="_blank" class="btn-outline-dorado mt-5 w-full text-center block"><i class="fas fa-map-marked-alt"></i> Ver punto de marcha en Maps</a>
             </div>
         </div>
         <div class="mt-10 rounded-2xl overflow-hidden shadow-xl border-2 border-dorado">
             <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3784.2!2d-70.3300!3d18.2785!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8ea53dae15fc8d5b%3A0x7a1b3c9e2f8a4d7c!2sBan%C3%AD%2C%20Peravia!5e0!3m2!1ses!2sdo!4v1712345678901!5m2!1ses!2sdo" width="100%" height="380" style="border:0; border-radius: 1.2rem;" allowfullscreen="" loading="lazy"></iframe>
         </div>
-        <p class="text-center text-sm text-gray-600 mt-4"><i class="fas fa-info-circle text-dorado"></i> La marcha sale desde Escondido (frente UFHC) y culmina en la iglesia (Calle Ana de Pravia #8).</p>
     </div>
 </section>
 
-<!-- VERSÍCULO DEL DÍA -->
-<section class="py-16 bg-white">
-    <div class="container mx-auto px-4 text-center">
-        <h2 class="section-title" data-aos="fade-up">📖 Versículo del Día</h2>
-        <div class="card inline-block max-w-2xl mx-auto" data-aos="zoom-in">
-            <i class="fas fa-bible text-4xl text-dorado mb-3"></i>
-            <p class="text-xl italic">“Porque donde están dos o tres congregados en mi nombre, allí estoy yo en medio de ellos.”</p>
-            <p class="mt-2 font-semibold">— Mateo 18:20</p>
-        </div>
-    </div>
-</section>
-
-<!-- SUSCRIPCIÓN, QR Y COMPARTIR -->
-<section class="py-16 bg-azul-claro">
-    <div class="container mx-auto px-4 text-center">
-        <h2 class="section-title" data-aos="fade-up">📲 Comparte y recibe noticias</h2>
-        <div class="flex flex-col md:flex-row justify-center items-center gap-10">
-            <div id="qrcode" class="bg-white p-3 rounded-2xl shadow-md border-2 border-dorado"></div>
-            <div>
-                <p class="text-lg">Suscríbete para recibir actualizaciones del evento</p>
-                <form id="newsletterForm" class="mt-3 flex flex-col sm:flex-row gap-3">
-                    <input type="email" placeholder="Tu mejor correo" class="p-3 rounded-xl border border-gray-300 w-64" required>
-                    <button type="submit" class="btn-dorado">Suscribirme <i class="fas fa-envelope"></i></button>
-                </form>
-                <button id="shareBtn" class="btn-outline-dorado mt-4"><i class="fas fa-share-alt"></i> Compartir evento</button>
-            </div>
-        </div>
-    </div>
-</section>
-
-<!-- DONACIÓN SIMULADA -->
-<section class="py-16 bg-white text-center">
-    <div class="container mx-auto px-4">
-        <h2 class="section-title" data-aos="fade-up">🙏 Apoya la obra de Dios</h2>
-        <p>Tu contribución ayuda a seguir transformando vidas.</p>
-        <div class="max-w-md mx-auto mt-4">
-            <div class="progress-bar" style="background-color:#e0e0e0; border-radius:1rem; overflow:hidden;">
-                <div class="progress-fill" style="width:68%; background: linear-gradient(90deg, var(--dorado), var(--dorado-oscuro)); height:20px; border-radius:1rem;"></div>
-            </div>
-            <p class="text-sm text-gray-500 mt-2">Meta: $10,000 USD para la marcha y obras sociales</p>
-        </div>
-        <button id="donateBtn" class="btn-dorado mt-4"><i class="fas fa-hand-holding-heart"></i> Donar ahora (demo)</button>
-    </div>
-</section>
-
-<!-- CONTACTO / PETICIONES DE ORACIÓN -->
-<section id="contacto" class="py-16 bg-azul-claro">
+<section id="contacto" class="py-16 bg-white">
     <div class="container mx-auto px-4" style="max-width:800px;">
         <h2 class="section-title" data-aos="fade-up">📩 Envíanos tu petición</h2>
         <div class="card">
@@ -568,7 +369,6 @@
                 <div class="grid md:grid-cols-2 gap-4">
                     <input type="text" placeholder="Nombre completo" class="p-3 border border-gray-300 rounded-xl" required>
                     <input type="email" placeholder="Correo electrónico" class="p-3 border border-gray-300 rounded-xl" required>
-                    <input type="tel" placeholder="Teléfono/WhatsApp" class="p-3 border border-gray-300 rounded-xl col-span-full">
                     <textarea rows="4" placeholder="Escribe tu mensaje o solicitud de oración..." class="p-3 border border-gray-300 rounded-xl col-span-full" required></textarea>
                 </div>
                 <div class="text-center mt-5">
@@ -579,13 +379,10 @@
     </div>
 </section>
 
-<!-- PIE DE PÁGINA CON REDES SOCIALES DEL PASTOR -->
 <footer>
     <div class="container mx-auto">
         <p><strong>ICDNJ - Deshaciendo las Obras del Diablo en el Nombre de Jesús</strong><br>Baní, Peravia, República Dominicana</p>
-        <p class="mt-2">📍 Iglesia: Calle Principal Ana de Pravia #8 (a mano derecha) | 🚩 Marcha: Play Escondido, C/27 Febrero frente UFHC</p>
         <div class="flex justify-center gap-6 mt-4 text-2xl">
-            <!-- ENLACES REALES DEL PASTOR -->
             <a href="https://www.instagram.com/pastor_manuelpaulino/" target="_blank" class="text-dorado hover:text-white transition"><i class="fab fa-instagram"></i></a>
             <a href="https://www.youtube.com/@pastormanuelpaulino7" target="_blank" class="text-dorado hover:text-white transition"><i class="fab fa-youtube"></i></a>
         </div>
@@ -593,18 +390,15 @@
     </div>
 </footer>
 
-<!-- SCRIPTS -->
 <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
 <script>
     AOS.init({ duration: 800, once: false, mirror: true });
 
-    // Menú móvil
     const menuIcon = document.getElementById('menuIcon');
     const navLinks = document.getElementById('navLinks');
     menuIcon.addEventListener('click', () => navLinks.classList.toggle('active'));
     document.querySelectorAll('.nav-links a').forEach(link => link.addEventListener('click', () => navLinks.classList.remove('active')));
 
-    // Contador regresivo para 30 Mayo 2026, 16:30
     const targetDate = new Date(2026, 4, 30, 16, 30, 0);
     function updateCountdown() {
         const now = new Date();
@@ -613,19 +407,14 @@
             document.getElementById('countdown-timer').innerHTML = '<div>¡Evento en curso!</div>';
             return;
         }
-        const days = Math.floor(diff / (1000 * 60 * 60 * 24));
-        const hours = Math.floor((diff % (86400000)) / 3600000);
-        const minutes = Math.floor((diff % 3600000) / 60000);
-        const seconds = Math.floor((diff % 60000) / 1000);
-        document.getElementById('days').innerText = days;
-        document.getElementById('hours').innerText = hours;
-        document.getElementById('minutes').innerText = minutes;
-        document.getElementById('seconds').innerText = seconds;
+        document.getElementById('days').innerText = Math.floor(diff / (1000 * 60 * 60 * 24));
+        document.getElementById('hours').innerText = Math.floor((diff % (86400000)) / 3600000);
+        document.getElementById('minutes').innerText = Math.floor((diff % 3600000) / 60000);
+        document.getElementById('seconds').innerText = Math.floor((diff % 60000) / 1000);
     }
     updateCountdown();
     setInterval(updateCountdown, 1000);
 
-    // Animación de estadísticas
     function animateCounter(el, target) {
         let current = 0;
         const step = target / 50;
@@ -639,7 +428,6 @@
     animateCounter(document.getElementById('membersCounter'), 5000);
     animateCounter(document.getElementById('countriesCounter'), 15);
 
-    // Carrusel de testimonios
     new Swiper('.testimonialSwiper', {
         loop: true,
         autoplay: { delay: 4000 },
@@ -649,7 +437,6 @@
         breakpoints: { 768: { slidesPerView: 2 } }
     });
 
-    // Generar código QR con la URL actual
     new QRCode(document.getElementById("qrcode"), {
         text: window.location.href,
         width: 140,
@@ -658,33 +445,9 @@
         colorLight: "#ffffff"
     });
 
-    // Botón compartir (Web Share API)
-    const shareBtn = document.getElementById('shareBtn');
-    if (shareBtn) {
-        shareBtn.addEventListener('click', () => {
-            if (navigator.share) {
-                navigator.share({ title: 'ICDNJ Marcha 2026', text: '12vo Aniversario y Marcha 30 Mayo en Baní - Deshaciendo las obras del diablo', url: window.location.href });
-            } else {
-                alert('Comparte este enlace: ' + window.location.href);
-            }
-        });
-    }
-
-    // Formulario newsletter demo
-    document.getElementById('newsletterForm')?.addEventListener('submit', (e) => {
-        e.preventDefault();
-        alert('✅ ¡Gracias por suscribirte! Recibirás novedades del evento.');
-    });
-
-    // Formulario de contacto demo
     document.getElementById('contactForm')?.addEventListener('submit', (e) => {
         e.preventDefault();
-        alert('📩 Mensaje enviado (demo). Un líder se comunicará contigo pronto.');
-    });
-
-    // Donación demo
-    document.getElementById('donateBtn')?.addEventListener('click', () => {
-        alert('🙌 Gracias por tu corazón generoso. Pronto habilitaremos la pasarela de donación segura.');
+        alert('📩 Mensaje enviado. Un líder se comunicará contigo pronto.');
     });
 </script>
 </body>
