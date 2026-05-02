@@ -4,8 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
     <title>ICDNJ | Deshaciendo las Obras del Diablo - 12vo Aniversario & Marcha 2026</title>
-    <!-- Google Fonts Premium -->
-    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;400;500;600;700;800&family=Cormorant+Garamond:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;400;500;600;700;800&family=Playfair+Display:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
     <!-- Font Awesome 6 -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <!-- AOS Animations -->
@@ -16,80 +16,112 @@
     <!-- QR Code -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
     <style>
+        /* ---------- RESET Y ESTILOS GLOBALES ---------- */
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
         }
+
         body {
             font-family: 'Inter', sans-serif;
-            background: #f0f5fe;
-            color: #1e2a3e;
+            background: #eef2ff;
+            color: #0a2b4e;
             scroll-behavior: smooth;
             overflow-x: hidden;
         }
+
         h1, h2, h3, .serif {
-            font-family: 'Cormorant Garamond', serif;
+            font-family: 'Playfair Display', serif;
         }
+
+        /* PALETA AZUL Y DORADO */
         :root {
             --azul-profundo: #0a2b4e;
-            --azul-real: #1e4a76;
-            --dorado: #d4af37;
-            --dorado-oscuro: #b58d1f;
-            --azul-claro: #eef2ff;
+            --azul-medio: #1e4a76;
+            --azul-claro: #d4e5fc;
+            --dorado: #f5b042;
+            --dorado-oscuro: #c97e10;
+            --dorado-brillante: #ffd966;
+            --blanco: #ffffff;
         }
-        .bg-azul { background: var(--azul-profundo); }
+
+        .bg-azul-profundo { background: var(--azul-profundo); }
+        .bg-azul-medio { background: var(--azul-medio); }
         .text-dorado { color: var(--dorado); }
+        .border-dorado { border-color: var(--dorado); }
+
+        /* Botones */
         .btn-dorado {
             background: linear-gradient(135deg, var(--dorado), var(--dorado-oscuro));
-            color: #0a2b4e;
-            font-weight: bold;
+            color: var(--azul-profundo);
+            font-weight: 800;
+            padding: 0.85rem 2rem;
+            border-radius: 3rem;
             transition: all 0.3s ease;
             display: inline-block;
-            padding: 0.75rem 1.8rem;
-            border-radius: 3rem;
             text-decoration: none;
             border: none;
             cursor: pointer;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
         }
-        .btn-dorado:hover { transform: translateY(-3px); box-shadow: 0 12px 20px rgba(212,175,55,0.4); }
+        .btn-dorado:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 12px 25px rgba(245,176,66,0.5);
+            background: linear-gradient(135deg, var(--dorado-oscuro), var(--dorado));
+        }
         .btn-outline-dorado {
             border: 2px solid var(--dorado);
             background: transparent;
             color: var(--dorado);
-            padding: 0.7rem 1.8rem;
+            padding: 0.75rem 1.8rem;
             border-radius: 3rem;
-            text-decoration: none;
+            font-weight: 600;
             transition: 0.3s;
+            text-decoration: none;
+            display: inline-block;
         }
-        .btn-outline-dorado:hover { background: var(--dorado); color: #0a2b4e; }
+        .btn-outline-dorado:hover {
+            background: var(--dorado);
+            color: var(--azul-profundo);
+            transform: scale(1.02);
+        }
+
+        /* Tarjetas */
         .card {
-            background: white;
-            border-radius: 1.5rem;
-            box-shadow: 0 15px 35px rgba(0,0,0,0.05);
+            background: var(--blanco);
+            border-radius: 1.8rem;
+            padding: 1.8rem;
+            box-shadow: 0 15px 30px rgba(0,0,0,0.05);
             transition: all 0.3s;
-            overflow: hidden;
+            border-bottom: 3px solid var(--dorado);
         }
-        .card:hover { transform: translateY(-8px); box-shadow: 0 25px 40px rgba(0,0,0,0.1); }
+        .card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 25px 40px rgba(0,0,0,0.12);
+        }
+
         .section-title {
             font-size: 2.8rem;
-            font-weight: 700;
+            font-weight: 800;
             text-align: center;
             color: var(--azul-profundo);
-            margin-bottom: 2rem;
+            margin-bottom: 2.5rem;
             position: relative;
         }
         .section-title:after {
             content: '';
             display: block;
-            width: 100px;
+            width: 110px;
             height: 4px;
-            background: linear-gradient(90deg, var(--dorado), #ffd966);
+            background: linear-gradient(90deg, var(--dorado), var(--dorado-brillante));
             margin: 0.8rem auto 0;
             border-radius: 4px;
         }
+
+        /* Hero con fondo azul degradado y detalles dorados */
         .hero {
-            background: linear-gradient(135deg, #0a2b4e 0%, #1a3a5f 100%);
+            background: linear-gradient(145deg, #0a2b4e 0%, #123e64 100%);
             position: relative;
             min-height: 90vh;
             display: flex;
@@ -101,25 +133,30 @@
             content: '';
             position: absolute;
             inset: 0;
-            background-image: radial-gradient(circle at 10% 20%, rgba(212,175,55,0.15) 2%, transparent 2.5%);
-            background-size: 30px 30px;
+            background-image: radial-gradient(circle at 20% 30%, rgba(245,176,66,0.12) 2%, transparent 2.5%);
+            background-size: 35px 35px;
             pointer-events: none;
         }
         .flyer-card {
-            background: rgba(255,255,245,0.96);
-            backdrop-filter: blur(8px);
-            border-radius: 2rem;
-            padding: 2rem;
-            border: 1px solid var(--dorado);
-            box-shadow: 0 20px 40px rgba(0,0,0,0.3);
-        }
-        .navbar {
-            background: rgba(10, 43, 78, 0.95);
+            background: rgba(10, 43, 78, 0.85);
             backdrop-filter: blur(12px);
+            border-radius: 2.5rem;
+            padding: 2rem;
+            border: 2px solid var(--dorado);
+            box-shadow: 0 25px 45px rgba(0,0,0,0.4);
+            color: white;
+        }
+        .flyer-card h1, .flyer-card p { color: white; }
+        .flyer-card .text-dorado { color: var(--dorado); }
+
+        /* Navegación */
+        .navbar {
+            background: rgba(10, 43, 78, 0.98);
+            backdrop-filter: blur(10px);
             position: sticky;
             top: 0;
             z-index: 1000;
-            border-bottom: 1px solid rgba(212,175,55,0.3);
+            border-bottom: 1px solid var(--dorado);
         }
         .nav-container {
             max-width: 1280px;
@@ -143,6 +180,7 @@
         }
         .nav-links a:hover { color: var(--dorado); }
         .menu-icon { display: none; color: var(--dorado); font-size: 1.8rem; cursor: pointer; }
+
         @media (max-width: 768px) {
             .nav-links {
                 position: fixed;
@@ -154,7 +192,7 @@
                 flex-direction: column;
                 padding: 2rem;
                 gap: 1.5rem;
-                transition: 0.3s;
+                transition: left 0.3s ease;
                 z-index: 999;
             }
             .nav-links.active { left: 0; }
@@ -162,47 +200,69 @@
             .menu-icon { display: block; }
             .section-title { font-size: 2rem; }
         }
+
+        /* Contador */
         .countdown {
-            background: rgba(0,0,0,0.6);
-            backdrop-filter: blur(4px);
+            background: rgba(0,0,0,0.5);
             border-radius: 2rem;
             padding: 1rem;
         }
         .countdown-timer {
             display: flex;
             justify-content: center;
-            gap: 0.8rem;
-            font-size: 1.2rem;
+            gap: 1rem;
+            flex-wrap: wrap;
         }
         .countdown-timer div {
             background: var(--dorado);
-            color: #0a2b4e;
+            color: var(--azul-profundo);
             padding: 0.5rem 1rem;
             border-radius: 1rem;
             font-weight: bold;
-            min-width: 70px;
+            min-width: 75px;
+            font-size: 1.2rem;
         }
+
+        /* Estadísticas */
         .stat-number {
-            font-size: 2.5rem;
+            font-size: 3rem;
             font-weight: 800;
             color: var(--dorado);
+            line-height: 1;
         }
-        .swiper {
+
+        /* Galería */
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+        }
+        .gallery-item img {
             width: 100%;
-            padding: 1rem 0;
+            height: 220px;
+            object-fit: cover;
+            border-radius: 1.2rem;
+            transition: transform 0.3s, box-shadow 0.3s;
+            border: 2px solid var(--dorado);
         }
+        .gallery-item img:hover { transform: scale(1.02); box-shadow: 0 12px 20px rgba(0,0,0,0.2); }
+
+        /* Swiper testimonios */
         .testimonial-slide {
             background: white;
             border-radius: 1.5rem;
-            padding: 1.5rem;
+            padding: 1.8rem;
             text-align: center;
-            box-shadow: 0 10px 20px rgba(0,0,0,0.05);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            border-left: 5px solid var(--dorado);
         }
+
         footer {
-            background: #0a2b4e;
+            background: var(--azul-profundo);
             color: #cfddee;
             text-align: center;
             padding: 2rem;
+            border-top: 2px solid var(--dorado);
         }
         .whatsapp-float {
             position: fixed;
@@ -220,25 +280,13 @@
             box-shadow: 0 4px 12px rgba(0,0,0,0.2);
             z-index: 99;
         }
-        .gallery-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 1rem;
-        }
-        .gallery-item img {
-            width: 100%;
-            height: 200px;
-            object-fit: cover;
-            border-radius: 1rem;
-            transition: transform 0.3s;
-        }
-        .gallery-item img:hover { transform: scale(1.02); }
     </style>
 </head>
 <body>
 
 <a href="https://wa.me/18095551234" class="whatsapp-float" target="_blank"><i class="fab fa-whatsapp"></i></a>
 
+<!-- BARRA DE NAVEGACIÓN -->
 <nav class="navbar">
     <div class="nav-container">
         <div class="logo"><i class="fas fa-cross"></i> ICDNJ</div>
@@ -256,18 +304,18 @@
     </div>
 </nav>
 
-<!-- HERO SECTION -->
+<!-- HERO / FLYER PRINCIPAL -->
 <section id="inicio" class="hero">
     <div class="container mx-auto px-4" style="max-width:1280px;">
         <div class="flyer-card" data-aos="zoom-in-up">
-            <i class="fas fa-crown text-5xl text-dorado"></i>
-            <h1 class="text-5xl md:text-7xl font-bold text-azul-profundo">ICDNJ</h1>
+            <i class="fas fa-crown text-6xl text-dorado mb-3"></i>
+            <h1 class="text-5xl md:text-7xl font-bold">ICDNJ</h1>
             <p class="text-xl md:text-2xl serif mt-2">Deshaciendo las Obras del Diablo <br> en el Nombre de Jesús</p>
             <p class="text-2xl md:text-3xl serif font-semibold mt-2">12vo ANIVERSARIO & MARCHA<br>CONCENTRACIÓN 2026</p>
             <div class="inline-block bg-dorado text-azul-profundo px-6 py-2 rounded-full text-2xl font-bold my-4">30 MAY.</div>
             <p class="text-xl"><strong>Pastor:</strong> MANUEL PAULINO</p>
-            <div class="my-4 text-3xl serif font-bold" style="color:#b8860b;">“No temas<br>JESÚS<br>Está aquí.”</div>
-            <div class="bg-azul-claro p-4 rounded-2xl">
+            <div class="my-4 text-3xl serif font-bold text-dorado">“No temas<br>JESÚS<br>Está aquí.”</div>
+            <div class="bg-azul-medio p-4 rounded-2xl text-white">
                 <p><i class="fas fa-clock"></i> <strong>HORA DE SALIDA DE LA MARCHA:</strong> 4:30 PM</p>
                 <p><i class="fas fa-church"></i> <strong>HORA DEL SERVICIO:</strong> 7:30 PM</p>
                 <p><i class="fas fa-map-marker-alt"></i> <strong>PLAY DE PERAVIA ESCONDIDO</strong> C/27 DE FEBRERO, FRENTE A UFHC, BANÍ</p>
@@ -293,19 +341,19 @@
 <section class="py-12 bg-white">
     <div class="container mx-auto px-4 text-center">
         <div class="grid md:grid-cols-3 gap-8">
-            <div data-aos="fade-up"><div class="stat-number" id="yearsCounter">12</div><p class="text-lg">Años de Ministerio</p></div>
-            <div data-aos="fade-up" data-aos-delay="100"><div class="stat-number" id="membersCounter">5000</div><p class="text-lg">Vidas impactadas</p></div>
-            <div data-aos="fade-up" data-aos-delay="200"><div class="stat-number" id="countriesCounter">15</div><p class="text-lg">Países alcanzados</p></div>
+            <div data-aos="fade-up"><div class="stat-number" id="yearsCounter">12</div><p class="text-lg font-semibold">Años de Ministerio</p></div>
+            <div data-aos="fade-up" data-aos-delay="100"><div class="stat-number" id="membersCounter">5000</div><p class="text-lg font-semibold">Vidas impactadas</p></div>
+            <div data-aos="fade-up" data-aos-delay="200"><div class="stat-number" id="countriesCounter">15</div><p class="text-lg font-semibold">Países alcanzados</p></div>
         </div>
     </div>
 </section>
 
 <!-- EVENTO DETALLES -->
-<section id="evento" class="py-16 bg-azul-claro">
+<section id="evento" class="py-16" style="background: var(--azul-claro);">
     <div class="container mx-auto px-4" style="max-width:1280px;">
         <h2 class="section-title" data-aos="fade-up">🔥 12 años deshaciendo las obras del diablo 🔥</h2>
         <div class="grid md:grid-cols-2 gap-8">
-            <div class="card p-6 md:p-8" data-aos="fade-right">
+            <div class="card" data-aos="fade-right">
                 <i class="fas fa-flag-checkered text-5xl text-dorado mb-4"></i>
                 <h3 class="text-3xl font-bold">Marcha de la Victoria</h3>
                 <ul class="mt-4 space-y-3 text-lg">
@@ -314,9 +362,9 @@
                     <li><i class="fas fa-map-pin"></i> <strong>Punto de salida:</strong> Play de Peravia Escondido (C/27 Febrero frente UFHC)</li>
                     <li><i class="fas fa-church"></i> <strong>Culto de Aniversario:</strong> 7:30 PM en la iglesia</li>
                 </ul>
-                <div class="mt-5 p-3 bg-azul-claro rounded-xl"><i class="fas fa-music"></i> Alabanza, danza profética, testigos, suelta de globos dorados. ¡Entrada libre!</div>
+                <div class="mt-5 p-3 bg-azul-claro rounded-xl"><i class="fas fa-music"></i> Alabanza, danza profética, testimonios, suelta de globos dorados. ¡Entrada libre!</div>
             </div>
-            <div class="card p-6 md:p-8" data-aos="fade-left">
+            <div class="card" data-aos="fade-left">
                 <i class="fas fa-church text-5xl text-dorado mb-4"></i>
                 <h3 class="text-3xl font-bold">Culto de Aniversario</h3>
                 <p class="mt-3">Pastor Manuel Paulino y Pastora Marideyni de Paulino te esperan para celebrar 12 años de milagros. Refrigerio especial, intercesión por la familia y ministerio de niños.</p>
@@ -330,32 +378,33 @@
 <!-- DÍAS DE CULTO -->
 <section id="cultos" class="py-16 bg-white">
     <div class="container mx-auto px-4">
-        <h2 class="section-title" data-aos="fade-up">⛪ Días de Culto</h2>
+        <h2 class="section-title" data-aos="fade-up">⛪ Días de Culto - Horario Semanal</h2>
         <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
-            <div class="card p-5 text-center"><i class="fas fa-praying-hands text-4xl text-dorado"></i><h3 class="text-2xl font-bold mt-2">Lunes</h3><p>Sanidad & Liberación</p><span class="text-dorado font-bold">7:30 PM</span></div>
-            <div class="card p-5 text-center"><i class="fas fa-bible text-4xl text-dorado"></i><h3 class="text-2xl font-bold mt-2">Martes</h3><p>Discipulado</p><span class="text-dorado font-bold">7:30 PM</span></div>
-            <div class="card p-5 text-center"><i class="fas fa-fist-raised text-4xl text-dorado"></i><h3 class="text-2xl font-bold mt-2">Miércoles</h3><p>Guerra Espiritual</p><span class="text-dorado font-bold">7:30 PM</span></div>
-            <div class="card p-5 text-center"><i class="fas fa-church text-4xl text-dorado"></i><h3 class="text-2xl font-bold mt-2">Domingo</h3><p>Culto General</p><span class="text-dorado font-bold">5:00 PM</span></div>
+            <div class="card text-center"><i class="fas fa-praying-hands text-4xl text-dorado mb-2"></i><h3 class="text-2xl font-bold">Lunes</h3><p>Sanidad & Liberación</p><span class="text-dorado font-bold text-lg">7:30 PM</span></div>
+            <div class="card text-center"><i class="fas fa-bible text-4xl text-dorado mb-2"></i><h3 class="text-2xl font-bold">Martes</h3><p>Discipulado</p><span class="text-dorado font-bold text-lg">7:30 PM</span></div>
+            <div class="card text-center"><i class="fas fa-fist-raised text-4xl text-dorado mb-2"></i><h3 class="text-2xl font-bold">Miércoles</h3><p>Guerra Espiritual</p><span class="text-dorado font-bold text-lg">7:30 PM</span></div>
+            <div class="card text-center"><i class="fas fa-church text-4xl text-dorado mb-2"></i><h3 class="text-2xl font-bold">Domingo</h3><p>Culto General</p><span class="text-dorado font-bold text-lg">5:00 PM</span></div>
         </div>
+        <p class="text-center mt-8 text-gray-500"><i class="fas fa-star-of-life text-dorado"></i> Viernes jóvenes, sábados ministerios especiales. ¡Todos bienvenidos!</p>
     </div>
 </section>
 
-<!-- MINISTERIOS (nuevo) -->
-<section id="ministerios" class="py-16 bg-azul-claro">
+<!-- MINISTERIOS ACTIVOS -->
+<section id="ministerios" class="py-16" style="background: var(--azul-claro);">
     <div class="container mx-auto px-4">
         <h2 class="section-title" data-aos="fade-up">🙌 Ministerios Activos</h2>
         <div class="grid md:grid-cols-3 gap-6">
-            <div class="card p-5 text-center"><i class="fas fa-music text-4xl text-dorado"></i><h3 class="text-xl font-bold">Alabanza</h3><p>Adoración con instrumentos y voces</p></div>
-            <div class="card p-5 text-center"><i class="fas fa-users text-4xl text-dorado"></i><h3 class="text-xl font-bold">Jóvenes</h3><p>Generación de avivamiento</p></div>
-            <div class="card p-5 text-center"><i class="fas fa-hand-holding-heart text-4xl text-dorado"></i><h3 class="text-xl font-bold">Ayuda Social</h3><p>Manos extendidas a la comunidad</p></div>
-            <div class="card p-5 text-center"><i class="fas fa-child text-4xl text-dorado"></i><h3 class="text-xl font-bold">Niños</h3><p>Pequeños héroes del Reino</p></div>
-            <div class="card p-5 text-center"><i class="fas fa-dove text-4xl text-dorado"></i><h3 class="text-xl font-bold">Danza Profética</h3><p>Movimiento en adoración</p></div>
-            <div class="card p-5 text-center"><i class="fas fa-pray text-4xl text-dorado"></i><h3 class="text-xl font-bold">Intercesión</h3><p>Guerreros de oración 24/7</p></div>
+            <div class="card text-center"><i class="fas fa-music text-4xl text-dorado"></i><h3 class="text-xl font-bold mt-2">Alabanza</h3><p>Adoración con instrumentos y voces</p></div>
+            <div class="card text-center"><i class="fas fa-users text-4xl text-dorado"></i><h3 class="text-xl font-bold mt-2">Jóvenes</h3><p>Generación de avivamiento</p></div>
+            <div class="card text-center"><i class="fas fa-hand-holding-heart text-4xl text-dorado"></i><h3 class="text-xl font-bold mt-2">Ayuda Social</h3><p>Manos extendidas a la comunidad</p></div>
+            <div class="card text-center"><i class="fas fa-child text-4xl text-dorado"></i><h3 class="text-xl font-bold mt-2">Niños</h3><p>Pequeños héroes del Reino</p></div>
+            <div class="card text-center"><i class="fas fa-dove text-4xl text-dorado"></i><h3 class="text-xl font-bold mt-2">Danza Profética</h3><p>Movimiento en adoración</p></div>
+            <div class="card text-center"><i class="fas fa-pray text-4xl text-dorado"></i><h3 class="text-xl font-bold mt-2">Intercesión</h3><p>Guerreros de oración 24/7</p></div>
         </div>
     </div>
 </section>
 
-<!-- TESTIMONIOS (carrusel) -->
+<!-- TESTIMONIOS CARRUSEL -->
 <section id="testimonios" class="py-16 bg-white">
     <div class="container mx-auto px-4">
         <h2 class="section-title" data-aos="fade-up">📖 Lo que Dios ha hecho</h2>
@@ -371,114 +420,135 @@
     </div>
 </section>
 
-<!-- GALERÍA DE FOTOS (placeholder) -->
-<section id="galeria" class="py-16 bg-azul-claro">
+<!-- GALERÍA DE FOTOS -->
+<section id="galeria" class="py-16" style="background: var(--azul-claro);">
     <div class="container mx-auto px-4">
         <h2 class="section-title" data-aos="fade-up">📸 Momentos de Poder</h2>
         <div class="gallery-grid">
-            <div class="gallery-item"><img src="https://picsum.photos/id/104/400/300" alt="Culto"></div>
-            <div class="gallery-item"><img src="https://picsum.photos/id/105/400/300" alt="Marcha"></div>
-            <div class="gallery-item"><img src="https://picsum.photos/id/169/400/300" alt="Danza"></div>
-            <div class="gallery-item"><img src="https://picsum.photos/id/154/400/300" alt="Pastores"></div>
+            <div class="gallery-item"><img src="https://picsum.photos/id/104/400/300" alt="Culto de adoración"></div>
+            <div class="gallery-item"><img src="https://picsum.photos/id/105/400/300" alt="Marcha cristiana"></div>
+            <div class="gallery-item"><img src="https://picsum.photos/id/169/400/300" alt="Ministerio de danza"></div>
+            <div class="gallery-item"><img src="https://picsum.photos/id/154/400/300" alt="Pastores orando"></div>
         </div>
+        <p class="text-center mt-6 text-gray-500">* Próximamente más fotografías de nuestro aniversario.</p>
     </div>
 </section>
 
-<!-- UBICACIONES MEJORADAS -->
+<!-- UBICACIONES: IGLESIA Y MARCHA (MAPAS) -->
 <section id="ubicacion" class="py-16 bg-white">
     <div class="container mx-auto px-4" style="max-width:1280px;">
-        <h2 class="section-title" data-aos="fade-up">📍 Encuéntranos en Baní</h2>
+        <h2 class="section-title" data-aos="fade-up">📍 Encuéntranos en Baní, Peravia</h2>
         <div class="grid md:grid-cols-2 gap-10">
-            <div class="card p-6" data-aos="fade-right">
+            <div class="card" data-aos="fade-right">
                 <i class="fas fa-church text-5xl text-dorado mb-3"></i>
                 <h3 class="text-3xl font-bold">Iglesia "Deshaciendo las Obras del Diablo"</h3>
-                <p class="mt-3"><strong>Calle Principal Ana de Pravia #8</strong><br>(Doblando a mano derecha, después de la panadería La Fe)<br>Baní, Peravia, R.D.</p>
-                <div class="mt-4 bg-gray-50 p-3 rounded-xl"><i class="fab fa-whatsapp"></i> +1 809 555 1234</div>
-                <a href="https://www.google.com/maps/search/?api=1&query=Calle+Principal+Ana+de+Pravia+8,+Baní,+Peravia" target="_blank" class="btn-dorado mt-4 w-full text-center block">Abrir iglesia en Maps</a>
+                <p class="mt-3 text-lg"><strong>Calle Principal Ana de Pravia #8</strong><br>(Doblando a mano derecha, después de la panadería La Fe)<br>Baní, Peravia, República Dominicana.</p>
+                <div class="mt-4 bg-gray-100 p-3 rounded-xl"><i class="fab fa-whatsapp text-dorado"></i> WhatsApp: +1 809 555 1234 | Tel: (809) 555-6789</div>
+                <a href="https://www.google.com/maps/search/?api=1&query=Calle+Principal+Ana+de+Pravia+8,+Baní,+Peravia" target="_blank" class="btn-dorado mt-5 w-full text-center block"><i class="fas fa-directions"></i> Abrir iglesia en Google Maps</a>
             </div>
-            <div class="card p-6" data-aos="fade-left">
+            <div class="card" data-aos="fade-left">
                 <i class="fas fa-flag-checkered text-5xl text-dorado mb-3"></i>
                 <h3 class="text-3xl font-bold">Punto de la Gran Marcha</h3>
-                <p class="mt-3"><strong>Play de Peravia Escondido</strong><br>Calle 27 de Febrero, entrando frente a la UFHC, Baní.</p>
-                <a href="https://www.google.com/maps/search/?api=1&query=Play+de+Peravia+Escondido+Calle+27+de+Febrero+UFHC+Baní" target="_blank" class="btn-outline-dorado mt-4 w-full text-center block">Ver punto de marcha en Maps</a>
+                <p class="mt-3 text-lg"><strong>Play de Peravia Escondido</strong><br>Calle 27 de Febrero, entrando frente a la UFHC, Escondido, Baní.</p>
+                <div class="mt-4 bg-amber-50 p-3 rounded-xl"><i class="fas fa-calendar-alt"></i> 30 Mayo 2026 – 4:30 PM</div>
+                <a href="https://www.google.com/maps/search/?api=1&query=Play+de+Peravia+Escondido+Calle+27+de+Febrero+UFHC+Baní" target="_blank" class="btn-outline-dorado mt-5 w-full text-center block"><i class="fas fa-map-marked-alt"></i> Ver punto de marcha en Maps</a>
             </div>
         </div>
-        <div class="mt-8 rounded-2xl overflow-hidden shadow-xl">
-            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3784.2!2d-70.3300!3d18.2785!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8ea53dae15fc8d5b%3A0x7a1b3c9e2f8a4d7c!2sBan%C3%AD%2C%20Peravia!5e0!3m2!1ses!2sdo!4v1712345678901!5m2!1ses!2sdo" width="100%" height="350" style="border:0; border-radius: 1.2rem;" allowfullscreen="" loading="lazy"></iframe>
+        <!-- Mapa embebido general -->
+        <div class="mt-10 rounded-2xl overflow-hidden shadow-xl border-2 border-dorado">
+            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3784.2!2d-70.3300!3d18.2785!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8ea53dae15fc8d5b%3A0x7a1b3c9e2f8a4d7c!2sBan%C3%AD%2C%20Peravia!5e0!3m2!1ses!2sdo!4v1712345678901!5m2!1ses!2sdo" width="100%" height="380" style="border:0; border-radius: 1.2rem;" allowfullscreen="" loading="lazy"></iframe>
         </div>
+        <p class="text-center text-sm text-gray-500 mt-4"><i class="fas fa-info-circle text-dorado"></i> La marcha sale desde Escondido (frente UFHC) y culmina en la iglesia (Calle Ana de Pravia #8).</p>
     </div>
 </section>
 
-<!-- SUSCRIPCIÓN Y QR -->
-<section class="py-16 bg-azul-claro text-center">
-    <div class="container mx-auto px-4">
-        <h2 class="section-title" data-aos="fade-up">📲 Mantente informado</h2>
+<!-- SUSCRIPCIÓN, QR Y COMPARTIR -->
+<section class="py-16" style="background: var(--azul-claro);">
+    <div class="container mx-auto px-4 text-center">
+        <h2 class="section-title" data-aos="fade-up">📲 Comparte y recibe noticias</h2>
         <div class="flex flex-col md:flex-row justify-center items-center gap-10">
-            <div id="qrcode" class="bg-white p-3 rounded-2xl shadow-md"></div>
+            <div id="qrcode" class="bg-white p-3 rounded-2xl shadow-md border-2 border-dorado"></div>
             <div>
-                <p class="text-lg">Suscríbete para recibir noticias del evento</p>
+                <p class="text-lg">Suscríbete para recibir actualizaciones del evento</p>
                 <form id="newsletterForm" class="mt-3 flex flex-col sm:flex-row gap-3">
-                    <input type="email" placeholder="Tu correo electrónico" class="p-3 rounded-xl border border-gray-300 w-64" required>
+                    <input type="email" placeholder="Tu mejor correo" class="p-3 rounded-xl border border-gray-300 w-64" required>
                     <button type="submit" class="btn-dorado">Suscribirme <i class="fas fa-envelope"></i></button>
                 </form>
-                <button onclick="navigator.share ? navigator.share({title:'ICDNJ Marcha 2026', text:'12vo Aniversario y Marcha 30 Mayo en Baní', url:window.location.href}) : alert('Comparte el enlace: '+window.location.href)" class="btn-outline-dorado mt-4"><i class="fas fa-share-alt"></i> Compartir evento</button>
+                <button id="shareBtn" class="btn-outline-dorado mt-4"><i class="fas fa-share-alt"></i> Compartir evento</button>
             </div>
         </div>
     </div>
 </section>
 
-<!-- DONACIÓN SIMULADA -->
-<section class="py-16 bg-white text-center">
+<!-- EVENTOS PRÓXIMOS ADICIONALES -->
+<section class="py-16 bg-white">
     <div class="container mx-auto px-4">
-        <h2 class="section-title" data-aos="fade-up">🙏 Apoya la obra</h2>
-        <p>Contribuye con el ministerio para seguir transformando vidas.</p>
-        <button id="donateBtn" class="btn-dorado mt-4"><i class="fas fa-hand-holding-heart"></i> Donar ahora (simulación)</button>
+        <h2 class="section-title" data-aos="fade-up">📅 Próximos Eventos</h2>
+        <div class="grid md:grid-cols-3 gap-6">
+            <div class="card text-center"><i class="fas fa-moon text-3xl text-dorado"></i><h3 class="text-xl font-bold mt-2">Vigilia de Poder</h3><p>13 Junio 2026 - 9:00 PM</p></div>
+            <div class="card text-center"><i class="fas fa-child text-3xl text-dorado"></i><h3 class="text-xl font-bold mt-2">Campamento de Niños</h3><p>20-22 Julio 2026</p></div>
+            <div class="card text-center"><i class="fas fa-users text-3xl text-dorado"></i><h3 class="text-xl font-bold mt-2">Congreso de Jóvenes</h3><p>15 Agosto 2026</p></div>
+        </div>
     </div>
 </section>
 
-<!-- CONTACTO -->
-<section id="contacto" class="py-16 bg-azul-claro">
+<!-- DONACIÓN (SIMULADA) -->
+<section class="py-16" style="background: var(--azul-claro); text-align: center;">
+    <div class="container mx-auto px-4">
+        <h2 class="section-title" data-aos="fade-up">🙏 Apoya la obra de Dios</h2>
+        <p>Tu contribución ayuda a seguir transformando vidas.</p>
+        <button id="donateBtn" class="btn-dorado mt-4"><i class="fas fa-hand-holding-heart"></i> Donar ahora (demo)</button>
+    </div>
+</section>
+
+<!-- CONTACTO / PETICIONES DE ORACIÓN -->
+<section id="contacto" class="py-16 bg-white">
     <div class="container mx-auto px-4" style="max-width:800px;">
-        <h2 class="section-title" data-aos="fade-up">📩 Oración o mensaje</h2>
-        <div class="card p-6">
+        <h2 class="section-title" data-aos="fade-up">📩 Envíanos tu petición</h2>
+        <div class="card">
             <form id="contactForm">
                 <div class="grid md:grid-cols-2 gap-4">
-                    <input type="text" placeholder="Nombre completo" class="p-3 border rounded-xl" required>
-                    <input type="email" placeholder="Correo electrónico" class="p-3 border rounded-xl" required>
-                    <input type="tel" placeholder="Teléfono/WhatsApp" class="p-3 border rounded-xl col-span-full">
-                    <textarea rows="4" placeholder="Escribe tu mensaje o solicitud de oración..." class="p-3 border rounded-xl col-span-full" required></textarea>
+                    <input type="text" placeholder="Nombre completo" class="p-3 border border-gray-300 rounded-xl" required>
+                    <input type="email" placeholder="Correo electrónico" class="p-3 border border-gray-300 rounded-xl" required>
+                    <input type="tel" placeholder="Teléfono/WhatsApp" class="p-3 border border-gray-300 rounded-xl col-span-full">
+                    <textarea rows="4" placeholder="Escribe tu mensaje o solicitud de oración..." class="p-3 border border-gray-300 rounded-xl col-span-full" required></textarea>
                 </div>
                 <div class="text-center mt-5">
-                    <button type="submit" class="btn-dorado"><i class="fas fa-pray"></i> Enviar mensaje</button>
+                    <button type="submit" class="btn-dorado px-8 py-3"><i class="fas fa-pray"></i> Enviar mensaje</button>
                 </div>
             </form>
         </div>
     </div>
 </section>
 
+<!-- REDES SOCIALES Y FOOTER -->
 <footer>
     <div class="container mx-auto">
         <p><strong>ICDNJ - Deshaciendo las Obras del Diablo en el Nombre de Jesús</strong><br>Baní, Peravia, República Dominicana</p>
-        <p class="mt-2">Iglesia: Calle Principal Ana de Pravia #8 | Marcha: Play Escondido, C/27 Febrero</p>
-        <p class="mt-3">“No temas, JESÚS está aquí” – 30 Mayo 2026, 4:30PM</p>
-        <div class="mt-4 flex justify-center gap-4 text-2xl">
-            <a href="#" class="text-dorado"><i class="fab fa-facebook"></i></a>
-            <a href="#" class="text-dorado"><i class="fab fa-instagram"></i></a>
-            <a href="#" class="text-dorado"><i class="fab fa-youtube"></i></a>
+        <p class="mt-2">📍 Iglesia: Calle Principal Ana de Pravia #8 (a mano derecha) | 🚩 Marcha: Play Escondido, C/27 Febrero frente UFHC</p>
+        <div class="flex justify-center gap-6 mt-4 text-2xl">
+            <a href="#" class="text-dorado hover:text-white transition"><i class="fab fa-facebook"></i></a>
+            <a href="#" class="text-dorado hover:text-white transition"><i class="fab fa-instagram"></i></a>
+            <a href="#" class="text-dorado hover:text-white transition"><i class="fab fa-youtube"></i></a>
+            <a href="#" class="text-dorado hover:text-white transition"><i class="fab fa-tiktok"></i></a>
         </div>
+        <p class="mt-4 text-sm">“No temas, JESÚS está aquí” – 30 Mayo 2026, 4:30PM</p>
     </div>
 </footer>
 
+<!-- SCRIPTS -->
 <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
 <script>
+    // Inicializar AOS
     AOS.init({ duration: 800, once: false, mirror: true });
+
     // Menú móvil
     const menuIcon = document.getElementById('menuIcon');
     const navLinks = document.getElementById('navLinks');
     menuIcon.addEventListener('click', () => navLinks.classList.toggle('active'));
     document.querySelectorAll('.nav-links a').forEach(link => link.addEventListener('click', () => navLinks.classList.remove('active')));
 
-    // Contador regresivo
+    // Contador regresivo para 30 Mayo 2026, 16:30
     const targetDate = new Date(2026, 4, 30, 16, 30, 0);
     function updateCountdown() {
         const now = new Date();
@@ -487,7 +557,7 @@
             document.getElementById('countdown-timer').innerHTML = '<div>¡Evento en curso!</div>';
             return;
         }
-        const days = Math.floor(diff / (1000*60*60*24));
+        const days = Math.floor(diff / (1000 * 60 * 60 * 24));
         const hours = Math.floor((diff % (86400000)) / 3600000);
         const minutes = Math.floor((diff % 3600000) / 60000);
         const seconds = Math.floor((diff % 60000) / 1000);
@@ -496,14 +566,15 @@
         document.getElementById('minutes').innerText = minutes;
         document.getElementById('seconds').innerText = seconds;
     }
-    updateCountdown(); setInterval(updateCountdown, 1000);
+    updateCountdown();
+    setInterval(updateCountdown, 1000);
 
-    // Estadísticas animadas
+    // Animación de estadísticas
     function animateCounter(el, target) {
         let current = 0;
-        const increment = target / 50;
+        const step = target / 50;
         const timer = setInterval(() => {
-            current += increment;
+            current += step;
             if (current >= target) { current = target; clearInterval(timer); }
             el.innerText = Math.floor(current);
         }, 30);
@@ -512,16 +583,53 @@
     animateCounter(document.getElementById('membersCounter'), 5000);
     animateCounter(document.getElementById('countriesCounter'), 15);
 
-    // Swiper testimonios
-    new Swiper('.testimonialSwiper', { loop: true, autoplay: { delay: 4000 }, pagination: { el: '.swiper-pagination', clickable: true } });
+    // Carrusel de testimonios
+    new Swiper('.testimonialSwiper', {
+        loop: true,
+        autoplay: { delay: 4000 },
+        pagination: { el: '.swiper-pagination', clickable: true },
+        spaceBetween: 20,
+        slidesPerView: 1,
+        breakpoints: { 768: { slidesPerView: 2 } }
+    });
 
-    // QR
-    new QRCode(document.getElementById("qrcode"), { text: window.location.href, width: 140, height: 140, colorDark: "#d4af37", colorLight: "#ffffff" });
+    // Generar código QR con la URL actual
+    new QRCode(document.getElementById("qrcode"), {
+        text: window.location.href,
+        width: 140,
+        height: 140,
+        colorDark: "#f5b042",
+        colorLight: "#ffffff"
+    });
 
-    // Formularios alerta
-    document.getElementById('newsletterForm')?.addEventListener('submit', (e) => { e.preventDefault(); alert('✅ Suscripción registrada (demo). Recibirás novedades del evento.'); });
-    document.getElementById('contactForm')?.addEventListener('submit', (e) => { e.preventDefault(); alert('📩 Mensaje enviado (demo). Te contactaremos pronto.'); });
-    document.getElementById('donateBtn')?.addEventListener('click', () => alert('🙌 Gracias por tu interés. (Demo) Pronto habilitaremos pasarela segura.'));
+    // Botón compartir (Web Share API)
+    const shareBtn = document.getElementById('shareBtn');
+    if (shareBtn) {
+        shareBtn.addEventListener('click', () => {
+            if (navigator.share) {
+                navigator.share({ title: 'ICDNJ Marcha 2026', text: '12vo Aniversario y Marcha 30 Mayo en Baní - Deshaciendo las obras del diablo', url: window.location.href });
+            } else {
+                alert('Comparte este enlace: ' + window.location.href);
+            }
+        });
+    }
+
+    // Formulario newsletter demo
+    document.getElementById('newsletterForm')?.addEventListener('submit', (e) => {
+        e.preventDefault();
+        alert('✅ ¡Gracias por suscribirte! Recibirás novedades del evento.');
+    });
+
+    // Formulario de contacto demo
+    document.getElementById('contactForm')?.addEventListener('submit', (e) => {
+        e.preventDefault();
+        alert('📩 Mensaje enviado (demo). Un líder se comunicará contigo pronto.');
+    });
+
+    // Donación demo
+    document.getElementById('donateBtn')?.addEventListener('click', () => {
+        alert('🙌 Gracias por tu corazón generoso. Pronto habilitaremos la pasarela de donación segura.');
+    });
 </script>
 </body>
 </html>
