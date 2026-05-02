@@ -4,11 +4,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
     <title>Deshaciendo las Obras del Diablo | Iglesia en Baní</title>
-    <!-- Google Fonts modernas y suaves -->
-    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700&family=Playfair+Display:ital,wght@0,500;0,600;1,500&display=swap" rel="stylesheet">
-    <!-- Font Awesome 6 (gratis) -->
+    <!-- Google Fonts Modernas -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Font Awesome 6 -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-    <!-- AOS animaciones -->
+    <!-- AOS Animations -->
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
     <style>
         * {
@@ -19,13 +19,12 @@
 
         body {
             font-family: 'Inter', sans-serif;
-            background: #fef9f0;  /* fondo cálido claro */
-            color: #2c2b28;
-            line-height: 1.5;
+            background-color: #fefaf5;
+            color: #2d2a24;
+            scroll-behavior: smooth;
         }
 
-        /* Encabezados con estilo elegante */
-        h1, h2, h3, .font-serif {
+        h1, h2, h3, .logo-font {
             font-family: 'Playfair Display', serif;
         }
 
@@ -35,50 +34,55 @@
             padding: 0 1.5rem;
         }
 
-        /* Tarjetas suaves y claras */
-        .card {
-            background: #ffffff;
-            border-radius: 1.5rem;
-            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.03), 0 2px 6px rgba(0, 0, 0, 0.05);
-            transition: transform 0.2s ease, box-shadow 0.2s ease;
-            border: 1px solid #f0e5d8;
-        }
-        .card:hover {
-            transform: translateY(-4px);
-            box-shadow: 0 20px 30px -12px rgba(0, 0, 0, 0.1);
-        }
-
-        .btn {
-            display: inline-block;
+        /* Botones */
+        .btn-primary {
             background-color: #c47b2e;
             color: white;
-            font-weight: 600;
             padding: 0.75rem 1.8rem;
-            border-radius: 3rem;
-            transition: all 0.2s;
-            border: none;
-            cursor: pointer;
+            border-radius: 2rem;
+            font-weight: 600;
+            transition: 0.2s;
+            display: inline-block;
             text-decoration: none;
-            text-align: center;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.05);
         }
-        .btn:hover {
+        .btn-primary:hover {
             background-color: #a5611f;
-            transform: scale(1.02);
+            transform: translateY(-2px);
         }
         .btn-outline {
-            background: transparent;
             border: 2px solid #c47b2e;
+            background: transparent;
             color: #c47b2e;
+            padding: 0.7rem 1.8rem;
+            border-radius: 2rem;
+            font-weight: 600;
+            transition: 0.2s;
+            display: inline-block;
+            text-decoration: none;
         }
         .btn-outline:hover {
             background: #c47b2e;
             color: white;
         }
 
+        /* Tarjetas */
+        .card {
+            background: white;
+            border-radius: 1.5rem;
+            padding: 1.5rem;
+            box-shadow: 0 10px 25px -5px rgba(0,0,0,0.05), 0 2px 4px rgba(0,0,0,0.02);
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 30px -12px rgba(0,0,0,0.1);
+        }
+
         .section-title {
-            font-size: 2rem;
-            font-weight: 700;
+            font-size: 2.2rem;
             text-align: center;
+            font-weight: 700;
             margin-bottom: 2.5rem;
             color: #3a2c1f;
             position: relative;
@@ -93,264 +97,351 @@
             border-radius: 4px;
         }
 
-        /* Header / Hero */
-        .hero {
-            background: linear-gradient(135deg, #fff4e6 0%, #ffe6d5 100%);
-            border-bottom: 1px solid #f0e0d0;
+        /* Header y navegación moderna */
+        .navbar {
+            background: rgba(255, 250, 245, 0.95);
+            backdrop-filter: blur(8px);
+            box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 1.5rem;
+            max-width: 1280px;
+            margin: 0 auto;
+        }
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #b46f2a;
+        }
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            align-items: center;
+        }
+        .nav-links a {
+            text-decoration: none;
+            color: #4b3b2a;
+            font-weight: 500;
+            transition: color 0.2s;
+        }
+        .nav-links a:hover {
+            color: #c47b2e;
+        }
+        .menu-icon {
+            display: none;
+            font-size: 1.8rem;
+            cursor: pointer;
+            color: #b46f2a;
+        }
+        @media (max-width: 768px) {
+            .nav-links {
+                position: fixed;
+                top: 70px;
+                left: -100%;
+                width: 70%;
+                height: calc(100vh - 70px);
+                background: #fffaf5;
+                flex-direction: column;
+                gap: 1.5rem;
+                padding: 2rem;
+                box-shadow: 2px 0 12px rgba(0,0,0,0.1);
+                transition: left 0.3s ease;
+                z-index: 99;
+            }
+            .nav-links.active {
+                left: 0;
+            }
+            .menu-icon {
+                display: block;
+            }
+            .container {
+                padding: 0 1rem;
+            }
         }
 
-        /* Mapa estilo amigable */
-        .map-container {
+        /* Hero */
+        .hero {
+            background: linear-gradient(135deg, #fef3e4 0%, #ffe5d4 100%);
+            padding: 3rem 0 4rem;
+            border-bottom: 1px solid #f3e1cf;
+        }
+
+        /* Galería moderna */
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+        }
+        .gallery-item {
+            border-radius: 1.2rem;
+            overflow: hidden;
+            box-shadow: 0 6px 14px rgba(0,0,0,0.08);
+            transition: 0.2s;
+            cursor: pointer;
+        }
+        .gallery-item img {
+            width: 100%;
+            height: 220px;
+            object-fit: cover;
+            transition: transform 0.3s;
+        }
+        .gallery-item:hover img {
+            transform: scale(1.03);
+        }
+
+        /* Mapa */
+        .map-card {
             border-radius: 1.5rem;
             overflow: hidden;
-            box-shadow: 0 12px 24px -12px rgba(0, 0, 0, 0.15);
-            border: 1px solid #e9dfd3;
-        }
-
-        /* Pastores */
-        .pastor-img {
-            width: 130px;
-            height: 130px;
-            object-fit: cover;
-            border-radius: 50%;
-            border: 3px solid #e0b07f;
-            box-shadow: 0 6px 12px rgba(0,0,0,0.05);
-        }
-
-        /* Evento especial */
-        .event-card {
-            background: #fff7ef;
-            border-left: 8px solid #c47b2e;
+            box-shadow: 0 12px 24px -12px rgba(0,0,0,0.12);
         }
 
         footer {
             background: #2c2b28;
-            color: #ddd2c5;
+            color: #cfc6bc;
             text-align: center;
             padding: 2rem 0;
             margin-top: 3rem;
         }
 
-        @media (max-width: 768px) {
-            .container {
-                padding: 0 1rem;
-            }
-            .section-title {
-                font-size: 1.8rem;
-            }
-            .pastor-img {
-                width: 100px;
-                height: 100px;
-            }
+        .whatsapp-float {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background: #25D366;
+            color: white;
+            border-radius: 50%;
+            width: 55px;
+            height: 55px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+            transition: 0.2s;
+            z-index: 90;
+        }
+        .whatsapp-float:hover {
+            transform: scale(1.05);
         }
     </style>
 </head>
 <body>
 
-<!-- Barra de navegación simple y clara -->
-<nav class="bg-white/80 backdrop-blur-sm sticky top-0 z-30 border-b border-gray-200 shadow-sm">
-    <div class="container flex justify-between items-center py-3 md:py-4">
-        <div class="font-serif font-bold text-xl md:text-2xl text-amber-800">
-            <i class="fas fa-cross text-amber-600 mr-2"></i> 
-            Deshaciendo las Obras
-        </div>
-        <div class="flex gap-3 text-sm md:text-base">
-            <a href="#inicio" class="hidden md:inline hover:text-amber-700 transition">Inicio</a>
-            <a href="#cultos" class="hidden md:inline hover:text-amber-700 transition">Cultos</a>
-            <a href="#evento" class="hidden md:inline hover:text-amber-700 transition font-semibold">Gran Marcha</a>
-            <a href="#ubicacion" class="hover:text-amber-700 transition"><i class="fas fa-map-marker-alt"></i> <span class="hidden sm:inline">Ubicación</span></a>
-            <a href="#contacto" class="bg-amber-100 px-3 py-1 rounded-full text-amber-800 hover:bg-amber-200 transition"><i class="fab fa-whatsapp"></i> WhatsApp</a>
+<!-- WhatsApp flotante -->
+<a href="https://wa.me/18095551234" class="whatsapp-float" target="_blank"><i class="fab fa-whatsapp"></i></a>
+
+<!-- Menú de navegación moderno -->
+<nav class="navbar">
+    <div class="nav-container">
+        <div class="logo"><i class="fas fa-cross"></i> Deshaciendo Obras</div>
+        <div class="menu-icon" id="menuIcon"><i class="fas fa-bars"></i></div>
+        <div class="nav-links" id="navLinks">
+            <a href="#inicio">Inicio</a>
+            <a href="#cultos">Cultos</a>
+            <a href="#evento">Gran Marcha</a>
+            <a href="#pastores">Pastores</a>
+            <a href="#galeria">Galería</a>
+            <a href="#ubicacion">Ubicación</a>
+            <a href="#contacto">Contacto</a>
         </div>
     </div>
 </nav>
 
-<!-- HERO / INICIO -->
-<section id="inicio" class="hero py-12 md:py-20">
+<!-- HERO -->
+<section id="inicio" class="hero">
     <div class="container text-center" data-aos="fade-up">
-        <h1 class="text-3xl md:text-5xl lg:text-6xl font-bold text-amber-900 leading-tight">
-            Deshaciendo las Obras del Diablo<br>
-            <span class="text-amber-700 text-2xl md:text-3xl">en el Nombre de Jesús</span>
-        </h1>
-        <p class="text-lg md:text-xl text-gray-700 max-w-3xl mx-auto mt-6 mb-8">
-            Una iglesia viva, restauración, milagros y propósito. ¡Te esperamos con los brazos abiertos en Baní, Peravia!
-        </p>
-        <div class="flex flex-wrap justify-center gap-4">
-            <a href="#evento" class="btn bg-amber-700 hover:bg-amber-800 px-6 py-3 text-white rounded-full shadow-md">
-                🔥 Únete a la Gran Marcha 🔥
-            </a>
-            <a href="#ubicacion" class="btn-outline px-6 py-3 rounded-full border-2 border-amber-600 text-amber-700 font-semibold">
-                📍 Cómo llegar
-            </a>
+        <h1 class="text-4xl md:text-6xl font-bold text-amber-900">Deshaciendo las Obras del Diablo<br><span class="text-amber-700 text-2xl md:text-3xl">en el Nombre de Jesús</span></h1>
+        <p class="text-lg text-gray-700 max-w-2xl mx-auto mt-5 mb-7">Un movimiento de restauración, milagros y poder espiritual en Baní, Peravia. ¡Te esperamos con los brazos abiertos!</p>
+        <div class="flex gap-4 justify-center flex-wrap">
+            <a href="#evento" class="btn-primary"><i class="fas fa-fire"></i> Gran Marcha 2025</a>
+            <a href="#ubicacion" class="btn-outline"><i class="fas fa-map-marker-alt"></i> Cómo llegar</a>
         </div>
     </div>
 </section>
 
-<!-- Pastores principales -->
-<section class="container py-16">
-    <h2 class="section-title" data-aos="fade-up">Pastores Generales</h2>
-    <div class="grid md:grid-cols-2 gap-8 max-w-3xl mx-auto">
-        <div class="card p-6 text-center" data-aos="zoom-in">
-            <img src="https://randomuser.me/api/portraits/men/32.jpg" alt="Pastor Manuel Paulino" class="pastor-img mx-auto mb-4">
-            <h3 class="text-2xl font-serif font-bold">Pastor Manuel Paulino</h3>
-            <p class="text-amber-700 font-medium">Fundador & Pastor General</p>
-            <p class="text-gray-600 mt-2 text-sm">Con pasión por las almas y un ministerio de liberación, guía esta iglesia bajo la unción del Espíritu Santo.</p>
-        </div>
-        <div class="card p-6 text-center" data-aos="zoom-in" data-aos-delay="100">
-            <img src="https://randomuser.me/api/portraits/women/68.jpg" alt="Pastora Marideyni de Paulino" class="pastor-img mx-auto mb-4">
-            <h3 class="text-2xl font-serif font-bold">Pastora Marideyni de Paulino</h3>
-            <p class="text-amber-700 font-medium">Co-pastora & Ministerios de Mujeres</p>
-            <p class="text-gray-600 mt-2 text-sm">Mujer de fe y oración, lidera con amor materno y consejería, transformando familias para Cristo.</p>
-        </div>
-    </div>
-</section>
-
-<!-- Días de culto (diseño claro) -->
-<section id="cultos" class="bg-amber-50/40 py-16">
+<!-- DÍAS DE CULTO (más contenido) -->
+<section id="cultos" class="py-16">
     <div class="container">
-        <h2 class="section-title" data-aos="fade-up">📅 Nuestros Días de Culto</h2>
-        <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
-            <div class="card p-5 text-center" data-aos="fade-up"><i class="fas fa-praying-hands text-3xl text-amber-600 mb-2"></i><h3 class="font-bold text-xl">Lunes</h3><p>Sanidad & Liberación</p><p class="font-semibold text-amber-700">7:30 PM</p></div>
-            <div class="card p-5 text-center" data-aos="fade-up" data-aos-delay="50"><i class="fas fa-bible text-3xl text-amber-600 mb-2"></i><h3 class="font-bold text-xl">Martes</h3><p>Discipulado Bíblico</p><p class="font-semibold text-amber-700">7:30 PM</p></div>
-            <div class="card p-5 text-center" data-aos="fade-up" data-aos-delay="100"><i class="fas fa-fist-raised text-3xl text-amber-600 mb-2"></i><h3 class="font-bold text-xl">Miércoles</h3><p>Guerra Espiritual</p><p class="font-semibold text-amber-700">7:30 PM</p></div>
-            <div class="card p-5 text-center" data-aos="fade-up" data-aos-delay="150"><i class="fas fa-music text-3xl text-amber-600 mb-2"></i><h3 class="font-bold text-xl">Domingo</h3><p>Culto General</p><p class="font-semibold text-amber-700">5:00 PM</p></div>
-        </div>
-        <p class="text-center text-gray-500 text-sm mt-8">* Los viernes y sábados: jóvenes y reuniones especiales (consultar agenda)</p>
-    </div>
-</section>
-
-<!-- EVENTO ESPECIAL: GRAN MARCHA (con ubicación en Escondido, Sabanita Caliente) -->
-<section id="evento" class="container py-16">
-    <div class="event-card card p-6 md:p-10 border-l-8 border-amber-600" data-aos="zoom-in-up">
-        <div class="text-center md:text-left md:flex md:justify-between md:items-center">
-            <div>
-                <i class="fas fa-flag-checkered text-5xl text-amber-600 mb-3 inline-block"></i>
-                <h2 class="text-3xl md:text-4xl font-serif font-bold text-amber-800">🇩🇴 La Gran Marcha de la Victoria 🇩🇴</h2>
-                <h3 class="text-xl md:text-2xl text-amber-700 mt-1">“Deshaciendo las obras del diablo en Jesús”</h3>
-            </div>
-        </div>
-        <div class="grid md:grid-cols-2 gap-6 mt-6">
-            <div>
-                <p><i class="fas fa-calendar-alt text-amber-600 w-6"></i> <strong>Fecha:</strong> Sábado 15 de Marzo, 2025</p>
-                <p class="mt-2"><i class="fas fa-clock text-amber-600 w-6"></i> <strong>Hora:</strong> 3:00 PM (concentración) / 4:00 PM (marcha)</p>
-                <p class="mt-2"><i class="fas fa-location-dot text-amber-600 w-6"></i> <strong>Punto de salida:</strong> <span class="font-semibold">Escondido, Sabanita Caliente, Baní</span> (frente al colmado Don Chicho)</p>
-                <p class="mt-2"><i class="fas fa-route text-amber-600 w-6"></i> <strong>Recorrido:</strong> Desde Escondido hasta el parque central de Baní, declarando victoria.</p>
-                <div class="bg-amber-50 p-4 rounded-xl mt-4">
-                    <p class="font-bold"><i class="fas fa-church"></i> Convocan: </p>
-                    <p>Pastor Manuel Paulino • Pastora Marideyni de Paulino • Iglesia "Deshaciendo las Obras del Diablo en el Nombre de Jesús"</p>
-                    <p class="mt-2 text-sm">¡Unidad cristiana en Baní! Invitamos a todas las denominaciones y creyentes.</p>
-                </div>
-            </div>
-            <div>
-                <div class="bg-white rounded-xl p-4 shadow-sm border border-amber-100">
-                    <i class="fas fa-microphone-alt text-amber-600"></i> <strong>Actividades:</strong> Alabanza en vivo, danza profética, testimonios de liberación, oración por la familia dominicana, suelta de globos blancos.<br>
-                    <i class="fas fa-utensils mt-2 inline-block"></i> Refrigerio para todos los asistentes.<br>
-                    <i class="fas fa-child mt-2 inline-block"></i> Ministerio de niños paralelo.<br>
-                    <span class="inline-block mt-3 bg-amber-100 px-3 py-1 rounded-full text-sm">✨ Entrada libre • Ven con tu familia ✨</span>
-                </div>
-            </div>
-        </div>
-        <div class="text-center mt-8">
-            <a href="#ubicacion" class="btn bg-amber-600 text-white px-8 py-3 rounded-full shadow"><i class="fas fa-map"></i> Ver punto de encuentro en el mapa</a>
+        <h2 class="section-title" data-aos="fade-up">📅 Horario Semanal</h2>
+        <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+            <div class="card" data-aos="fade-up"><i class="fas fa-praying-hands text-3xl text-amber-600 mb-3"></i><h3 class="font-bold text-xl">Lunes</h3><p>Noche de Sanidad & Liberación</p><p class="text-amber-700 font-semibold">7:30 PM</p></div>
+            <div class="card" data-aos="fade-up" data-aos-delay="50"><i class="fas fa-bible text-3xl text-amber-600 mb-3"></i><h3 class="font-bold text-xl">Martes</h3><p>Discipulado y Escuela de Líderes</p><p class="text-amber-700 font-semibold">7:30 PM</p></div>
+            <div class="card" data-aos="fade-up" data-aos-delay="100"><i class="fas fa-fist-raised text-3xl text-amber-600 mb-3"></i><h3 class="font-bold text-xl">Miércoles</h3><p>Guerra Espiritual & Oración</p><p class="text-amber-700 font-semibold">7:30 PM</p></div>
+            <div class="card" data-aos="fade-up" data-aos-delay="150"><i class="fas fa-users text-3xl text-amber-600 mb-3"></i><h3 class="font-bold text-xl">Jueves</h3><p>Ministerio de Familias</p><p class="text-amber-700 font-semibold">7:30 PM</p></div>
+            <div class="card" data-aos="fade-up" data-aos-delay="200"><i class="fas fa-music text-3xl text-amber-600 mb-3"></i><h3 class="font-bold text-xl">Viernes</h3><p>Jóvenes en Avivamiento</p><p class="text-amber-700 font-semibold">7:30 PM</p></div>
+            <div class="card" data-aos="fade-up" data-aos-delay="250"><i class="fas fa-church text-3xl text-amber-600 mb-3"></i><h3 class="font-bold text-xl">Domingo</h3><p>Culto General de Adoración</p><p class="text-amber-700 font-semibold">5:00 PM</p></div>
         </div>
     </div>
 </section>
 
-<!-- Ministerios (claridad) -->
-<section class="bg-amber-50/30 py-16">
+<!-- PASTORES -->
+<section id="pastores" class="bg-amber-50/40 py-16">
     <div class="container">
-        <h2 class="section-title" data-aos="fade-up">🙌 Ministerios Activos</h2>
-        <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
-            <div class="card p-5 text-center"><i class="fas fa-music text-3xl text-amber-600 mb-2"></i><h3 class="font-bold">Alabanza</h3><p class="text-sm">Adoración y música</p></div>
-            <div class="card p-5 text-center"><i class="fas fa-fist-raised text-3xl text-amber-600 mb-2"></i><h3 class="font-bold">Guerra espiritual</h3><p class="text-sm">Intercesión poderosa</p></div>
-            <div class="card p-5 text-center"><i class="fas fa-hand-holding-heart text-3xl text-amber-600 mb-2"></i><h3 class="font-bold">Ayuda social</h3><p class="text-sm">Manos solidarias</p></div>
-            <div class="card p-5 text-center"><i class="fas fa-dove text-3xl text-amber-600 mb-2"></i><h3 class="font-bold">Danza profética</h3><p class="text-sm">Expresión de gloria</p></div>
+        <h2 class="section-title" data-aos="fade-up">Nuestros Pastores</h2>
+        <div class="grid md:grid-cols-2 gap-12 max-w-3xl mx-auto">
+            <div class="card text-center" data-aos="zoom-in">
+                <!-- REEMPLAZAR CON IMAGEN REAL -->
+                <img src="https://randomuser.me/api/portraits/men/45.jpg" alt="Pastor Manuel Paulino" class="w-32 h-32 rounded-full mx-auto border-4 border-amber-300 object-cover mb-4">
+                <h3 class="text-2xl font-serif">Pastor Manuel Paulino</h3>
+                <p class="text-amber-700 font-medium">Fundador & Apóstol</p>
+                <p class="text-gray-600 mt-2">Con más de 20 años llevando el mensaje de libertad y poder del Espíritu Santo.</p>
+            </div>
+            <div class="card text-center" data-aos="zoom-in" data-aos-delay="100">
+                <!-- REEMPLAZAR CON IMAGEN REAL -->
+                <img src="https://randomuser.me/api/portraits/women/68.jpg" alt="Pastora Marideyni de Paulino" class="w-32 h-32 rounded-full mx-auto border-4 border-amber-300 object-cover mb-4">
+                <h3 class="text-2xl font-serif">Pastora Marideyni de Paulino</h3>
+                <p class="text-amber-700 font-medium">Co-pastora & Consejería Familiar</p>
+                <p class="text-gray-600 mt-2">Mujer de fe, guía a las mujeres y familias hacia la restauración integral.</p>
+            </div>
         </div>
     </div>
 </section>
 
-<!-- UBICACIÓN IGLESIA + MAPA que redirecciona a la dirección exacta (Calle Ana de Pravia #8) -->
-<section id="ubicacion" class="container py-16">
-    <h2 class="section-title" data-aos="fade-up">📍 Nuestra Ubicación en Baní</h2>
-    <div class="grid md:grid-cols-2 gap-10 items-start">
-        <div data-aos="fade-right">
-            <div class="card p-6 mb-6">
-                <h3 class="text-2xl font-serif font-bold flex items-center gap-2"><i class="fas fa-church text-amber-700"></i> Iglesia "Deshaciendo las Obras del Diablo"</h3>
-                <div class="mt-4 space-y-2">
-                    <p><i class="fas fa-location-dot text-amber-600 w-5"></i> <strong>Dirección exacta:</strong><br>
-                    Calle Principal Ana de Pravia #8<br>
-                    (Doblando a mano derecha, después de la panadería La Fe)<br>
-                    Baní, Peravia, República Dominicana</p>
-                    <p><i class="fas fa-map-pin text-amber-600 w-5"></i> <strong>Referencia:</strong> A media cuadra del parquecito Los Almendros, sector Escondido cercano.</p>
-                    <p><i class="fas fa-phone-alt text-amber-600 w-5"></i> Tel: (809) 555-4321</p>
-                    <p><i class="fab fa-whatsapp text-amber-600 w-5"></i> WhatsApp: +1 809 555 1234</p>
-                </div>
-            </div>
-            <div class="card p-6">
-                <h3 class="font-bold text-xl">📍 Punto de la Gran Marcha</h3>
-                <p class="mt-2"><i class="fas fa-flag-checkered"></i> Concentración en <strong>Escondido, Sabanita Caliente</strong> (frente al solar de la familia Paulino). Desde allí marcharemos hasta la iglesia.</p>
-                <p class="text-sm text-gray-500 mt-2">Recuerda: ¡Punto de salida! Si no conoces, contáctanos y te guiamos.</p>
-            </div>
-        </div>
-        <div data-aos="fade-left">
-            <div class="map-container">
-                <!-- Mapa interactivo con enlace a Google Maps con la dirección exacta -->
-                <iframe 
-                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3784.251!2d-70.330586!3d18.278476!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8ea53dae15fc8d5b%3A0x7a1b3c9e2f8a4d7c!2sBan%C3%AD%2C%20Peravia%2C%20Rep%C3%BAblica%20Dominicana!5e0!3m2!1ses!2s!4v1712345678901!5m2!1ses!2s" 
-                    width="100%" height="350" style="border:0; border-radius: 1.2rem;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade">
-                </iframe>
-                <div class="p-3 text-center bg-white border-t border-gray-100">
-                    <a href="https://www.google.com/maps/search/?api=1&query=Calle+Principal+Ana+de+Pravia+%238,+Ban%C3%AD,+Peravia+Rep%C3%BAblica+Dominicana" target="_blank" class="text-amber-700 font-semibold inline-flex items-center gap-1 hover:underline">
-                        <i class="fas fa-external-link-alt"></i> Abrir en Google Maps para más indicaciones
-                    </a>
-                </div>
-            </div>
-            <p class="text-xs text-gray-400 mt-3 text-center">* Haz clic en el enlace para obtener indicaciones paso a paso desde tu ubicación. ¡Estamos en Baní, cerca del sector Escondido!</p>
-        </div>
-    </div>
-</section>
-
-<!-- Testimonios breves -->
-<section class="bg-amber-50/30 py-16">
+<!-- EVENTO ESPECIAL: GRAN MARCHA (ubicación Escondido, Sabanita Caliente) -->
+<section id="evento" class="py-16">
     <div class="container">
-        <h2 class="section-title" data-aos="fade-up">📖 Lo que Dios ha hecho</h2>
-        <div class="grid md:grid-cols-2 gap-6">
-            <div class="card p-6 italic text-gray-700">“Mi matrimonio se restauró, hoy servimos juntos en la iglesia. Gracias al respaldo del Pastor Manuel.” – <span class="font-bold not-italic">Ruth P.</span></div>
-            <div class="card p-6 italic text-gray-700">“De las drogas al altar: Jesús me liberó completamente. La Pastora Marideyni intercedió por mí.” – <span class="font-bold not-italic">Jonathan R.</span></div>
+        <div class="card border-l-8 border-amber-500 p-6 md:p-10" data-aos="fade-up">
+            <div class="flex flex-col md:flex-row justify-between items-start gap-4">
+                <div>
+                    <i class="fas fa-flag-checkered text-5xl text-amber-600"></i>
+                    <h2 class="text-3xl md:text-4xl font-serif font-bold text-amber-800 mt-2">🔥 La Gran Marcha de la Victoria 🔥</h2>
+                    <p class="text-amber-700 text-xl">“Deshaciendo las obras del diablo en Jesús”</p>
+                </div>
+            </div>
+            <div class="grid md:grid-cols-2 gap-6 mt-6">
+                <div>
+                    <p><i class="fas fa-calendar-alt text-amber-600 w-6"></i> <strong>Sábado 15 de Marzo, 2025</strong></p>
+                    <p class="mt-2"><i class="fas fa-clock text-amber-600"></i> Concentración: 3:00 PM | Marcha: 4:00 PM</p>
+                    <p class="mt-2"><i class="fas fa-location-dot text-amber-600"></i> <strong>Punto de salida:</strong> Escondido, Sabanita Caliente, Baní (frente al solar de la familia Paulino)</p>
+                    <p><i class="fas fa-route text-amber-600"></i> Recorrido hasta la iglesia y parque central.</p>
+                    <div class="bg-amber-50 p-4 rounded-xl mt-4">
+                        <p><i class="fas fa-church"></i> <strong>Convocan:</strong> Pastor Manuel Paulino, Pastora Marideyni de Paulino e Iglesia "Deshaciendo las Obras del Diablo en el Nombre de Jesús"</p>
+                        <p class="mt-2 text-sm">✨ Actividades: alabanza, danza profética, testimonios, suelta de globos y refrigerio para todos. ¡Entrada libre! ✨</p>
+                    </div>
+                </div>
+                <div class="bg-white p-4 rounded-xl shadow-sm">
+                    <p class="font-bold"><i class="fas fa-microphone-alt text-amber-600"></i> Invitados especiales:</p>
+                    <p>Pastores de la región de Peravia, ministerios de música locales, y todos los creyentes que quieran declarar victoria.</p>
+                    <p class="mt-3"><i class="fas fa-child"></i> Ministerio de niños disponible.</p>
+                    <a href="#ubicacion" class="btn-primary inline-block mt-5 text-center w-full"><i class="fas fa-map"></i> Ver punto de encuentro en el mapa</a>
+                </div>
+            </div>
         </div>
     </div>
 </section>
 
-<!-- Redes y contacto rápido -->
-<section id="contacto" class="container py-16 text-center">
-    <h2 class="section-title" data-aos="fade-up">Síguenos y comparte</h2>
-    <div class="flex flex-wrap justify-center gap-6 text-4xl mb-8">
-        <a href="#" class="text-amber-700 hover:text-amber-900 transition"><i class="fab fa-facebook"></i></a>
-        <a href="#" class="text-amber-700 hover:text-amber-900 transition"><i class="fab fa-instagram"></i></a>
-        <a href="#" class="text-amber-700 hover:text-amber-900 transition"><i class="fab fa-youtube"></i></a>
-        <a href="#" class="text-amber-700 hover:text-amber-900 transition"><i class="fab fa-tiktok"></i></a>
-        <a href="https://wa.me/18095551234" class="text-green-600 hover:text-green-800"><i class="fab fa-whatsapp"></i></a>
+<!-- GALERÍA MODERNA (con placeholders para reemplazar imágenes) -->
+<section id="galeria" class="bg-amber-50/30 py-16">
+    <div class="container">
+        <h2 class="section-title" data-aos="fade-up">📸 Momentos de Poder</h2>
+        <div class="gallery-grid">
+            <!-- REEMPLAZAR CADA src CON TU PROPIA IMAGEN -->
+            <div class="gallery-item"><img src="https://picsum.photos/id/104/400/300" alt="Culto de adoración"></div>
+            <div class="gallery-item"><img src="https://picsum.photos/id/105/400/300" alt="Marcha cristiana"></div>
+            <div class="gallery-item"><img src="https://picsum.photos/id/154/400/300" alt="Pastores orando"></div>
+            <div class="gallery-item"><img src="https://picsum.photos/id/169/400/300" alt="Ministerio de danza"></div>
+        </div>
+        <p class="text-center text-sm text-gray-500 mt-4">* Pronto más fotografías de nuestras reuniones y la Gran Marcha.</p>
     </div>
-    <p class="text-gray-500">Transmitimos en vivo todos los domingos a las 5PM por Facebook y YouTube.</p>
 </section>
 
-<!-- Footer -->
+<!-- UBICACIÓN EXACTA + MAPA (Calle Ana de Pravia #8) -->
+<section id="ubicacion" class="py-16">
+    <div class="container">
+        <h2 class="section-title" data-aos="fade-up">📍 Dirección de la Iglesia</h2>
+        <div class="grid md:grid-cols-2 gap-10">
+            <div data-aos="fade-right">
+                <div class="card">
+                    <i class="fas fa-church text-3xl text-amber-700"></i>
+                    <h3 class="text-xl font-serif font-bold mt-2">Calle Principal Ana de Pravia #8</h3>
+                    <p class="mt-2"><strong>Indicación:</strong> Doblando a mano derecha, después del supermercado El Progreso. Frente a la ferretería La Fe.</p>
+                    <p class="mt-2"><i class="fas fa-map-pin text-amber-600"></i> <strong>Referencia:</strong> Sector Escondido, Baní, Peravia. República Dominicana.</p>
+                    <p class="mt-2"><i class="fas fa-phone-alt"></i> Tel: (809) 555-6789</p>
+                    <p><i class="fab fa-whatsapp"></i> WhatsApp: +1 809 555 4321</p>
+                    <div class="mt-5">
+                        <a href="https://www.google.com/maps/search/?api=1&query=Calle+Principal+Ana+de+Pravia+8,+Baní,+Peravia" target="_blank" class="btn-primary w-full text-center block"><i class="fas fa-external-link-alt"></i> Abrir en Google Maps</a>
+                    </div>
+                </div>
+                <div class="card mt-6">
+                    <h3 class="font-bold">🚩 Punto de la Gran Marcha</h3>
+                    <p>Escondido, Sabanita Caliente – Punto de concentración (frente al colmado Don Chicho).</p>
+                </div>
+            </div>
+            <div data-aos="fade-left">
+                <div class="map-card">
+                    <iframe 
+                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3784.251!2d-70.330586!3d18.278476!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8ea53dae15fc8d5b%3A0x7a1b3c9e2f8a4d7c!2sBan%C3%AD%2C%20Peravia!5e0!3m2!1ses!2sdo!4v1712345678901!5m2!1ses!2sdo" 
+                        width="100%" height="320" style="border:0; border-radius: 1.2rem;" allowfullscreen="" loading="lazy">
+                    </iframe>
+                </div>
+                <p class="text-xs text-gray-400 text-center mt-2">Mapa referencial – haz clic en el enlace para indicaciones exactas.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- FORMULARIO DE CONTACTO RÁPIDO (más contenido) -->
+<section id="contacto" class="bg-white py-16">
+    <div class="container">
+        <h2 class="section-title" data-aos="fade-up">📩 Escríbenos</h2>
+        <div class="max-w-2xl mx-auto card" data-aos="fade-up">
+            <form action="#" method="post">
+                <div class="grid md:grid-cols-2 gap-4">
+                    <input type="text" placeholder="Tu nombre" class="w-full p-3 border border-gray-200 rounded-xl bg-gray-50 focus:outline-none focus:border-amber-400">
+                    <input type="email" placeholder="Correo electrónico" class="w-full p-3 border border-gray-200 rounded-xl bg-gray-50 focus:outline-none focus:border-amber-400">
+                    <input type="tel" placeholder="Teléfono" class="w-full p-3 border border-gray-200 rounded-xl bg-gray-50 focus:outline-none focus:border-amber-400 col-span-full">
+                    <textarea rows="3" placeholder="Déjanos tu mensaje o solicitud de oración..." class="w-full p-3 border border-gray-200 rounded-xl bg-gray-50 focus:outline-none focus:border-amber-400 col-span-full"></textarea>
+                </div>
+                <div class="text-center mt-4">
+                    <button type="submit" class="btn-primary"><i class="fas fa-paper-plane"></i> Enviar mensaje</button>
+                </div>
+                <p class="text-xs text-gray-400 text-center mt-3">Te responderemos a la brevedad. ¡Dios te bendiga!</p>
+            </form>
+        </div>
+    </div>
+</section>
+
+<!-- REDES SOCIALES -->
+<section class="py-12 text-center border-t border-amber-100">
+    <div class="container">
+        <h3 class="text-2xl font-serif">Síguenos en redes</h3>
+        <div class="flex justify-center gap-8 text-3xl mt-5">
+            <a href="#" class="text-amber-700 hover:text-amber-900 transition"><i class="fab fa-facebook"></i></a>
+            <a href="#" class="text-amber-700 hover:text-amber-900 transition"><i class="fab fa-instagram"></i></a>
+            <a href="#" class="text-amber-700 hover:text-amber-900 transition"><i class="fab fa-youtube"></i></a>
+            <a href="#" class="text-amber-700 hover:text-amber-900 transition"><i class="fab fa-tiktok"></i></a>
+        </div>
+    </div>
+</section>
+
 <footer>
     <div class="container">
         <p><strong>Deshaciendo las Obras del Diablo en el Nombre de Jesús</strong> — Baní, Peravia, República Dominicana</p>
-        <p class="text-sm mt-2">Calle Principal Ana de Pravia #8 (a mano derecha) • Sector Escondido • ¡Te esperamos!</p>
-        <p class="text-xs mt-4">© 2025 - Un movimiento de fe y restauración. "Y estos signos seguirán a los que creen..." Marcos 16:17</p>
+        <p class="text-sm mt-2">Calle Principal Ana de Pravia #8 (a mano derecha) | Sector Escondido | ¡Te esperamos!</p>
+        <p class="text-xs mt-4">© 2025 - Un mover del Espíritu Santo. "Y estos signos seguirán a los que creen..." Marcos 16:17</p>
     </div>
 </footer>
 
 <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
 <script>
-    AOS.init({ duration: 800, once: true, offset: 30 });
-    // Ajuste de redirección adicional: el iframe ya muestra ubicación, pero el enlace "Abrir en Google Maps" lleva a la dirección exacta
-    // También se puede agregar un evento para que el botón "Ver punto de encuentro" vaya al mapa
-    document.querySelectorAll('a[href="#ubicacion"]').forEach(link => {
-        link.addEventListener('click', (e) => {
-            e.preventDefault();
-            document.getElementById('ubicacion').scrollIntoView({ behavior: 'smooth' });
+    AOS.init({ duration: 800, once: true });
+    // Menú hamburguesa
+    const menuIcon = document.getElementById('menuIcon');
+    const navLinks = document.getElementById('navLinks');
+    menuIcon.addEventListener('click', () => {
+        navLinks.classList.toggle('active');
+    });
+    // Cerrar menú al hacer clic en un enlace
+    document.querySelectorAll('.nav-links a').forEach(link => {
+        link.addEventListener('click', () => {
+            navLinks.classList.remove('active');
         });
     });
 </script>
