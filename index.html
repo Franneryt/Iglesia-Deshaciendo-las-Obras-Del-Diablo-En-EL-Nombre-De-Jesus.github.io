@@ -179,7 +179,7 @@ body {
   <p class="header__versiculo">"Mi casa, casa de oración será llamada" — Mateo 21:13</p>
   <div class="estado-conexion" id="estadoConexion">
     <span class="estado-conexion__punto"></span>
-    <span id="estadoConexionTexto">Local · listo</span>
+    <span id="estadoConexionTexto">Conectando...</span>
   </div>
 </header>
 
@@ -359,7 +359,15 @@ body {
 
 <div class="toast" id="toast"></div>
 
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 <script>
+/* ═══════════════════════════════════════════════════════════════
+   CONFIGURACIÓN SUPABASE (proyecto lkxmgpegbvlcoxkehnok)
+   ═══════════════════════════════════════════════════════════════ */
+const SUPABASE_URL = 'https://lkxmgpegbvlcoxkehnok.supabase.co';
+const SUPABASE_KEY = 'sb_publishable_6Mnch3noo6k5ep1w7GCGVQ_jLKMlt3u';
+const sb = supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
+
 /* ═══════════════════════════════════════════════════════════════
    UTILIDADES
    ═══════════════════════════════════════════════════════════════ */
@@ -394,107 +402,145 @@ const Utils = {
     const txt = document.getElementById('estadoConexionTexto');
     cont.classList.remove('estado-conexion--online', 'estado-conexion--offline');
     cont.classList.add(online ? 'estado-conexion--online' : 'estado-conexion--offline');
-    txt.textContent = online ? 'Local · sincronizado' : 'Local · datos guardados';
+    txt.textContent = online ? 'En vivo · conectado' : 'Sin conexión';
   }
 };
 
 /* ═══════════════════════════════════════════════════════════════
-   ALMACENAMIENTO LOCAL (reemplaza Supabase)
+   ASIENTOS (mapa en memoria)
    ═══════════════════════════════════════════════════════════════ */
-const Store = (() => {
-  const CLAVE = 'icdnj_reservas_v2';
+const Asientos = (() => {
+  const CAPACIDAD = 100;
+  let mapa = {};
+
+  function inicializar() {
+    mapa = {};
+    for (let i = 1; i <= CAPACIDAD; i++) {
+      const fila = Math.ceil(i / 10);
+      const col = ((i - 1) % 10) + 1;
+      let zona = 'general';
+      if (fila <= 2) zona = 'preferencial';
+      if (fila === 10 && col >= 4 && col <= 7) zona = 'movilidad';
+      mapa[i] = { numero: i, fila, columna: col, zona, estado: 'libre', reservadoPor: null, codigo: null };
+    }
+  }
+
+  function aplicarFila(row) {
+    const a = mapa[row.number];
+    if (!a) return;
+    a.estado = row.reserved ? (row.status === 'cancelada' ? 'libre' : 'ocupado') : 'libre';
+    a.reservadoPor = row.reserved_by;
+    a.codigo = row.code;
+  }
+
+  function reemplazarTodo(rows) {
+    inicializar();
+    rows.forEach(aplicarFila);
+  }
+
+  const obtener = (n) => mapa[n];
+  const todos = () => Object.values(mapa);
+  const estaOcupado = (n) => mapa[n]?.estado === 'ocupado';
+
+  function estadisticas() {
+    const arr = todos();
+    const ocupados = arr.filter(a => a.estado === 'ocupado').length;
+    const pref = arr.filter(a => a.zona === 'preferencial');
+    const mov = arr.filter(a => a.zona === 'movilidad');
+    return {
+      total: CAPACIDAD, ocupados,
+      disponibles: CAPACIDAD - ocupados,
+      porcentaje: Math.round((ocupados / CAPACIDAD) * 100),
+      preferenciales: pref.filter(a => a.estado === 'libre').length,
+      preferencialesTotal: pref.length,
+      movilidad: mov.filter(a => a.estado === 'libre').length,
+      movilidadTotal: mov.length
+    };
+  }
+
+  return { inicializar, aplicarFila, reemplazarTodo, obtener, todos, estaOcupado, estadisticas, CAPACIDAD };
+})();
+
+/* ═══════════════════════════════════════════════════════════════
+   RESERVAS (Supabase)
+   ═══════════════════════════════════════════════════════════════ */
+const Reservas = (() => {
   const CLAVE_LOCAL = 'icdnj_mis_reservas';
 
-  function leerTodas() {
-    try { return JSON.parse(localStorage.getItem(CLAVE) || '{}'); }
-    catch { return {}; }
+  async function cargarAsientos() {
+    const { data, error } = await sb.from('seats').select('*').order('number');
+    if (error) throw error;
+    Asientos.reemplazarTodo(data || []);
+    return data;
   }
 
-  function escribirTodas(obj) {
-    localStorage.setItem(CLAVE, JSON.stringify(obj));
-    // Notificar a otras pestañas/ventanas
-    window.dispatchEvent(new CustomEvent('icdnj-store-updated'));
-  }
+  async function crear({ asiento, nombre, telefono, email, edad, notas }) {
+    if (!asiento) throw new Error('Asiento no especificado');
+    if (!nombre?.trim()) throw new Error('El nombre es obligatorio');
+    if (!Utils.validarNombre(nombre)) throw new Error('Nombre inválido');
+    if (!Utils.validarEmail(email)) throw new Error('Correo inválido');
 
-  function get(asiento) {
-    return leerTodas()[asiento] || null;
-  }
-
-  function reservar(asiento, datos) {
-    const todas = leerTodas();
-    if (todas[asiento] && todas[asiento].reserved) {
-      throw new Error('Ese asiento ya está ocupado');
-    }
     const codigo = Utils.generarCodigo();
+
+    const { data, error } = await sb.from('seats')
+      .update({
+        reserved: true,
+        reserved_by: Utils.limpiar(nombre),
+        reserved_phone: Utils.limpiar(telefono),
+        reserved_email: Utils.limpiar(email),
+        reserved_age: Utils.limpiar(edad),
+        reserved_notes: Utils.limpiar(notas),
+        code: codigo,
+        status: 'activa',
+        checkin: 0,
+        reserved_at: Utils.ahora()
+      })
+      .eq('number', asiento)
+      .eq('reserved', false)
+      .select();
+
+    if (error) throw new Error('Error de red. Intenta de nuevo.');
+    if (!data || data.length === 0) throw new Error('Ese asiento acaba de ser ocupado. Elige otro.');
+
     const reserva = {
-      number: asiento,
-      reserved: true,
-      reserved_by: Utils.limpiar(datos.nombre),
-      reserved_phone: Utils.limpiar(datos.telefono),
-      reserved_email: Utils.limpiar(datos.email),
-      reserved_age: Utils.limpiar(datos.edad),
-      reserved_notes: Utils.limpiar(datos.notas),
-      code: codigo,
-      status: 'activa',
-      checkin: 0,
-      reserved_at: Utils.ahora()
+      codigo, asiento,
+      nombre: Utils.limpiar(nombre),
+      telefono: Utils.limpiar(telefono),
+      email: Utils.limpiar(email),
+      edad: Utils.limpiar(edad),
+      notas: Utils.limpiar(notas),
+      estado: 'activa',
+      fecha: data[0].reserved_at,
+      checkin: 0
     };
-    todas[asiento] = reserva;
-    escribirTodas(todas);
-    return { ...reserva, codigo };
+
+    Asientos.aplicarFila(data[0]);
+    guardarLocal(reserva);
+    return reserva;
   }
 
-  function cancelar(codigo) {
-    const todas = leerTodas();
-    let encontrado = null;
-    for (const k in todas) {
-      if (todas[k].code === codigo) { encontrado = todas[k]; delete todas[k]; break; }
-    }
-    if (!encontrado) throw new Error('Reserva no encontrada');
-    escribirTodas(todas);
-    return true;
-  }
+  async function listar(filtros = {}) {
+    const { data, error } = await sb.from('seats').select('*').eq('reserved', true);
+    if (error) throw error;
 
-  function checkin(codigo) {
-    const todas = leerTodas();
-    for (const k in todas) {
-      if (todas[k].code === codigo) {
-        todas[k].checkin = 1;
-        todas[k].status = 'asistio';
-        escribirTodas(todas);
-        return todas[k];
-      }
-    }
-    throw new Error('Reserva no encontrada');
-  }
-
-  function resetearTodo() {
-    escribirTodas({});
-    localStorage.removeItem(CLAVE_LOCAL);
-  }
-
-  function listar(filtros = {}) {
-    const todas = leerTodas();
-    let arr = Object.values(todas)
-      .filter(r => r.reserved)
-      .map(r => ({
-        codigo: r.code, asiento: r.number, nombre: r.reserved_by || '',
-        telefono: r.reserved_phone || '', email: r.reserved_email || '',
-        edad: r.reserved_age || '', notas: r.reserved_notes || '',
-        estado: r.status || 'activa', fecha: r.reserved_at,
-        checkin: r.checkin || 0
-      }));
+    let arr = (data || []).map(r => ({
+      codigo: r.code, asiento: r.number, nombre: r.reserved_by || '',
+      telefono: r.reserved_phone || '', email: r.reserved_email || '',
+      edad: r.reserved_age || '', notas: r.reserved_notes || '',
+      estado: r.status || 'activa', fecha: r.reserved_at,
+      checkin: r.checkin || 0
+    }));
 
     if (filtros.estado) arr = arr.filter(r => r.estado === filtros.estado);
 
     if (filtros.busqueda) {
-      const q = filtros.busqueda.toLowerCase();
+      const q2 = filtros.busqueda.toLowerCase();
       arr = arr.filter(r =>
-        (r.nombre && r.nombre.toLowerCase().includes(q)) ||
-        (r.codigo && r.codigo.toLowerCase().includes(q)) ||
-        (r.telefono && r.telefono.toLowerCase().includes(q)) ||
-        (r.email && r.email.toLowerCase().includes(q)) ||
-        String(r.asiento).includes(q)
+        (r.nombre && r.nombre.toLowerCase().includes(q2)) ||
+        (r.codigo && r.codigo.toLowerCase().includes(q2)) ||
+        (r.telefono && r.telefono.toLowerCase().includes(q2)) ||
+        (r.email && r.email.toLowerCase().includes(q2)) ||
+        String(r.asiento).includes(q2)
       );
     }
 
@@ -502,21 +548,54 @@ const Store = (() => {
     return arr;
   }
 
-  function porCodigo(codigo) {
-    const todas = leerTodas();
-    for (const k in todas) {
-      if (todas[k].code === codigo) {
-        const r = todas[k];
-        return {
-          codigo: r.code, asiento: r.number, nombre: r.reserved_by || '',
-          telefono: r.reserved_phone || '', email: r.reserved_email || '',
-          edad: r.reserved_age || '', notas: r.reserved_notes || '',
-          estado: r.status || 'activa', fecha: r.reserved_at,
-          checkin: r.checkin || 0
-        };
-      }
-    }
-    return null;
+  async function porCodigo(codigo) {
+    const { data, error } = await sb.from('seats').select('*').eq('code', codigo).maybeSingle();
+    if (error) throw error;
+    if (!data) return null;
+    return {
+      codigo: data.code, asiento: data.number, nombre: data.reserved_by || '',
+      telefono: data.reserved_phone || '', email: data.reserved_email || '',
+      edad: data.reserved_age || '', notas: data.reserved_notes || '',
+      estado: data.status || 'activa', fecha: data.reserved_at,
+      checkin: data.checkin || 0
+    };
+  }
+
+  async function cancelar(codigo) {
+    const { data: enc } = await sb.from('seats').select('*').eq('code', codigo).maybeSingle();
+    if (!enc) throw new Error('Reserva no encontrada');
+    if (enc.status === 'cancelada') throw new Error('Ya está cancelada');
+
+    const { data, error } = await sb.from('seats').update({
+      reserved: false, reserved_by: null, reserved_phone: null,
+      reserved_email: null, reserved_age: null, reserved_notes: null,
+      code: null, status: 'cancelada', checkin: 0, reserved_at: null
+    }).eq('code', codigo).select();
+
+    if (error) throw error;
+    if (data?.[0]) Asientos.aplicarFila(data[0]);
+    quitarLocal(codigo);
+    return true;
+  }
+
+  async function checkin(codigo) {
+    const { data, error } = await sb.from('seats')
+      .update({ checkin: 1, status: 'asistio' })
+      .eq('code', codigo).select();
+    if (error) throw error;
+    if (!data?.[0]) throw new Error('Reserva no encontrada');
+    return data[0];
+  }
+
+  async function resetearTodo() {
+    const { error } = await sb.from('seats').update({
+      reserved: false, reserved_by: null, reserved_phone: null,
+      reserved_email: null, reserved_age: null, reserved_notes: null,
+      code: null, status: 'libre', checkin: 0, reserved_at: null
+    }).eq('reserved', true);
+    if (error) throw error;
+    localStorage.removeItem(CLAVE_LOCAL);
+    await cargarAsientos();
   }
 
   function guardarLocal(reserva) {
@@ -544,144 +623,31 @@ const Store = (() => {
     };
   }
 
-  return {
-    get, reservar, cancelar, checkin, resetearTodo, listar, porCodigo,
-    guardarLocal, quitarLocal, misReservasLocales, limpiarMisReservasLocales,
-    estadisticas, leerTodas, escribirTodas
-  };
-})();
-
-/* ═══════════════════════════════════════════════════════════════
-   ASIENTOS (mapa en memoria)
-   ═══════════════════════════════════════════════════════════════ */
-const Asientos = (() => {
-  const CAPACIDAD = 100;
-  let mapa = {};
-
-  function inicializar() {
-    mapa = {};
-    for (let i = 1; i <= CAPACIDAD; i++) {
-      const fila = Math.ceil(i / 10);
-      const col = ((i - 1) % 10) + 1;
-      let zona = 'general';
-      if (fila <= 2) zona = 'preferencial';
-      if (fila === 10 && col >= 4 && col <= 7) zona = 'movilidad';
-      mapa[i] = { numero: i, fila, columna: col, zona, estado: 'libre', reservadoPor: null, codigo: null };
-    }
-  }
-
-  function aplicarFila(row) {
-    if (!row || !row.number) return;
-    const a = mapa[row.number];
-    if (!a) return;
-    a.estado = row.reserved ? (row.status === 'cancelada' ? 'libre' : 'ocupado') : 'libre';
-    a.reservadoPor = row.reserved_by;
-    a.codigo = row.code;
-  }
-
-  function reemplazarTodo() {
-    inicializar();
-    const todas = Store.leerTodas();
-    Object.values(todas).forEach(aplicarFila);
-  }
-
-  const obtener = (n) => mapa[n];
-  const todos = () => Object.values(mapa);
-  const estaOcupado = (n) => mapa[n]?.estado === 'ocupado';
-
-  function estadisticas() {
-    const arr = todos();
-    const ocupados = arr.filter(a => a.estado === 'ocupado').length;
-    const pref = arr.filter(a => a.zona === 'preferencial');
-    const mov = arr.filter(a => a.zona === 'movilidad');
-    return {
-      total: CAPACIDAD, ocupados,
-      disponibles: CAPACIDAD - ocupados,
-      porcentaje: Math.round((ocupados / CAPACIDAD) * 100),
-      preferenciales: pref.filter(a => a.estado === 'libre').length,
-      preferencialesTotal: pref.length,
-      movilidad: mov.filter(a => a.estado === 'libre').length,
-      movilidadTotal: mov.length
-    };
-  }
-
-  return { inicializar, aplicarFila, reemplazarTodo, obtener, todos, estaOcupado, estadisticas, CAPACIDAD };
-})();
-
-/* ═══════════════════════════════════════════════════════════════
-   RESERVAS (capa sobre Store local)
-   ═══════════════════════════════════════════════════════════════ */
-const Reservas = (() => {
-  async function cargarAsientos() {
-    Asientos.reemplazarTodo();
-    return Asientos.todos();
-  }
-
-  async function crear({ asiento, nombre, telefono, email, edad, notas }) {
-    if (!asiento) throw new Error('Asiento no especificado');
-    if (!nombre?.trim()) throw new Error('El nombre es obligatorio');
-    if (!Utils.validarNombre(nombre)) throw new Error('Nombre inválido');
-    if (!Utils.validarEmail(email)) throw new Error('Correo inválido');
-
-    const row = Store.reservar(asiento, { nombre, telefono, email, edad, notas });
-    Asientos.aplicarFila(row);
-    const reserva = {
-      codigo: row.code, asiento: row.number, nombre: row.reserved_by,
-      telefono: row.reserved_phone, email: row.reserved_email,
-      edad: row.reserved_age, notas: row.reserved_notes,
-      estado: row.status, fecha: row.reserved_at, checkin: row.checkin
-    };
-    Store.guardarLocal(reserva);
-    return reserva;
-  }
-
-  async function listar(filtros = {}) {
-    return Store.listar(filtros);
-  }
-
-  async function porCodigo(codigo) {
-    return Store.porCodigo(codigo);
-  }
-
-  async function cancelar(codigo) {
-    Store.cancelar(codigo);
-    Asientos.reemplazarTodo();
-    Store.quitarLocal(codigo);
-    return true;
-  }
-
-  async function checkin(codigo) {
-    const row = Store.checkin(codigo);
-    Asientos.aplicarFila(row);
-    return row;
-  }
-
-  async function resetearTodo() {
-    Store.resetearTodo();
-    Asientos.reemplazarTodo();
-  }
-
   function suscribirse(callback) {
-    // Sincronización entre pestañas mediante evento storage
-    window.addEventListener('storage', (e) => {
-      if (e.key === 'icdnj_reservas_v2' || e.key === null) {
-        Asientos.reemplazarTodo();
-        if (callback) callback();
-      }
-    });
-    // Evento interno (misma pestaña) ya cubierto por renderTodo tras operaciones
-    window.addEventListener('icdnj-store-updated', () => {
-      if (callback) callback();
-    });
-    Utils.setConexion(true);
+    const canal = sb.channel('seats-live')
+      .on('postgres_changes',
+        { event: 'UPDATE', schema: 'public', table: 'seats' },
+        (payload) => {
+          Asientos.aplicarFila(payload.new);
+          if (callback) callback(payload.new);
+        })
+      .on('postgres_changes',
+        { event: 'INSERT', schema: 'public', table: 'seats' },
+        (payload) => {
+          Asientos.aplicarFila(payload.new);
+          if (callback) callback(payload.new);
+        })
+      .subscribe((status) => {
+        if (status === 'SUBSCRIBED') Utils.setConexion(true);
+        else if (status === 'CHANNEL_ERROR' || status === 'TIMED_OUT') Utils.setConexion(false);
+      });
+    return canal;
   }
 
   return {
     cargarAsientos, crear, listar, porCodigo, cancelar, checkin,
     resetearTodo, suscribirse,
-    misReservasLocales: Store.misReservasLocales,
-    limpiarMisReservasLocales: Store.limpiarMisReservasLocales,
-    estadisticas: Store.estadisticas
+    misReservasLocales, limpiarMisReservasLocales, estadisticas
   };
 })();
 
@@ -1056,7 +1022,7 @@ const Eventos = (() => {
 })();
 
 /* ═══════════════════════════════════════════════════════════════
-   INICIALIZACIÓN
+   INICIALIZACIÓN + REALTIME
    ═══════════════════════════════════════════════════════════════ */
 (async function main() {
   try {
@@ -1079,10 +1045,15 @@ const Eventos = (() => {
       }
     });
 
-    console.log('%c✝ ICDNJ · Reservas locales (localStorage)', 'color:#d4af37;font-size:16px;font-weight:bold;');
+    window.addEventListener('online', async () => {
+      try { await Reservas.cargarAsientos(); Vista.renderTodo(); Utils.setConexion(true); } catch {}
+    });
+    window.addEventListener('offline', () => Utils.setConexion(false));
+
+    console.log('%c✝ ICDNJ · Reservas en vivo (Supabase)', 'color:#d4af37;font-size:16px;font-weight:bold;');
   } catch (e) {
     console.error(e);
-    Utils.toast('Error al iniciar la aplicación', 'error');
+    Utils.toast('Error al conectar con la base de datos', 'error');
     Utils.setConexion(false);
   }
 })();
