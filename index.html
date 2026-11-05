@@ -24,7 +24,25 @@ body {
               linear-gradient(180deg, var(--azul-profundo), var(--azul-noche));
   background-attachment: fixed; min-height: 100vh; color: var(--blanco);
   line-height: 1.6; padding: 20px 16px 60px; -webkit-font-smoothing: antialiased;
+  position: relative;
 }
+
+/* 🔧 CAMBIO 1 — Logo del león como fondo difuminado detrás de todo */
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background-image: url('https://img.sanishtech.com/u/51850a51dd601d84bd1eae78d70fa50a.png');
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: min(70vmin, 700px);
+  opacity: 0.10;
+  filter: blur(1.5px) saturate(1.2);
+  z-index: 0;
+  pointer-events: none;
+}
+.header, .contenedor, .modal, .toast { position: relative; z-index: 1; }
+
 .header { text-align: center; margin-bottom: 30px; position: relative; }
 .header__logo { display: inline-flex; align-items: center; gap: 14px; margin-bottom: 8px; }
 .header__cruz { font-size: 2rem; color: var(--dorado); filter: drop-shadow(0 0 15px rgba(212,175,55,0.6)); animation: brillo 3s ease-in-out infinite; }
@@ -34,6 +52,15 @@ body {
   -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
 .header__subtitulo { color: var(--gris-medio); font-size: 0.95rem; letter-spacing: 0.5px; margin-top: 4px; }
 .header__versiculo { color: var(--gris-medio); font-style: italic; font-size: 0.82rem; margin-top: 10px; opacity: 0.8; }
+
+/* 🔧 CAMBIO 1 — Logo visible en el header */
+.header__logo-img {
+  width: 90px; height: 90px; border-radius: 50%;
+  object-fit: cover; border: 2px solid var(--dorado);
+  box-shadow: 0 0 25px rgba(212,175,55,0.55);
+  background: rgba(0,0,0,0.4);
+}
+
 .contenedor { max-width: 1100px; margin: 0 auto; }
 .panel { background: rgba(255,255,255,0.035); border: 1px solid rgba(212,175,55,0.22); border-radius: var(--radio-lg); padding: 28px 26px; backdrop-filter: blur(10px); box-shadow: var(--sombra-lg); }
 .nav { display: flex; justify-content: center; gap: 8px; margin-bottom: 24px; flex-wrap: wrap; }
@@ -140,6 +167,49 @@ body {
 .grafico-valor { color: var(--dorado-claro); font-weight: 700; text-align: right; }
 .pie { text-align: center; margin-top: 40px; color: var(--gris-medio); font-style: italic; font-size: 0.85rem; opacity: 0.75; }
 .pie strong { color: var(--dorado); font-style: normal; display: block; margin-top: 6px; font-size: 0.8rem; letter-spacing: 1px; }
+
+/* 🔧 CAMBIO 2 — Selector de fecha (14 días) */
+.selector-fecha {
+  display: flex; gap: 8px; overflow-x: auto; padding: 8px 4px 14px;
+  margin-bottom: 18px; scrollbar-width: thin;
+}
+.selector-fecha::-webkit-scrollbar { height: 6px; }
+.selector-fecha::-webkit-scrollbar-thumb { background: rgba(212,175,55,0.4); border-radius: 3px; }
+.dia-btn {
+  flex: 0 0 auto; min-width: 78px; padding: 10px 8px; border-radius: var(--radio-sm);
+  border: 1px solid rgba(212,175,55,0.3); background: rgba(0,0,0,0.25);
+  color: var(--gris-claro); font-family: inherit; font-size: 0.78rem; cursor: pointer;
+  transition: all 0.2s; text-align: center; line-height: 1.2;
+}
+.dia-btn:hover { border-color: var(--dorado); background: rgba(212,175,55,0.1); }
+.dia-btn.activo {
+  background: linear-gradient(135deg, var(--dorado), var(--dorado-oscuro));
+  color: var(--azul-profundo); border-color: var(--dorado); font-weight: 700;
+  box-shadow: 0 4px 14px rgba(212,175,55,0.4);
+}
+.dia-btn__dia { display: block; font-size: 1.1rem; font-weight: 800; }
+.dia-btn__mes { display: block; font-size: 0.65rem; text-transform: uppercase; letter-spacing: 1px; opacity: 0.8; }
+.dia-btn__semana { display: block; font-size: 0.62rem; opacity: 0.7; }
+
+/* 🔧 CAMBIO 3 — Aviso 7:15 pm */
+.aviso-715 {
+  display: flex; align-items: flex-start; gap: 12px;
+  background: linear-gradient(135deg, rgba(196,122,26,0.18), rgba(212,175,55,0.12));
+  border: 1px solid rgba(212,175,55,0.55);
+  border-left: 4px solid var(--naranja);
+  border-radius: var(--radio-md);
+  padding: 14px 18px; margin-bottom: 20px;
+  color: var(--dorado-claro); font-size: 0.86rem; line-height: 1.5;
+  box-shadow: 0 4px 20px rgba(196,122,26,0.15);
+}
+.aviso-715__icono { font-size: 1.4rem; flex-shrink: 0; line-height: 1; }
+.aviso-715__texto b { color: var(--dorado); }
+.aviso-715--compacto {
+  margin: 14px 0 4px; padding: 10px 14px; font-size: 0.78rem;
+  border-left-width: 3px;
+}
+.aviso-715--compacto .aviso-715__icono { font-size: 1.1rem; }
+
 @media (max-width: 720px) {
   .panel { padding: 20px 16px; }
   .grid-pasillo { grid-template-columns: 1fr 14px 1fr; }
@@ -151,6 +221,7 @@ body {
   .estado__valor { font-size: 1.35rem; }
   .campo-fila { grid-template-columns: 1fr; }
   .grafico-fila { grid-template-columns: 90px 1fr 50px; font-size: 0.78rem; }
+  .header__logo-img { width: 70px; height: 70px; }
 }
 @media (max-width: 420px) {
   .estado { grid-template-columns: 1fr 1fr; }
@@ -172,7 +243,7 @@ body {
 
 <header class="header">
   <div class="header__logo">
-    <span class="header__cruz">✝</span>
+    <img class="header__logo-img" src="https://img.sanishtech.com/u/51850a51dd601d84bd1eae78d70fa50a.png" alt="Logo ICDNJ">
     <h1 class="header__titulo">ICDNJ</h1>
   </div>
   <p class="header__subtitulo">Iglesia Cristiana · Reserva tu asiento</p>
@@ -195,6 +266,18 @@ body {
     </nav>
 
     <div class="admin-seccion activa" id="vista-reservar">
+
+      <!-- 🔧 CAMBIO 3 — Aviso de las 7:15 pm -->
+      <div class="aviso-715">
+        <span class="aviso-715__icono">⏰</span>
+        <div class="aviso-715__texto">
+          <b>Importante:</b> para sostener el asiento seleccionado, deben llevar a las <b>7:15 pm</b>; de lo contrario no tendrá reclamo.
+        </div>
+      </div>
+
+      <!-- 🔧 CAMBIO 2 — Selector de 14 días -->
+      <div class="selector-fecha" id="selectorFechas"></div>
+
       <div class="estado">
         <div class="estado__item">
           <span class="estado__label">Disponibles</span>
@@ -288,12 +371,12 @@ body {
         <table class="tabla" id="tablaAdmin">
           <thead>
             <tr>
-              <th>Asiento</th><th>Código</th><th>Nombre</th><th>Teléfono</th>
-              <th>Email</th><th>Estado</th><th>Fecha</th><th>Acciones</th>
+              <th>Asiento</th><th>Fecha</th><th>Código</th><th>Nombre</th><th>Teléfono</th>
+              <th>Email</th><th>Estado</th><th>Registrada</th><th>Acciones</th>
             </tr>
           </thead>
           <tbody id="tablaAdminBody">
-            <tr><td colspan="8" class="vacio">Cargando...</td></tr>
+            <tr><td colspan="9" class="vacio">Cargando...</td></tr>
           </tbody>
         </table>
       </div>
@@ -308,7 +391,7 @@ body {
         <div class="estado__item"><span class="estado__label">Asistieron</span><span class="estado__valor" id="estaAsistieron">0</span></div>
         <div class="estado__item"><span class="estado__label">Canceladas</span><span class="estado__valor" id="estaCanceladas">0</span></div>
       </div>
-      <h3 style="color: var(--dorado-claro); font-size: 1rem; margin-top: 24px; margin-bottom: 8px;">Ocupación por zona</h3>
+      <h3 style="color: var(--dorado-claro); font-size: 1rem; margin-top: 24px; margin-bottom: 8px;">Ocupación por zona (día seleccionado)</h3>
       <div class="grafico-barras" id="graficoZonas"></div>
       <h3 style="color: var(--dorado-claro); font-size: 1rem; margin-top: 24px; margin-bottom: 8px;">Reservas por hora</h3>
       <div class="grafico-barras" id="graficoHoras"></div>
@@ -327,7 +410,16 @@ body {
     <button class="modal__cerrar" id="modalCerrar">×</button>
     <div id="modalContenidoForm">
       <h3 class="modal__titulo">Registrar reserva</h3>
-      <p class="modal__sub">Asiento seleccionado: <b id="modalAsientoNum">—</b></p>
+      <p class="modal__sub">Asiento seleccionado: <b id="modalAsientoNum">—</b> · Fecha: <b id="modalFecha">—</b></p>
+
+      <!-- 🔧 CAMBIO 3 — Aviso compacto en el modal -->
+      <div class="aviso-715 aviso-715--compacto">
+        <span class="aviso-715__icono">⏰</span>
+        <div class="aviso-715__texto">
+          Para sostener el asiento, deben llevar a las <b>7:15 pm</b>; de lo contrario no tendrá reclamo.
+        </div>
+      </div>
+
       <div class="campo-grupo">
         <label class="campo-label">Nombre completo *</label>
         <input class="campo" type="text" id="inputNombre" placeholder="Ej: Juan Pérez" maxlength="80" autocomplete="name">
@@ -362,11 +454,14 @@ body {
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 <script>
 /* ═══════════════════════════════════════════════════════════════
-   CONFIGURACIÓN SUPABASE (proyecto lkxmgpegbvlcoxkehnok)
+   CONFIGURACIÓN — Supabase y logo
    ═══════════════════════════════════════════════════════════════ */
-const SUPABASE_URL = 'https://lkxmgpegbvlcoxkehnok.supabase.co';
-const SUPABASE_KEY = 'sb_publishable_6Mnch3noo6k5ep1w7GCGVQ_jLKMlt3u';
+const SUPABASE_URL = 'https://dsawaaeekcrmljbcuqewi.supabase.co';
+const SUPABASE_KEY = 'sb_publishable_-rK_cxLZWWoRll-NFFLslQ_ALE6c6eH';
 const sb = supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
+
+// 🔧 CAMBIO 1 — URL del logo (cámbiala si algún día caduca)
+const LOGO_URL = 'https://img.sanishtech.com/u/51850a51dd601d84bd1eae78d70fa50a.png';
 
 /* ═══════════════════════════════════════════════════════════════
    UTILIDADES
@@ -379,12 +474,36 @@ const Utils = {
     return codigo;
   },
   ahora: () => new Date().toISOString(),
+  fechaISO(d) {
+    const x = new Date(d);
+    const y = x.getFullYear();
+    const m = String(x.getMonth() + 1).padStart(2, '0');
+    const dd = String(x.getDate()).padStart(2, '0');
+    return `${y}-${m}-${dd}`;
+  },
+  proximos14Dias() {
+    const arr = [];
+    const hoy = new Date();
+    hoy.setHours(0,0,0,0);
+    for (let i = 0; i < 14; i++) {
+      const d = new Date(hoy);
+      d.setDate(hoy.getDate() + i);
+      arr.push(d);
+    }
+    return arr;
+  },
   formatearFecha(iso) {
     if (!iso) return '';
     return new Date(iso).toLocaleString('es-DO', {
       day: '2-digit', month: '2-digit', year: 'numeric',
       hour: '2-digit', minute: '2-digit'
     });
+  },
+  formatearFechaDia(fechaISO) {
+    if (!fechaISO) return '';
+    const [y, m, d] = fechaISO.split('-').map(Number);
+    const dt = new Date(y, m - 1, d);
+    return dt.toLocaleDateString('es-DO', { weekday: 'long', day: 'numeric', month: 'long' });
   },
   limpiar: (t) => !t ? '' : String(t).trim().replace(/[<>]/g, '').substring(0, 120),
   validarNombre: (n) => /^[a-zA-ZáéíóúÁÉÍÓÚñÑüÜ\s.'-]{2,80}$/.test(n.trim()),
@@ -407,11 +526,13 @@ const Utils = {
 };
 
 /* ═══════════════════════════════════════════════════════════════
-   ASIENTOS (mapa en memoria)
+   ASIENTOS (mapa en memoria, filtrado por fecha)
    ═══════════════════════════════════════════════════════════════ */
 const Asientos = (() => {
   const CAPACIDAD = 100;
-  let mapa = {};
+  let mapa = {};                       // mapa del día seleccionado
+  let fechaSeleccionada = Utils.fechaISO(new Date());
+  let fechas = Utils.proximos14Dias();
 
   function inicializar() {
     mapa = {};
@@ -426,6 +547,8 @@ const Asientos = (() => {
   }
 
   function aplicarFila(row) {
+    // solo aplica si la fila corresponde al día seleccionado
+    if (row.fecha && row.fecha !== fechaSeleccionada) return;
     const a = mapa[row.number];
     if (!a) return;
     a.estado = row.reserved ? (row.status === 'cancelada' ? 'libre' : 'ocupado') : 'libre';
@@ -458,17 +581,26 @@ const Asientos = (() => {
     };
   }
 
-  return { inicializar, aplicarFila, reemplazarTodo, obtener, todos, estaOcupado, estadisticas, CAPACIDAD };
+  return {
+    inicializar, aplicarFila, reemplazarTodo, obtener, todos, estaOcupado, estadisticas, CAPACIDAD,
+    getFecha: () => fechaSeleccionada,
+    setFecha: (f) => { fechaSeleccionada = f; },
+    getFechas: () => fechas
+  };
 })();
 
 /* ═══════════════════════════════════════════════════════════════
-   RESERVAS (Supabase)
+   RESERVAS (Supabase, filtradas por fecha)
    ═══════════════════════════════════════════════════════════════ */
 const Reservas = (() => {
   const CLAVE_LOCAL = 'icdnj_mis_reservas';
 
-  async function cargarAsientos() {
-    const { data, error } = await sb.from('seats').select('*').order('number');
+  async function cargarAsientos(fecha) {
+    const f = fecha || Asientos.getFecha();
+    const { data, error } = await sb.from('seats')
+      .select('*')
+      .eq('fecha', f)
+      .order('number');
     if (error) throw error;
     Asientos.reemplazarTodo(data || []);
     return data;
@@ -480,8 +612,10 @@ const Reservas = (() => {
     if (!Utils.validarNombre(nombre)) throw new Error('Nombre inválido');
     if (!Utils.validarEmail(email)) throw new Error('Correo inválido');
 
+    const fecha = Asientos.getFecha();
     const codigo = Utils.generarCodigo();
 
+    // Actualiza la fila (number, fecha) solo si está libre
     const { data, error } = await sb.from('seats')
       .update({
         reserved: true,
@@ -496,6 +630,7 @@ const Reservas = (() => {
         reserved_at: Utils.ahora()
       })
       .eq('number', asiento)
+      .eq('fecha', fecha)
       .eq('reserved', false)
       .select();
 
@@ -503,14 +638,14 @@ const Reservas = (() => {
     if (!data || data.length === 0) throw new Error('Ese asiento acaba de ser ocupado. Elige otro.');
 
     const reserva = {
-      codigo, asiento,
+      codigo, asiento, fecha,
       nombre: Utils.limpiar(nombre),
       telefono: Utils.limpiar(telefono),
       email: Utils.limpiar(email),
       edad: Utils.limpiar(edad),
       notas: Utils.limpiar(notas),
       estado: 'activa',
-      fecha: data[0].reserved_at,
+      fechaRegistro: data[0].reserved_at,
       checkin: 0
     };
 
@@ -520,14 +655,17 @@ const Reservas = (() => {
   }
 
   async function listar(filtros = {}) {
-    const { data, error } = await sb.from('seats').select('*').eq('reserved', true);
+    let q = sb.from('seats').select('*').eq('reserved', true);
+    if (filtros.fecha) q = q.eq('fecha', filtros.fecha);
+    const { data, error } = await q;
     if (error) throw error;
 
     let arr = (data || []).map(r => ({
-      codigo: r.code, asiento: r.number, nombre: r.reserved_by || '',
+      codigo: r.code, asiento: r.number, fecha: r.fecha,
+      nombre: r.reserved_by || '',
       telefono: r.reserved_phone || '', email: r.reserved_email || '',
       edad: r.reserved_age || '', notas: r.reserved_notes || '',
-      estado: r.status || 'activa', fecha: r.reserved_at,
+      estado: r.status || 'activa', fechaRegistro: r.reserved_at,
       checkin: r.checkin || 0
     }));
 
@@ -544,7 +682,7 @@ const Reservas = (() => {
       );
     }
 
-    arr.sort((a, b) => new Date(b.fecha) - new Date(a.fecha));
+    arr.sort((a, b) => new Date(b.fechaRegistro) - new Date(a.fechaRegistro));
     return arr;
   }
 
@@ -553,10 +691,11 @@ const Reservas = (() => {
     if (error) throw error;
     if (!data) return null;
     return {
-      codigo: data.code, asiento: data.number, nombre: data.reserved_by || '',
+      codigo: data.code, asiento: data.number, fecha: data.fecha,
+      nombre: data.reserved_by || '',
       telefono: data.reserved_phone || '', email: data.reserved_email || '',
       edad: data.reserved_age || '', notas: data.reserved_notes || '',
-      estado: data.status || 'activa', fecha: data.reserved_at,
+      estado: data.status || 'activa', fechaRegistro: data.reserved_at,
       checkin: data.checkin || 0
     };
   }
@@ -573,7 +712,7 @@ const Reservas = (() => {
     }).eq('code', codigo).select();
 
     if (error) throw error;
-    if (data?.[0]) Asientos.aplicarFila(data[0]);
+    if (data?.[0] && data[0].fecha === Asientos.getFecha()) Asientos.aplicarFila(data[0]);
     quitarLocal(codigo);
     return true;
   }
@@ -600,7 +739,11 @@ const Reservas = (() => {
 
   function guardarLocal(reserva) {
     const mias = JSON.parse(localStorage.getItem(CLAVE_LOCAL) || '[]');
-    mias.unshift({ codigo: reserva.codigo, asiento: reserva.asiento, nombre: reserva.nombre, fecha: reserva.fecha });
+    mias.unshift({
+      codigo: reserva.codigo, asiento: reserva.asiento,
+      fecha: reserva.fecha, nombre: reserva.nombre,
+      fechaRegistro: reserva.fechaRegistro
+    });
     localStorage.setItem(CLAVE_LOCAL, JSON.stringify(mias.slice(0, 50)));
   }
   function quitarLocal(codigo) {
@@ -628,14 +771,18 @@ const Reservas = (() => {
       .on('postgres_changes',
         { event: 'UPDATE', schema: 'public', table: 'seats' },
         (payload) => {
-          Asientos.aplicarFila(payload.new);
-          if (callback) callback(payload.new);
+          if (payload.new.fecha === Asientos.getFecha()) {
+            Asientos.aplicarFila(payload.new);
+            if (callback) callback(payload.new);
+          }
         })
       .on('postgres_changes',
         { event: 'INSERT', schema: 'public', table: 'seats' },
         (payload) => {
-          Asientos.aplicarFila(payload.new);
-          if (callback) callback(payload.new);
+          if (payload.new.fecha === Asientos.getFecha()) {
+            Asientos.aplicarFila(payload.new);
+            if (callback) callback(payload.new);
+          }
         })
       .subscribe((status) => {
         if (status === 'SUBSCRIBED') Utils.setConexion(true);
@@ -663,8 +810,33 @@ const Vista = (() => {
     statPrefer: document.getElementById('statPreferencial'),
     statMov: document.getElementById('statMovilidad'),
     statOcupSub: document.getElementById('statOcupadosSub'),
-    progreso: document.getElementById('progresoBarra')
+    progreso: document.getElementById('progresoBarra'),
+    selectorFechas: document.getElementById('selectorFechas')
   };
+
+  // 🔧 CAMBIO 2 — render del selector de 14 días
+  function renderSelectorFechas() {
+    const fechas = Asientos.getFechas();
+    const actual = Asientos.getFecha();
+    const diasSemana = ['DOM','LUN','MAR','MIÉ','JUE','VIE','SÁB'];
+    const meses = ['ENE','FEB','MAR','ABR','MAY','JUN','JUL','AGO','SEP','OCT','NOV','DIC'];
+    el.selectorFechas.innerHTML = fechas.map((d, i) => {
+      const iso = Utils.fechaISO(d);
+      const activo = iso === actual ? 'activo' : '';
+      const mes = meses[d.getMonth()];
+      const diaSem = diasSemana[d.getDay()];
+      const etiqueta = i === 0 ? 'HOY' : (i === 1 ? 'MAÑANA' : diaSem);
+      return `<button class="dia-btn ${activo}" data-fecha="${iso}">
+        <span class="dia-btn__semana">${etiqueta}</span>
+        <span class="dia-btn__dia">${d.getDate()}</span>
+        <span class="dia-btn__mes">${mes}</span>
+      </button>`;
+    }).join('');
+
+    el.selectorFechas.querySelectorAll('.dia-btn').forEach(btn => {
+      btn.addEventListener('click', () => Eventos.cambiarFecha(btn.dataset.fecha));
+    });
+  }
 
   function renderAsientos() {
     el.gridIzq.innerHTML = '';
@@ -704,24 +876,25 @@ const Vista = (() => {
 
   async function renderTablaAdmin(filtros = {}) {
     const tbody = document.getElementById('tablaAdminBody');
-    tbody.innerHTML = '<tr><td colspan="8" class="vacio">Cargando...</td></tr>';
+    tbody.innerHTML = '<tr><td colspan="9" class="vacio">Cargando...</td></tr>';
     let reservas = [];
     try { reservas = await Reservas.listar(filtros); }
-    catch { tbody.innerHTML = '<tr><td colspan="8" class="vacio">Error al cargar</td></tr>'; return; }
+    catch { tbody.innerHTML = '<tr><td colspan="9" class="vacio">Error al cargar</td></tr>'; return; }
 
     if (!reservas.length) {
-      tbody.innerHTML = '<tr><td colspan="8" class="vacio">No hay reservas registradas</td></tr>';
+      tbody.innerHTML = '<tr><td colspan="9" class="vacio">No hay reservas registradas</td></tr>';
       return;
     }
     tbody.innerHTML = reservas.map(r => `
       <tr>
         <td><b style="color: var(--dorado);">#${r.asiento}</b></td>
+        <td style="font-size: 0.78rem; color: var(--dorado-claro);">${Utils.formatearFechaDia(r.fecha)}</td>
         <td style="font-family: monospace; font-size: 0.8rem; color: var(--dorado-claro);">${r.codigo || '—'}</td>
         <td>${r.nombre}</td>
         <td>${r.telefono || '—'}</td>
         <td>${r.email || '—'}</td>
         <td><span class="badge badge--${r.estado}">${r.estado}</span></td>
-        <td style="font-size: 0.78rem; color: var(--gris-medio);">${Utils.formatearFecha(r.fecha)}</td>
+        <td style="font-size: 0.78rem; color: var(--gris-medio);">${Utils.formatearFecha(r.fechaRegistro)}</td>
         <td>
           <button class="btn btn--peligro btn--sm" data-cancelar="${r.codigo}">Cancelar</button>
           ${r.estado !== 'asistio' && r.estado !== 'cancelada' ? `<button class="btn btn--exito btn--sm" data-checkin="${r.codigo}">Check-in</button>` : ''}
@@ -761,8 +934,9 @@ const Vista = (() => {
           <span class="badge badge--${r.estado}">${r.estado}</span>
         </div>
         <div class="tarjeta-reserva__dato"><span>Asiento</span><span>#${r.asiento}</span></div>
+        <div class="tarjeta-reserva__dato"><span>Fecha</span><span>${Utils.formatearFechaDia(r.fecha)}</span></div>
         <div class="tarjeta-reserva__dato"><span>Nombre</span><span>${r.nombre}</span></div>
-        <div class="tarjeta-reserva__dato"><span>Fecha</span><span>${Utils.formatearFecha(r.fecha)}</span></div>
+        <div class="tarjeta-reserva__dato"><span>Registrada</span><span>${Utils.formatearFecha(r.fechaRegistro)}</span></div>
         ${r.estado === 'activa' ? `<button class="btn btn--peligro btn--sm" style="margin-top: 12px; width: 100%;" data-cancelar-mia="${r.codigo}">Cancelar reserva</button>` : ''}
       </div>`).join('');
 
@@ -798,7 +972,12 @@ const Vista = (() => {
       </div>`).join('');
 
     const porHora = {};
-    todas.forEach(r => { if (r.fecha) { const h = new Date(r.fecha).getHours(); porHora[h] = (porHora[h] || 0) + 1; } });
+    todas.forEach(r => {
+      if (r.fechaRegistro) {
+        const h = new Date(r.fechaRegistro).getHours();
+        porHora[h] = (porHora[h] || 0) + 1;
+      }
+    });
     const horasArr = Object.entries(porHora).sort((a, b) => a[0] - b[0]).slice(0, 10);
     const max = Math.max(...horasArr.map(h => h[1]), 1);
     document.getElementById('graficoHoras').innerHTML = horasArr.length
@@ -811,9 +990,17 @@ const Vista = (() => {
       : '<div class="vacio">Sin datos aún</div>';
   }
 
-  function renderTodo() { renderAsientos(); renderEstadisticas(); }
+  function renderTodo() {
+    renderSelectorFechas();
+    renderAsientos();
+    renderEstadisticas();
+  }
 
-  return { renderAsientos, renderEstadisticas, renderTablaAdmin, renderMisReservas, renderEstadisticasPanel, renderTodo };
+  return {
+    renderAsientos, renderEstadisticas, renderTablaAdmin,
+    renderMisReservas, renderEstadisticasPanel,
+    renderSelectorFechas, renderTodo
+  };
 })();
 
 /* ═══════════════════════════════════════════════════════════════
@@ -874,12 +1061,28 @@ const Eventos = (() => {
     else if (nombre === 'estadisticas') Vista.renderEstadisticasPanel();
   }
 
+  // 🔧 CAMBIO 2 — cambio de fecha
+  async function cambiarFecha(nuevaFecha) {
+    if (nuevaFecha === Asientos.getFecha()) return;
+    Asientos.setFecha(nuevaFecha);
+    Utils.toast('Cargando ' + Utils.formatearFechaDia(nuevaFecha) + '...', 'info');
+    try {
+      await Reservas.cargarAsientos(nuevaFecha);
+      Vista.renderTodo();
+      Utils.toast('Día actualizado', 'ok');
+    } catch (e) {
+      Utils.toast('Error al cargar el día', 'error');
+      Vista.renderSelectorFechas();
+    }
+  }
+
   function clickAsiento(numero, elemento) {
     if (Asientos.estaOcupado(numero)) return;
     document.querySelectorAll('.asiento--seleccionado').forEach(a => a.classList.remove('asiento--seleccionado'));
     elemento.classList.add('asiento--seleccionado');
     asientoSeleccionado = numero;
     document.getElementById('modalAsientoNum').textContent = `#${numero}`;
+    document.getElementById('modalFecha').textContent = Utils.formatearFechaDia(Asientos.getFecha());
     document.getElementById('modalContenidoForm').style.display = 'block';
     document.getElementById('modalContenidoExito').style.display = 'none';
     document.getElementById('modalReserva').classList.add('activo');
@@ -929,15 +1132,26 @@ const Eventos = (() => {
         <div style="font-size: 3rem; margin-bottom: 8px;">✓</div>
         <h3 style="color: var(--dorado); font-size: 1.3rem; margin-bottom: 8px;">¡Reserva confirmada!</h3>
         <p style="color: var(--gris-medio); font-size: 0.9rem; margin-bottom: 18px;">Guarda tu código para verificar tu entrada.</p>
+
         <div class="tarjeta-reserva">
           <div style="font-size: 0.78rem; color: var(--gris-medio); letter-spacing: 1.5px; text-transform: uppercase;">Código de reserva</div>
           <div class="tarjeta-reserva__codigo">${reserva.codigo}</div>
           <div class="tarjeta-reserva__qr" id="qrContainer"></div>
           <div class="tarjeta-reserva__dato"><span>Asiento</span><span>#${reserva.asiento}</span></div>
+          <div class="tarjeta-reserva__dato"><span>Fecha</span><span>${Utils.formatearFechaDia(reserva.fecha)}</span></div>
           <div class="tarjeta-reserva__dato"><span>Nombre</span><span>${reserva.nombre}</span></div>
           ${reserva.telefono ? `<div class="tarjeta-reserva__dato"><span>Teléfono</span><span>${reserva.telefono}</span></div>` : ''}
           ${reserva.email ? `<div class="tarjeta-reserva__dato"><span>Email</span><span>${reserva.email}</span></div>` : ''}
         </div>
+
+        <!-- 🔧 CAMBIO 3 — Aviso 7:15 pm en el comprobante -->
+        <div class="aviso-715 aviso-715--compacto">
+          <span class="aviso-715__icono">⏰</span>
+          <div class="aviso-715__texto">
+            Recuerda: para sostener el asiento, deben llevar a las <b>7:15 pm</b>; de lo contrario no tendrá reclamo.
+          </div>
+        </div>
+
         <button class="btn btn--primario" style="margin-top: 18px;" onclick="Eventos.cerrarModalExito()">Aceptar</button>
       </div>`;
     generarQR(reserva.codigo, 'qrContainer');
@@ -975,9 +1189,14 @@ const Eventos = (() => {
   async function exportarCSV() {
     const reservas = await Reservas.listar();
     if (!reservas.length) { Utils.toast('No hay reservas', 'info'); return; }
-    const filas = [['Asiento','Código','Nombre','Teléfono','Email','Edad','Estado','Check-in','Fecha']];
+    const filas = [['Asiento','Fecha','Código','Nombre','Teléfono','Email','Edad','Estado','Check-in','Registrada','Aviso 7:15pm']];
     for (const r of reservas) {
-      filas.push([r.asiento, r.codigo, r.nombre, r.telefono||'', r.email||'', r.edad||'', r.estado, r.checkin ? 'Sí' : 'No', Utils.formatearFecha(r.fecha)]);
+      filas.push([
+        r.asiento, r.fecha, r.codigo, r.nombre, r.telefono||'', r.email||'', r.edad||'',
+        r.estado, r.checkin ? 'Sí' : 'No',
+        Utils.formatearFecha(r.fechaRegistro),
+        'Debe llevar a las 7:15 pm'
+      ]);
     }
     const csv = filas.map(f => f.map(c => `"${String(c).replace(/"/g,'""')}"`).join(',')).join('\n');
     const blob = new Blob(['\ufeff' + csv], { type: 'text/csv;charset=utf-8;' });
@@ -1001,9 +1220,10 @@ const Eventos = (() => {
           <span class="badge badge--${r.estado}">${r.estado}</span>
         </div>
         <div class="tarjeta-reserva__dato"><span>Asiento</span><span>#${r.asiento}</span></div>
+        <div class="tarjeta-reserva__dato"><span>Fecha</span><span>${Utils.formatearFechaDia(r.fecha)}</span></div>
         <div class="tarjeta-reserva__dato"><span>Nombre</span><span>${r.nombre}</span></div>
         ${r.telefono ? `<div class="tarjeta-reserva__dato"><span>Teléfono</span><span>${r.telefono}</span></div>` : ''}
-        <div class="tarjeta-reserva__dato"><span>Fecha</span><span>${Utils.formatearFecha(r.fecha)}</span></div>
+        <div class="tarjeta-reserva__dato"><span>Registrada</span><span>${Utils.formatearFecha(r.fechaRegistro)}</span></div>
       </div>`).join('');
   }
 
@@ -1018,7 +1238,7 @@ const Eventos = (() => {
     } catch (e) { Utils.toast('Error: ' + e.message, 'error'); }
   }
 
-  return { init, clickAsiento, cerrarModal, cerrarModalExito };
+  return { init, clickAsiento, cerrarModal, cerrarModalExito, cambiarFecha };
 })();
 
 /* ═══════════════════════════════════════════════════════════════
@@ -1050,7 +1270,7 @@ const Eventos = (() => {
     });
     window.addEventListener('offline', () => Utils.setConexion(false));
 
-    console.log('%c✝ ICDNJ · Reservas en vivo (Supabase)', 'color:#d4af37;font-size:16px;font-weight:bold;');
+    console.log('%c✝ ICDNJ · Reservas en vivo (Supabase + 14 días)', 'color:#d4af37;font-size:16px;font-weight:bold;');
   } catch (e) {
     console.error(e);
     Utils.toast('Error al conectar con la base de datos', 'error');
