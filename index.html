@@ -27,7 +27,7 @@ body {
   position: relative;
 }
 
-/* 🔧 CAMBIO 1 — Logo del león como fondo difuminado detrás de todo */
+/* Logo del león como fondo difuminado */
 body::before {
   content: '';
   position: fixed;
@@ -45,15 +45,13 @@ body::before {
 
 .header { text-align: center; margin-bottom: 30px; position: relative; }
 .header__logo { display: inline-flex; align-items: center; gap: 14px; margin-bottom: 8px; }
-.header__cruz { font-size: 2rem; color: var(--dorado); filter: drop-shadow(0 0 15px rgba(212,175,55,0.6)); animation: brillo 3s ease-in-out infinite; }
-@keyframes brillo { 0%,100% { filter: drop-shadow(0 0 15px rgba(212,175,55,0.6)); } 50% { filter: drop-shadow(0 0 25px rgba(212,175,55,0.9)); } }
 .header__titulo { font-size: clamp(1.8rem, 4vw, 2.6rem); font-weight: 800; letter-spacing: 4px;
   background: linear-gradient(135deg, var(--dorado-claro), var(--dorado), var(--dorado-oscuro));
   -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
 .header__subtitulo { color: var(--gris-medio); font-size: 0.95rem; letter-spacing: 0.5px; margin-top: 4px; }
 .header__versiculo { color: var(--gris-medio); font-style: italic; font-size: 0.82rem; margin-top: 10px; opacity: 0.8; }
 
-/* 🔧 CAMBIO 1 — Logo visible en el header */
+/* Logo visible en el header */
 .header__logo-img {
   width: 90px; height: 90px; border-radius: 50%;
   object-fit: cover; border: 2px solid var(--dorado);
@@ -64,7 +62,7 @@ body::before {
 .contenedor { max-width: 1100px; margin: 0 auto; }
 .panel { background: rgba(255,255,255,0.035); border: 1px solid rgba(212,175,55,0.22); border-radius: var(--radio-lg); padding: 28px 26px; backdrop-filter: blur(10px); box-shadow: var(--sombra-lg); }
 .nav { display: flex; justify-content: center; gap: 8px; margin-bottom: 24px; flex-wrap: wrap; }
-.nav__btn { padding: 9px 18px; border-radius: 999px; background: rgba(255,255,255,0.05); border: 1px solid rgba(212,175,55,0.25); color: var(--gris-claro); font-size: 0.85rem; font-weight: 500; cursor: pointer; transition: all 0.25s; font-family: inherit; }
+.nav__btn { padding: 9px 18px; border-radius: 999px; background: rgba(255,255,255,0.05); border: 1px solid rgba(212,175,55,0.25); color: var(--gris-claro); font-size: 0.85rem; font-weight: 500; cursor: pointer; transition: all 0.25s; font-family: inherit; display: flex; align-items: center; gap: 6px;}
 .nav__btn:hover { background: rgba(212,175,55,0.15); border-color: var(--dorado); color: var(--dorado-claro); }
 .nav__btn.activo { background: linear-gradient(135deg, var(--dorado), var(--dorado-oscuro)); color: var(--azul-profundo); border-color: var(--dorado); font-weight: 600; box-shadow: 0 4px 15px rgba(212,175,55,0.4); }
 .estado { display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 14px; margin-bottom: 26px; }
@@ -168,7 +166,7 @@ body::before {
 .pie { text-align: center; margin-top: 40px; color: var(--gris-medio); font-style: italic; font-size: 0.85rem; opacity: 0.75; }
 .pie strong { color: var(--dorado); font-style: normal; display: block; margin-top: 6px; font-size: 0.8rem; letter-spacing: 1px; }
 
-/* 🔧 CAMBIO 2 — Selector de fecha (14 días) */
+/* Selector de fecha (14 días) */
 .selector-fecha {
   display: flex; gap: 8px; overflow-x: auto; padding: 8px 4px 14px;
   margin-bottom: 18px; scrollbar-width: thin;
@@ -176,10 +174,10 @@ body::before {
 .selector-fecha::-webkit-scrollbar { height: 6px; }
 .selector-fecha::-webkit-scrollbar-thumb { background: rgba(212,175,55,0.4); border-radius: 3px; }
 .dia-btn {
-  flex: 0 0 auto; min-width: 78px; padding: 10px 8px; border-radius: var(--radio-sm);
+  flex: 0 0 auto; min-width: 82px; padding: 10px 8px; border-radius: var(--radio-sm);
   border: 1px solid rgba(212,175,55,0.3); background: rgba(0,0,0,0.25);
   color: var(--gris-claro); font-family: inherit; font-size: 0.78rem; cursor: pointer;
-  transition: all 0.2s; text-align: center; line-height: 1.2;
+  transition: all 0.2s; text-align: center; line-height: 1.2; display: flex; flex-direction: column; justify-content: center;
 }
 .dia-btn:hover { border-color: var(--dorado); background: rgba(212,175,55,0.1); }
 .dia-btn.activo {
@@ -187,11 +185,13 @@ body::before {
   color: var(--azul-profundo); border-color: var(--dorado); font-weight: 700;
   box-shadow: 0 4px 14px rgba(212,175,55,0.4);
 }
-.dia-btn__dia { display: block; font-size: 1.1rem; font-weight: 800; }
+.dia-btn__semana { display: block; font-size: 0.62rem; text-transform: uppercase; opacity: 0.8; margin-bottom: 2px;}
+.dia-btn__dia { display: block; font-size: 1.2rem; font-weight: 800; line-height: 1; margin: 2px 0;}
 .dia-btn__mes { display: block; font-size: 0.65rem; text-transform: uppercase; letter-spacing: 1px; opacity: 0.8; }
-.dia-btn__semana { display: block; font-size: 0.62rem; opacity: 0.7; }
+.dia-btn__libres { display: block; font-size: 0.6rem; margin-top: 4px; color: var(--verde); font-weight: 600; background: rgba(45,122,74,0.15); padding: 1px 4px; border-radius: 4px;}
+.dia-btn.activo .dia-btn__libres { color: var(--azul-profundo); background: rgba(255,255,255,0.3); }
 
-/* 🔧 CAMBIO 3 — Aviso 7:15 pm */
+/* Aviso 7:15 pm */
 .aviso-715 {
   display: flex; align-items: flex-start; gap: 12px;
   background: linear-gradient(135deg, rgba(196,122,26,0.18), rgba(212,175,55,0.12));
@@ -261,13 +261,12 @@ body::before {
       <button class="nav__btn activo" data-vista="reservar">🎫 Reservar</button>
       <button class="nav__btn" data-vista="mis-reservas">📋 Mis reservas</button>
       <button class="nav__btn" data-vista="buscar">🔍 Buscar</button>
-      <button class="nav__btn" data-vista="admin">⚙️ Admin</button>
+      <button class="nav__btn" data-vista="admin">🔒 Admin</button>
       <button class="nav__btn" data-vista="estadisticas">📊 Estadísticas</button>
     </nav>
 
     <div class="admin-seccion activa" id="vista-reservar">
 
-      <!-- 🔧 CAMBIO 3 — Aviso de las 7:15 pm -->
       <div class="aviso-715">
         <span class="aviso-715__icono">⏰</span>
         <div class="aviso-715__texto">
@@ -275,7 +274,6 @@ body::before {
         </div>
       </div>
 
-      <!-- 🔧 CAMBIO 2 — Selector de 14 días -->
       <div class="selector-fecha" id="selectorFechas"></div>
 
       <div class="estado">
@@ -412,7 +410,6 @@ body::before {
       <h3 class="modal__titulo">Registrar reserva</h3>
       <p class="modal__sub">Asiento seleccionado: <b id="modalAsientoNum">—</b> · Fecha: <b id="modalFecha">—</b></p>
 
-      <!-- 🔧 CAMBIO 3 — Aviso compacto en el modal -->
       <div class="aviso-715 aviso-715--compacto">
         <span class="aviso-715__icono">⏰</span>
         <div class="aviso-715__texto">
@@ -454,14 +451,17 @@ body::before {
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 <script>
 /* ═══════════════════════════════════════════════════════════════
-   CONFIGURACIÓN — Supabase y logo
+   CONFIGURACIÓN — Supabase, logo y contraseña de Admin
    ═══════════════════════════════════════════════════════════════ */
-const SUPABASE_URL = 'https://dsawaaeekcrmljbcuqewi.supabase.co';
-const SUPABASE_KEY = 'sb_publishable_-rK_cxLZWWoRll-NFFLslQ_ALE6c6eH';
+const SUPABASE_URL = 'https://lkxmgpegbvlcoxkehnok.supabase.co';
+const SUPABASE_KEY = 'sb_publishable_6Mnch3noo6k5ep1w7GCGVQ_jLKMlt3u';
 const sb = supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
 
-// 🔧 CAMBIO 1 — URL del logo (cámbiala si algún día caduca)
+// URL del logo (cámbiala si algún día caduca)
 const LOGO_URL = 'https://img.sanishtech.com/u/51850a51dd601d84bd1eae78d70fa50a.png';
+
+// 🔒 CONTRASEÑA DE ADMINISTRADOR (Cámbiala por la que tú quieras)
+const ADMIN_PASSWORD = 'ICDNJ2026';
 
 /* ═══════════════════════════════════════════════════════════════
    UTILIDADES
@@ -526,11 +526,11 @@ const Utils = {
 };
 
 /* ═══════════════════════════════════════════════════════════════
-   ASIENTOS (mapa en memoria, filtrado por fecha)
+   ASIENTOS
    ═══════════════════════════════════════════════════════════════ */
 const Asientos = (() => {
   const CAPACIDAD = 100;
-  let mapa = {};                       // mapa del día seleccionado
+  let mapa = {};
   let fechaSeleccionada = Utils.fechaISO(new Date());
   let fechas = Utils.proximos14Dias();
 
@@ -547,7 +547,6 @@ const Asientos = (() => {
   }
 
   function aplicarFila(row) {
-    // solo aplica si la fila corresponde al día seleccionado
     if (row.fecha && row.fecha !== fechaSeleccionada) return;
     const a = mapa[row.number];
     if (!a) return;
@@ -590,7 +589,7 @@ const Asientos = (() => {
 })();
 
 /* ═══════════════════════════════════════════════════════════════
-   RESERVAS (Supabase, filtradas por fecha)
+   RESERVAS
    ═══════════════════════════════════════════════════════════════ */
 const Reservas = (() => {
   const CLAVE_LOCAL = 'icdnj_mis_reservas';
@@ -606,6 +605,32 @@ const Reservas = (() => {
     return data;
   }
 
+  async function obtenerConteoPorDia() {
+    const fechas = Asientos.getFechas();
+    const inicio = Utils.fechaISO(fechas[0]);
+    const fin = Utils.fechaISO(fechas[fechas.length - 1]);
+    
+    const { data, error } = await sb.from('seats')
+      .select('fecha, reserved')
+      .gte('fecha', inicio)
+      .lte('fecha', fin);
+
+    if (error) return {};
+
+    const conteo = {};
+    data.forEach(r => {
+      if (!conteo[r.fecha]) conteo[r.fecha] = { total: 0, ocupados: 0 };
+      conteo[r.fecha].total++;
+      if (r.reserved) conteo[r.fecha].ocupados++;
+    });
+
+    const resultado = {};
+    for (const f in conteo) {
+      resultado[f] = conteo[f].total - conteo[f].ocupados;
+    }
+    return resultado;
+  }
+
   async function crear({ asiento, nombre, telefono, email, edad, notas }) {
     if (!asiento) throw new Error('Asiento no especificado');
     if (!nombre?.trim()) throw new Error('El nombre es obligatorio');
@@ -615,7 +640,6 @@ const Reservas = (() => {
     const fecha = Asientos.getFecha();
     const codigo = Utils.generarCodigo();
 
-    // Actualiza la fila (number, fecha) solo si está libre
     const { data, error } = await sb.from('seats')
       .update({
         reserved: true,
@@ -792,7 +816,7 @@ const Reservas = (() => {
   }
 
   return {
-    cargarAsientos, crear, listar, porCodigo, cancelar, checkin,
+    cargarAsientos, obtenerConteoPorDia, crear, listar, porCodigo, cancelar, checkin,
     resetearTodo, suscribirse,
     misReservasLocales, limpiarMisReservasLocales, estadisticas
   };
@@ -813,23 +837,29 @@ const Vista = (() => {
     progreso: document.getElementById('progresoBarra'),
     selectorFechas: document.getElementById('selectorFechas')
   };
+  
+  let conteoDias = {};
 
-  // 🔧 CAMBIO 2 — render del selector de 14 días
   function renderSelectorFechas() {
     const fechas = Asientos.getFechas();
     const actual = Asientos.getFecha();
     const diasSemana = ['DOM','LUN','MAR','MIÉ','JUE','VIE','SÁB'];
     const meses = ['ENE','FEB','MAR','ABR','MAY','JUN','JUL','AGO','SEP','OCT','NOV','DIC'];
+    
     el.selectorFechas.innerHTML = fechas.map((d, i) => {
       const iso = Utils.fechaISO(d);
       const activo = iso === actual ? 'activo' : '';
       const mes = meses[d.getMonth()];
       const diaSem = diasSemana[d.getDay()];
       const etiqueta = i === 0 ? 'HOY' : (i === 1 ? 'MAÑANA' : diaSem);
+      
+      const libres = conteoDias[iso] !== undefined ? `<span class="dia-btn__libres">${conteoDias[iso]} libres</span>` : '';
+
       return `<button class="dia-btn ${activo}" data-fecha="${iso}">
         <span class="dia-btn__semana">${etiqueta}</span>
         <span class="dia-btn__dia">${d.getDate()}</span>
         <span class="dia-btn__mes">${mes}</span>
+        ${libres}
       </button>`;
     }).join('');
 
@@ -990,10 +1020,18 @@ const Vista = (() => {
       : '<div class="vacio">Sin datos aún</div>';
   }
 
+  function actualizarConteos() {
+    Reservas.obtenerConteoPorDia().then(res => {
+      conteoDias = res;
+      renderSelectorFechas();
+    });
+  }
+
   function renderTodo() {
     renderSelectorFechas();
     renderAsientos();
     renderEstadisticas();
+    actualizarConteos();
   }
 
   return {
@@ -1008,6 +1046,7 @@ const Vista = (() => {
    ═══════════════════════════════════════════════════════════════ */
 const Eventos = (() => {
   let asientoSeleccionado = null;
+  let adminAutorizado = false; // 🔒 Control de acceso para Admin
 
   function init() {
     document.querySelectorAll('.nav__btn').forEach(btn => {
@@ -1051,7 +1090,29 @@ const Eventos = (() => {
     });
   }
 
+  // 🔒 Función de validación de contraseña
+  function pedirPasswordAdmin() {
+    if (adminAutorizado) return true;
+
+    const pass = prompt("🔒 Área restringida. Por favor, ingresa la contraseña de administrador:");
+    if (pass === null) return false; // Canceló
+
+    if (pass === ADMIN_PASSWORD) {
+      adminAutorizado = true;
+      Utils.toast('Acceso concedido', 'ok');
+      return true;
+    } else {
+      Utils.toast('Contraseña incorrecta', 'error');
+      return false;
+    }
+  }
+
   function cambiarVista(nombre, btnActivo) {
+    // Si intenta entrar a Admin sin autorización, pedimos contraseña
+    if (nombre === 'admin') {
+      if (!pedirPasswordAdmin()) return; // Si cancela o falla, no hace nada
+    }
+
     document.querySelectorAll('.nav__btn').forEach(b => b.classList.remove('activo'));
     btnActivo.classList.add('activo');
     document.querySelectorAll('.admin-seccion').forEach(s => s.classList.remove('activa'));
@@ -1061,7 +1122,6 @@ const Eventos = (() => {
     else if (nombre === 'estadisticas') Vista.renderEstadisticasPanel();
   }
 
-  // 🔧 CAMBIO 2 — cambio de fecha
   async function cambiarFecha(nuevaFecha) {
     if (nuevaFecha === Asientos.getFecha()) return;
     Asientos.setFecha(nuevaFecha);
@@ -1144,7 +1204,6 @@ const Eventos = (() => {
           ${reserva.email ? `<div class="tarjeta-reserva__dato"><span>Email</span><span>${reserva.email}</span></div>` : ''}
         </div>
 
-        <!-- 🔧 CAMBIO 3 — Aviso 7:15 pm en el comprobante -->
         <div class="aviso-715 aviso-715--compacto">
           <span class="aviso-715__icono">⏰</span>
           <div class="aviso-715__texto">
@@ -1249,11 +1308,17 @@ const Eventos = (() => {
     Asientos.inicializar();
     Vista.renderTodo();
     Eventos.init();
+    
     await Reservas.cargarAsientos();
     Vista.renderTodo();
-    Utils.setConexion(true);
+    
+    const timeoutConexion = setTimeout(() => {
+      Utils.setConexion(true);
+      console.log('Conexión forzada a verde (Timeout de Realtime)');
+    }, 2500);
 
     Reservas.suscribirse(() => {
+      clearTimeout(timeoutConexion);
       Vista.renderTodo();
       const modalAbierto = document.getElementById('modalReserva').classList.contains('activo');
       if (modalAbierto) {
