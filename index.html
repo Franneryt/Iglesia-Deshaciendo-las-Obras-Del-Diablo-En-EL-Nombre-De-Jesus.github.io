@@ -27,7 +27,7 @@ body {
   position: relative;
 }
 
-/* 🔧 Logo del león como fondo difuminado */
+/* Logo del león como fondo difuminado */
 body::before {
   content: '';
   position: fixed;
@@ -51,7 +51,6 @@ body::before {
 .header__subtitulo { color: var(--gris-medio); font-size: 0.95rem; letter-spacing: 0.5px; margin-top: 4px; }
 .header__versiculo { color: var(--gris-medio); font-style: italic; font-size: 0.82rem; margin-top: 10px; opacity: 0.8; }
 
-/* 🔧 Logo visible en el header */
 .header__logo-img {
   width: 90px; height: 90px; border-radius: 50%;
   object-fit: cover; border: 2px solid var(--dorado);
@@ -219,7 +218,6 @@ body::before {
 
 <header class="header">
   <div class="header__logo">
-    <!-- 🔧 LOGO EN EL HEADER -->
     <img class="header__logo-img" src="https://www.image2url.com/r2/default/images/1794019165741-abf85168-48be-4298-9af0-ba09f0ff61cb.png" alt="Logo ICDNJ">
     <h1 class="header__titulo">ICDNJ</h1>
   </div>
@@ -256,7 +254,7 @@ body::before {
         <div class="estado__item">
           <span class="estado__label">Disponibles</span>
           <span class="estado__valor" id="statDisponibles">—</span>
-          <span class="estado__sub" id="statDisponiblesSub">de 100 asientos</span>
+          <span class="estado__sub" id="statDisponiblesSub">de 250 asientos</span>
         </div>
         <div class="estado__item">
           <span class="estado__label">Ocupados</span>
@@ -501,10 +499,10 @@ const Utils = {
 };
 
 /* ═══════════════════════════════════════════════════════════════
-   ASIENTOS
+   ASIENTOS (250 sillas)
    ═══════════════════════════════════════════════════════════════ */
 const Asientos = (() => {
-  const CAPACIDAD = 100;
+  const CAPACIDAD = 250;
   let mapa = {};
   let fechaSeleccionada = Utils.fechaISO(new Date());
   let fechas = Utils.proximos14Dias();
@@ -516,7 +514,8 @@ const Asientos = (() => {
       const col = ((i - 1) % 10) + 1;
       let zona = 'general';
       if (fila <= 2) zona = 'preferencial';
-      if (fila === 10 && col >= 4 && col <= 7) zona = 'movilidad';
+      // Movilidad en la última fila (fila 25) en las columnas 4, 5, 6 y 7
+      if (fila === 25 && col >= 4 && col <= 7) zona = 'movilidad';
       mapa[i] = { numero: i, fila, columna: col, zona, estado: 'libre', reservadoPor: null, codigo: null };
     }
   }
@@ -846,7 +845,7 @@ const Vista = (() => {
   function renderAsientos() {
     el.gridIzq.innerHTML = '';
     el.gridDer.innerHTML = '';
-    for (let i = 1; i <= 100; i++) {
+    for (let i = 1; i <= 250; i++) {
       const a = Asientos.obtener(i);
       if (!a) continue;
       const btn = document.createElement('button');
