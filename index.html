@@ -467,7 +467,7 @@ const ADMIN_PASSWORD = 'ICDNJ2026';
 
 // 📅 FECHAS DEL EVENTO (23 de Noviembre al 6 de Diciembre)
 const ANIO_EVENTO = 2025; 
-const MES_EVENTO = 11; // 11 = Noviembre (0=Enero, 11=Diciembre)
+const MES_EVENTO = 10; // 10 = Noviembre (0=Enero, 10=Noviembre)
 const DIA_INICIO = 23;
 const DIA_FIN = 6; // Diciembre
 
@@ -497,7 +497,7 @@ const Utils = {
     }
     // Añadir días de Diciembre (1 al 6)
     for (let i = 1; i <= DIA_FIN; i++) {
-      arr.push(new Date(ANIO_EVENTO, 12, i)); // 12 = Diciembre (0-index)
+      arr.push(new Date(ANIO_EVENTO, 11, i)); // 11 = Diciembre (0-index)
     }
     return arr;
   },
