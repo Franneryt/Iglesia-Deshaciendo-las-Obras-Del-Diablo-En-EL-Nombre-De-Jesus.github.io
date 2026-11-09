@@ -27,7 +27,6 @@ body {
   position: relative;
 }
 
-/* Logo del león como fondo difuminado */
 body::before {
   content: '';
   position: fixed;
@@ -50,13 +49,7 @@ body::before {
   -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
 .header__subtitulo { color: var(--gris-medio); font-size: 0.95rem; letter-spacing: 0.5px; margin-top: 4px; }
 .header__versiculo { color: var(--gris-medio); font-style: italic; font-size: 0.82rem; margin-top: 10px; opacity: 0.8; }
-
-.header__logo-img {
-  width: 90px; height: 90px; border-radius: 50%;
-  object-fit: cover; border: 2px solid var(--dorado);
-  box-shadow: 0 0 25px rgba(212,175,55,0.55);
-  background: rgba(0,0,0,0.4);
-}
+.header__logo-img { width: 90px; height: 90px; border-radius: 50%; object-fit: cover; border: 2px solid var(--dorado); box-shadow: 0 0 25px rgba(212,175,55,0.55); background: rgba(0,0,0,0.4); }
 
 .contenedor { max-width: 1100px; margin: 0 auto; }
 .panel { background: rgba(255,255,255,0.035); border: 1px solid rgba(212,175,55,0.22); border-radius: var(--radio-lg); padding: 28px 26px; backdrop-filter: blur(10px); box-shadow: var(--sombra-lg); }
@@ -185,6 +178,28 @@ body::before {
 .aviso-715--compacto { margin: 14px 0 4px; padding: 10px 14px; font-size: 0.78rem; border-left-width: 3px; }
 .aviso-715--compacto .aviso-715__icono { font-size: 1.1rem; }
 
+/* Separador de Grada */
+.separador-grada {
+  text-align: center;
+  margin: 24px 0;
+  position: relative;
+  color: var(--dorado);
+  font-size: 0.8rem;
+  letter-spacing: 2px;
+  font-weight: 700;
+  opacity: 0.8;
+}
+.separador-grada::before, .separador-grada::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  width: 40%;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(212,175,55,0.5), transparent);
+}
+.separador-grada::before { left: 0; }
+.separador-grada::after { right: 0; }
+
 @media (max-width: 720px) {
   .panel { padding: 20px 16px; }
   .grid-pasillo { grid-template-columns: 1fr 14px 1fr; }
@@ -241,10 +256,11 @@ body::before {
     </nav>
 
     <div class="admin-seccion activa" id="vista-reservar">
+      
       <div class="aviso-715">
         <span class="aviso-715__icono">⏰</span>
         <div class="aviso-715__texto">
-          <b>Importante:</b> para sostener el asiento seleccionado, deben llevar a las <b>7:15 pm</b>; de lo contrario no tendrá reclamo.
+          <b>Importante:</b> para sostener el asiento seleccionado, deben <b>LLEGAR</b> a las <b>7:15 pm</b>; de lo contrario no tendrá reclamo.
         </div>
       </div>
 
@@ -279,11 +295,24 @@ body::before {
 
       <div class="pulpito">PÚLPITO</div>
 
+      <!-- Sección Principal (Asientos 1-100) -->
       <div class="grid-wrap">
         <div class="grid-pasillo">
           <div class="grid" id="gridIzquierda"></div>
           <div class="pasillo">PASILLO</div>
           <div class="grid" id="gridDerecha"></div>
+        </div>
+      </div>
+
+      <!-- Separador de Grada -->
+      <div class="separador-grada" id="separadorGrada">GRADA (Asientos 101 - 250)</div>
+
+      <!-- Sección Grada (Asientos 101-250) -->
+      <div class="grid-wrap">
+        <div class="grid-pasillo">
+          <div class="grid" id="gridIzquierdaGrada"></div>
+          <div class="pasillo">PASILLO</div>
+          <div class="grid" id="gridDerechaGrada"></div>
         </div>
       </div>
 
@@ -387,7 +416,7 @@ body::before {
       <div class="aviso-715 aviso-715--compacto">
         <span class="aviso-715__icono">⏰</span>
         <div class="aviso-715__texto">
-          Para sostener el asiento, deben llevar a las <b>7:15 pm</b>; de lo contrario no tendrá reclamo.
+          Para sostener el asiento, deben <b>LLEGAR</b> a las <b>7:15 pm</b>; de lo contrario no tendrá reclamo.
         </div>
       </div>
 
@@ -436,6 +465,12 @@ const LOGO_URL = 'https://www.image2url.com/r2/default/images/1794019165741-abf8
 // 🔒 CONTRASEÑA DE ADMINISTRADOR
 const ADMIN_PASSWORD = 'ICDNJ2026';
 
+// 📅 FECHAS DEL EVENTO (23 de Noviembre al 6 de Diciembre)
+const ANIO_EVENTO = 2025; 
+const MES_EVENTO = 11; // 11 = Noviembre (0=Enero, 11=Diciembre)
+const DIA_INICIO = 23;
+const DIA_FIN = 6; // Diciembre
+
 /* ═══════════════════════════════════════════════════════════════
    UTILIDADES
    ═══════════════════════════════════════════════════════════════ */
@@ -454,14 +489,15 @@ const Utils = {
     const dd = String(x.getDate()).padStart(2, '0');
     return `${y}-${m}-${dd}`;
   },
-  proximos14Dias() {
+  fechasEvento() {
     const arr = [];
-    const hoy = new Date();
-    hoy.setHours(0,0,0,0);
-    for (let i = 0; i < 14; i++) {
-      const d = new Date(hoy);
-      d.setDate(hoy.getDate() + i);
-      arr.push(d);
+    // Añadir días de Noviembre (23 al 30)
+    for (let i = DIA_INICIO; i <= 30; i++) {
+      arr.push(new Date(ANIO_EVENTO, MES_EVENTO, i));
+    }
+    // Añadir días de Diciembre (1 al 6)
+    for (let i = 1; i <= DIA_FIN; i++) {
+      arr.push(new Date(ANIO_EVENTO, 12, i)); // 12 = Diciembre (0-index)
     }
     return arr;
   },
@@ -499,13 +535,13 @@ const Utils = {
 };
 
 /* ═══════════════════════════════════════════════════════════════
-   ASIENTOS (250 sillas)
+   ASIENTOS (250 sillas divididas en Grada)
    ═══════════════════════════════════════════════════════════════ */
 const Asientos = (() => {
   const CAPACIDAD = 250;
   let mapa = {};
-  let fechaSeleccionada = Utils.fechaISO(new Date());
-  let fechas = Utils.proximos14Dias();
+  let fechas = Utils.fechasEvento();
+  let fechaSeleccionada = Utils.fechaISO(fechas[0]);
 
   function inicializar() {
     mapa = {};
@@ -514,7 +550,6 @@ const Asientos = (() => {
       const col = ((i - 1) % 10) + 1;
       let zona = 'general';
       if (fila <= 2) zona = 'preferencial';
-      // Movilidad en la última fila (fila 25) en las columnas 4, 5, 6 y 7
       if (fila === 25 && col >= 4 && col <= 7) zona = 'movilidad';
       mapa[i] = { numero: i, fila, columna: col, zona, estado: 'libre', reservadoPor: null, codigo: null };
     }
@@ -803,6 +838,8 @@ const Vista = (() => {
   const el = {
     gridIzq: document.getElementById('gridIzquierda'),
     gridDer: document.getElementById('gridDerecha'),
+    gridIzqGrada: document.getElementById('gridIzquierdaGrada'),
+    gridDerGrada: document.getElementById('gridDerechaGrada'),
     statDisp: document.getElementById('statDisponibles'),
     statOcup: document.getElementById('statOcupados'),
     statPrefer: document.getElementById('statPreferencial'),
@@ -825,12 +862,11 @@ const Vista = (() => {
       const activo = iso === actual ? 'activo' : '';
       const mes = meses[d.getMonth()];
       const diaSem = diasSemana[d.getDay()];
-      const etiqueta = i === 0 ? 'HOY' : (i === 1 ? 'MAÑANA' : diaSem);
       
       const libres = conteoDias[iso] !== undefined ? `<span class="dia-btn__libres">${conteoDias[iso]} libres</span>` : '';
 
       return `<button class="dia-btn ${activo}" data-fecha="${iso}">
-        <span class="dia-btn__semana">${etiqueta}</span>
+        <span class="dia-btn__semana">${diaSem}</span>
         <span class="dia-btn__dia">${d.getDate()}</span>
         <span class="dia-btn__mes">${mes}</span>
         ${libres}
@@ -845,6 +881,9 @@ const Vista = (() => {
   function renderAsientos() {
     el.gridIzq.innerHTML = '';
     el.gridDer.innerHTML = '';
+    el.gridIzqGrada.innerHTML = '';
+    el.gridDerGrada.innerHTML = '';
+
     for (let i = 1; i <= 250; i++) {
       const a = Asientos.obtener(i);
       if (!a) continue;
@@ -863,8 +902,17 @@ const Vista = (() => {
         btn.title = `Asiento ${i} — ${a.zona}`;
         btn.addEventListener('click', () => Eventos.clickAsiento(i, btn));
       }
-      const target = a.columna <= 5 ? el.gridIzq : el.gridDer;
-      target.appendChild(btn);
+
+      // Asientos 1-100 (Sección Principal)
+      if (i <= 100) {
+        const target = a.columna <= 5 ? el.gridIzq : el.gridDer;
+        target.appendChild(btn);
+      } 
+      // Asientos 101-250 (Grada)
+      else {
+        const target = a.columna <= 5 ? el.gridIzqGrada : el.gridDerGrada;
+        target.appendChild(btn);
+      }
     }
   }
 
@@ -962,7 +1010,7 @@ const Vista = (() => {
     document.getElementById('estaCanceladas').textContent = st.canceladas;
 
     const zonas = ['preferencial', 'general', 'movilidad'];
-    const nombres = { preferencial: '★ Preferencial', general: 'General', movilidad: '♿ Movilidad' };
+    const nombres = { preferencial: '★ Preferencial', general: 'General / Grada', movilidad: '♿ Movilidad' };
     const porZona = zonas.map(z => {
       const aZ = Asientos.todos().filter(a => a.zona === z);
       const ocup = aZ.filter(a => a.estado === 'ocupado').length;
@@ -1176,7 +1224,7 @@ const Eventos = (() => {
         <div class="aviso-715 aviso-715--compacto">
           <span class="aviso-715__icono">⏰</span>
           <div class="aviso-715__texto">
-            Recuerda: para sostener el asiento, deben llevar a las <b>7:15 pm</b>; de lo contrario no tendrá reclamo.
+            Recuerda: para sostener el asiento, deben <b>LLEGAR</b> a las <b>7:15 pm</b>; de lo contrario no tendrá reclamo.
           </div>
         </div>
 
@@ -1223,7 +1271,7 @@ const Eventos = (() => {
         r.asiento, r.fecha, r.codigo, r.nombre, r.telefono||'', r.email||'', r.edad||'',
         r.estado, r.checkin ? 'Sí' : 'No',
         Utils.formatearFecha(r.fechaRegistro),
-        'Debe llevar a las 7:15 pm'
+        'Debe llegar a las 7:15 pm'
       ]);
     }
     const csv = filas.map(f => f.map(c => `"${String(c).replace(/"/g,'""')}"`).join(',')).join('\n');
