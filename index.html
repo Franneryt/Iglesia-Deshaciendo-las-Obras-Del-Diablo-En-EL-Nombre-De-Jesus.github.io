@@ -550,7 +550,8 @@ const Asientos = (() => {
       const col = ((i - 1) % 10) + 1;
       let zona = 'general';
       if (fila <= 2) zona = 'preferencial';
-      if (fila === 25 && col >= 4 && col <= 7) zona = 'movilidad';
+      // Movilidad en la fila 10 (última de abajo) en las columnas 4, 5, 6 y 7
+      if (fila === 10 && col >= 4 && col <= 7) zona = 'movilidad';
       mapa[i] = { numero: i, fila, columna: col, zona, estado: 'libre', reservadoPor: null, codigo: null };
     }
   }
