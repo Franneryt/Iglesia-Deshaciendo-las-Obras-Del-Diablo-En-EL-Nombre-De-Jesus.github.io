@@ -466,7 +466,8 @@ const LOGO_URL = 'https://www.image2url.com/r2/default/images/1794019165741-abf8
 const ADMIN_PASSWORD = 'ICDNJ2026';
 
 // 📅 FECHAS DEL EVENTO (23 de Noviembre al 6 de Diciembre)
-const ANIO_EVENTO = 2025; 
+// Año 2026: el 23 de noviembre cae LUNES
+const ANIO_EVENTO = 2026;
 const MES_EVENTO = 10; // 10 = Noviembre (0=Enero, 10=Noviembre)
 const DIA_INICIO = 23;
 const DIA_FIN = 6; // Diciembre
@@ -771,6 +772,54 @@ const Reservas = (() => {
     await cargarAsientos();
   }
 
+  /* ═══════════════════════════════════════════════════════════════
+     MIGRACIÓN AUTOMÁTICA 2025 → 2026
+     Mueve SOLO el campo `fecha` (mismo día y mes, +1 año).
+     NO altera nombre, teléfono, email, edad, notas, código, estado
+     ni check-in de las personas ya registradas.
+     Evita colisiones: si el asiento ya está ocupado en 2026, lo salta.
+     ═══════════════════════════════════════════════════════════════ */
+  async function migrarReservasAnioAnterior() {
+    const rangoViejo = { inicio: '2025-11-23', fin: '2025-12-06' };
+    const rangoNuevo = { inicio: '2026-11-23', fin: '2026-12-06' };
+
+    // Reservas existentes en 2025 (solo confirmadas)
+    const { data: viejas, error: e1 } = await sb.from('seats')
+      .select('number, fecha')
+      .gte('fecha', rangoViejo.inicio)
+      .lte('fecha', rangoViejo.fin)
+      .eq('reserved', true);
+
+    if (e1 || !viejas || !viejas.length) return 0;
+
+    // Reservas ya existentes en 2026 (para evitar colisiones)
+    const { data: nuevas, error: e2 } = await sb.from('seats')
+      .select('number, fecha')
+      .gte('fecha', rangoNuevo.inicio)
+      .lte('fecha', rangoNuevo.fin)
+      .eq('reserved', true);
+
+    const ocupados2026 = new Set((nuevas || []).map(r => `${r.number}|${r.fecha}`));
+
+    let migradas = 0;
+    for (const row of viejas) {
+      const [y, m, d] = row.fecha.split('-');
+      const nuevaFecha = `${parseInt(y) + 1}-${m}-${d}`;
+      const clave = `${row.number}|${nuevaFecha}`;
+
+      // Si el asiento ya está ocupado en 2026, no migrar (evita colisión)
+      if (ocupados2026.has(clave)) continue;
+
+      const { error } = await sb.from('seats')
+        .update({ fecha: nuevaFecha })
+        .eq('number', row.number)
+        .eq('fecha', row.fecha);
+
+      if (!error) migradas++;
+    }
+    return migradas;
+  }
+
   function guardarLocal(reserva) {
     const mias = JSON.parse(localStorage.getItem(CLAVE_LOCAL) || '[]');
     mias.unshift({
@@ -827,7 +876,7 @@ const Reservas = (() => {
 
   return {
     cargarAsientos, obtenerConteoPorDia, crear, listar, porCodigo, cancelar, checkin,
-    resetearTodo, suscribirse,
+    resetearTodo, suscribirse, migrarReservasAnioAnterior,
     misReservasLocales, limpiarMisReservasLocales, estadisticas
   };
 })();
@@ -1326,7 +1375,17 @@ const Eventos = (() => {
     Asientos.inicializar();
     Vista.renderTodo();
     Eventos.init();
-    
+
+    // 🔄 MIGRACIÓN AUTOMÁTICA 2025 → 2026 (solo cambia la fecha, conserva a las personas)
+    try {
+      const migradas = await Reservas.migrarReservasAnioAnterior();
+      if (migradas > 0) {
+        console.log(`✅ ${migradas} reservas migradas de 2025 a 2026 (mismo día y mes)`);
+      }
+    } catch (e) {
+      console.warn('Migración omitida:', e.message);
+    }
+
     await Reservas.cargarAsientos();
     Vista.renderTodo();
     
